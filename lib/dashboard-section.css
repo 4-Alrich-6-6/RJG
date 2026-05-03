@@ -1,0 +1,161 @@
+.dashboard-section-main {
+  padding-top: 28px;
+}
+
+.dashboard-section-back-btn {
+  padding: 0;
+  background: var(--sidebar-bg);
+}
+
+.dashboard-section-back-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.dashboard-section-main .section-header {
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Header pagination styling */
+.header-pagination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-pagination-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-pagination-btn:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.header-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f9f9f9;
+  color: #999;
+}
+
+.header-pagination-text {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding: 16px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f9f9f9;
+  color: #999;
+}
+
+.pagination-btn:not(:disabled):active {
+  transform: translateY(1px);
+}
+
+.dashboard-section-subtitle {
+  margin: -8px 0 18px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  color: #444;
+}
+
+.dashboard-section-empty {
+  margin-top: 10px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Dashboard-section uses the same job card styles as main dashboard */
+/* The job cards will inherit styles from the main dashboard CSS */
+
+/* Job card image styling to match main dashboard */
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--card-bg);
+  border-radius: 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  border-radius: 14px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-section-main {
+    padding-top: calc(var(--mobile-header-top) + var(--mobile-search-header) + 12px);
+    padding-bottom: calc(var(--mobile-bottom-nav) + 14px + env(safe-area-inset-bottom));
+  }
+}

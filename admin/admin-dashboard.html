@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../seeker/job-listing.css">
+  <link rel="stylesheet" href="admin-dashboard.css">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#5b8c51" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+  <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+<script src="../lib/app-loader.js"></script>
+  <aside class="sidebar admin-dashboard-sidebar">
+    <div class="sidebar-top">
+      <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
+        <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+      </a>
+      <div class="header-menu">
+        <button type="button" class="menu-btn" id="headerMenuBtn" aria-label="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="headerMenuDropdown">
+          <img src="../assets/images/3dots.png" alt="" class="menu-icon" aria-hidden="true">
+        </button>
+        <div class="header-menu-dropdown" id="headerMenuDropdown" role="menu" hidden>
+          <a href="../admin/admin-account.html" class="header-menu-item" role="menuitem">Admin Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <nav class="nav admin-dashboard-nav" aria-label="Admin sections">
+      <button type="button" class="nav-item admin-dashboard-nav-item is-active" data-admin-panel="jobs">JOB LISTS</button>
+      <button type="button" class="nav-item admin-dashboard-nav-item" data-admin-panel="users">USER LIST</button>
+      <button type="button" class="nav-item admin-dashboard-nav-item" data-admin-panel="reports">REPORT BOX</button>
+      <button type="button" class="nav-item admin-dashboard-nav-item" data-admin-panel="verification">VERIFICATION</button>
+    </nav>
+
+    <div class="logout admin-dashboard-logout">Log out</div>
+  </aside>
+
+  <main class="main admin-dashboard-main">
+      <section class="admin-dashboard-panel is-active" data-admin-panel-content="jobs">
+        <div class="search-row admin-dashboard-toolbar">
+          <div class="search-wrap admin-dashboard-search-wrap">
+            <img src="../assets/images/Search.png" alt="" class="search-icon admin-dashboard-search-icon" aria-hidden="true">
+            <input type="text" id="adminDashboardSearchInput" class="search-input admin-dashboard-search-input" placeholder="Search Jobs by Title">
+            <div class="divider-v"></div>
+            <button type="button" class="search-btn admin-dashboard-search-btn" id="adminDashboardSearchBtn">Search</button>
+          </div>
+          <button type="button" class="search-btn admin-dashboard-search-btn" id="adminDashboardRefreshBtn" title="Refresh">↻</button>
+        </div>
+
+        <div class="admin-dashboard-jobs-head">
+          <h1 class="admin-dashboard-jobs-title">All Posted Jobs</h1>
+          <div class="admin-dashboard-chip-row">
+            <button type="button" class="admin-dashboard-chip is-active" data-admin-job-tab="all">Jobs Right Now</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-job-tab="recent">Recently Posted</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-job-tab="urgent">Urgent Jobs</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-job-tab="archived">Archived</button>
+          </div>
+        </div>
+
+        <div class="admin-dashboard-list-head">
+          <span>Job Name</span>
+          <span>Posted By</span>
+          <span>Posted</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="admin-dashboard-job-list" id="adminDashboardJobList"></div>
+        <p class="admin-dashboard-empty" id="adminDashboardEmpty" hidden>No jobs found.</p>
+      </section>
+
+      <section class="admin-dashboard-panel" data-admin-panel-content="users">
+        <div class="search-row admin-dashboard-toolbar">
+          <div class="search-wrap admin-dashboard-search-wrap">
+            <img src="../assets/images/Search.png" alt="" class="search-icon admin-dashboard-search-icon" aria-hidden="true">
+            <input type="text" id="adminUserSearchInput" class="search-input admin-dashboard-search-input" placeholder="Search User by Name or Email">
+            <div class="divider-v"></div>
+            <button type="button" class="search-btn admin-dashboard-search-btn" id="adminUserSearchBtn">Search</button>
+          </div>
+          <button type="button" class="search-btn admin-dashboard-search-btn" id="adminUserRefreshBtn" title="Refresh user list">↻</button>
+        </div>
+
+        <div class="admin-dashboard-jobs-head">
+          <h1 class="admin-dashboard-jobs-title">All Users</h1>
+          <div class="admin-dashboard-chip-row">
+            <button type="button" class="admin-dashboard-chip is-active" data-admin-user-tab="all">All Users</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-user-tab="seekers">Seekers</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-user-tab="recruiters">Recruiters</button>
+            <button type="button" class="admin-dashboard-chip" data-admin-user-tab="archived">Archived</button>
+          </div>
+        </div>
+
+        <div class="admin-dashboard-list-head admin-dashboard-user-list-head admin-dashboard-report-list-head">
+          <span>Name</span>
+          <span>Created</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="admin-dashboard-job-list" id="adminUserList"></div>
+        <p class="admin-dashboard-empty" id="adminUserEmpty" hidden>No users found.</p>
+      </section>
+
+      <section class="admin-dashboard-panel" data-admin-panel-content="reports">
+        <div class="search-row admin-dashboard-toolbar">
+          <div class="search-wrap admin-dashboard-search-wrap">
+            <img src="../assets/images/Search.png" alt="" class="search-icon admin-dashboard-search-icon" aria-hidden="true">
+            <input type="text" id="adminReportSearchInput" class="search-input admin-dashboard-search-input" placeholder="Search User by Account Name">
+            <div class="divider-v"></div>
+            <button type="button" class="search-btn admin-dashboard-search-btn" id="adminReportSearchBtn">Search</button>
+          </div>
+          <button type="button" class="search-btn admin-dashboard-search-btn" id="adminReportRefreshBtn" title="Refresh">↻</button>
+        </div>
+
+        <div class="admin-dashboard-jobs-head admin-dashboard-report-head">
+          <h1 class="admin-dashboard-jobs-title">Report Lists</h1>
+          <div class="admin-dashboard-report-center">
+            <div class="admin-dashboard-chip-row">
+              <button type="button" class="admin-dashboard-chip is-active" data-admin-report-kind="job">Job</button>
+              <button type="button" class="admin-dashboard-chip" data-admin-report-kind="resume">Resume</button>
+            </div>
+            <div class="admin-dashboard-report-type-wrap">
+              <label for="adminReportTypeSelect" class="admin-dashboard-report-type-label">Type:</label>
+              <select id="adminReportTypeSelect" class="admin-dashboard-report-type-select">
+                <option value="all">All</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-dashboard-list-head admin-dashboard-user-list-head admin-dashboard-report-list-head" id="adminReportListHead">
+          <span id="adminReportHeadCol1">Account Name</span>
+          <span id="adminReportHeadCol2">Created</span>
+          <span id="adminReportHeadCol3">Jobs Applied</span>
+          <span id="adminReportHeadCol4">Jobs Posted</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="admin-dashboard-job-list" id="adminReportList"></div>
+        <p class="admin-dashboard-empty" id="adminReportEmpty" hidden>No report entries found.</p>
+      </section>
+
+      <!-- Verification List Panel -->
+      <section class="admin-dashboard-panel" data-admin-panel-content="verification">
+        <div class="search-row admin-dashboard-toolbar">
+          <div class="search-wrap admin-dashboard-search-wrap">
+            <img src="../assets/images/Search.png" alt="" class="search-icon admin-dashboard-search-icon" aria-hidden="true">
+            <input type="text" id="adminVerifSearchInput" class="search-input admin-dashboard-search-input" placeholder="Search by Name or Email">
+            <div class="divider-v"></div>
+            <button type="button" class="search-btn admin-dashboard-search-btn" id="adminVerifSearchBtn">Search</button>
+          </div>
+          <button type="button" class="search-btn admin-dashboard-search-btn" id="adminVerifRefreshBtn" title="Refresh">↻</button>
+        </div>
+
+        <div class="admin-dashboard-jobs-head">
+          <h1 class="admin-dashboard-jobs-title">Verification List</h1>
+        </div>
+
+        <div class="admin-dashboard-list-head admin-dashboard-user-list-head">
+          <span>Account Name</span>
+          <span>Email</span>
+          <span>ID Status</span>
+          <span>Cert Status</span>
+          <span aria-hidden="true"></span>
+        </div>
+        <div class="admin-dashboard-job-list" id="adminVerifList"></div>
+        <p class="admin-dashboard-empty" id="adminVerifEmpty" hidden>No seekers with uploaded documents found.</p>
+      </section>
+  </main>
+
+  <div class="admin-dashboard-filter-overlay" id="adminDashboardFilterModal" aria-hidden="true">
+    <div class="admin-dashboard-filter-modal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardFilterTitle">
+      <h3 id="adminDashboardFilterTitle">Filter Jobs</h3>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminDashboardFilterPostedBy">Posted By</label>
+        <input type="text" id="adminDashboardFilterPostedBy" placeholder="Type poster name">
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminDashboardFilterMinDays">Posted Days (max)</label>
+        <input type="number" id="adminDashboardFilterMaxDays" min="0" placeholder="e.g. 7">
+      </div>
+      <div class="admin-dashboard-filter-actions">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminDashboardFilterResetBtn">Reset</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminDashboardFilterApplyBtn">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-dashboard-review-overlay" id="adminDashboardReviewModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminDashboardReviewTitle">
+      <h3 id="adminDashboardReviewTitle">Review Job</h3>
+      <p class="admin-dashboard-review-line"><strong>Job:</strong> <span id="adminDashboardReviewJobTitle"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Posted By:</strong> <span id="adminDashboardReviewPostedBy"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Posted:</strong> <span id="adminDashboardReviewPostedAgo"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Type:</strong> <span id="adminDashboardReviewCategory"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Schedule:</strong> <span id="adminDashboardReviewSchedule"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Settings:</strong> <span id="adminDashboardReviewType"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Location:</strong> <span id="adminDashboardReviewLocation"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Rate:</strong> <span id="adminDashboardReviewRate"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Urgent:</strong> <span id="adminDashboardReviewUrgent"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Skills:</strong> <span id="adminDashboardReviewSkills"></span></p>
+      <p class="admin-dashboard-review-line"><strong>Description:</strong></p>
+      <p class="admin-dashboard-review-description" id="adminDashboardReviewDescription"></p>
+      <div class="admin-dashboard-review-actions" style="justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminDashboardReviewEditBtn">Edit Info</button>
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminDashboardReviewImageBtn">View Job Image</button>
+        </div>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminDashboardReviewCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-dashboard-review-overlay" id="adminUserReviewModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal admin-dashboard-user-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminUserReviewTitle">
+      <h3 id="adminUserReviewTitle">Review User</h3>
+
+      <!-- User Image -->
+      <div class="admin-dashboard-user-image-section" style="text-align: center; margin-bottom: 16px;">
+        <img id="adminUserReviewImage" class="admin-dashboard-user-image" src="" alt="User profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #5b8c51; display: none;">
+        <p id="adminUserReviewImagePlaceholder" style="color: #888; font-size: 14px;">No profile image</p>
+        <button type="button" id="adminUserViewImageBtn" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" style="margin-top: 10px; display: none;">View Full Image</button>
+      </div>
+
+      <!-- Scrollable Content -->
+      <div class="admin-dashboard-user-review-scrollable">
+        <div class="admin-dashboard-review-section">
+          <h4 style="margin: 0 0 10px; font-size: 16px; color: #5b8c51; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px;">Account Information</h4>
+          <p class="admin-dashboard-review-line"><strong>User ID:</strong> <span id="adminUserReviewId"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Account Name:</strong> <span id="adminUserReviewName"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Email:</strong> <span id="adminUserReviewEmail"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Password:</strong> <span id="adminUserReviewPassword" style="font-family: monospace; letter-spacing: 2px;">••••••••</span></p>
+          <p class="admin-dashboard-review-line"><strong>Role:</strong> <span id="adminUserReviewRole"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Status:</strong> <span id="adminUserReviewStatus"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Created:</strong> <span id="adminUserReviewCreated"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Updated:</strong> <span id="adminUserReviewUpdated"></span></p>
+        </div>
+
+        <div class="admin-dashboard-review-section" style="margin-top: 16px;">
+          <h4 style="margin: 0 0 10px; font-size: 16px; color: #5b8c51; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px;">Activity</h4>
+          <p class="admin-dashboard-review-line"><strong>Jobs Applied:</strong> <span id="adminUserReviewApplied"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Jobs Posted:</strong> <span id="adminUserReviewPosted"></span></p>
+        </div>
+
+        <div class="admin-dashboard-review-section" style="margin-top: 16px;">
+          <h4 style="margin: 0 0 10px; font-size: 16px; color: #5b8c51; border-bottom: 1px solid #e0e0e0; padding-bottom: 6px;">Profile Information</h4>
+          <p class="admin-dashboard-review-line"><strong>Phone:</strong> <span id="adminUserReviewPhone"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Address:</strong> <span id="adminUserReviewAddress"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Sex:</strong> <span id="adminUserReviewSex"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Birth Date:</strong> <span id="adminUserReviewBirthDate"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Education Status:</strong> <span id="adminUserReviewEducationStatus"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Profile Links:</strong> <span id="adminUserReviewLinks"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Languages:</strong> <span id="adminUserReviewLanguages"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Personality:</strong> <span id="adminUserReviewPersonality"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Skills:</strong> <span id="adminUserReviewSkills"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Work Experience:</strong> <span id="adminUserReviewWork"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Education Background:</strong> <span id="adminUserReviewEducation"></span></p>
+          <p class="admin-dashboard-review-line"><strong>Valid Documents:</strong></p>
+          <div id="adminUserReviewDocuments" class="admin-dashboard-review-documents">
+            <p class="admin-dashboard-review-no-documents">No documents uploaded</p>
+          </div>
+          <p class="admin-dashboard-review-line"><strong>Description:</strong></p>
+          <p class="admin-dashboard-review-description" id="adminUserReviewDescription"></p>
+        </div>
+      </div>
+
+      <div class="admin-dashboard-review-actions" style="justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminUserEditBtn">Edit Info</button>
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminUserChangeEmailBtn" style="background: #4a7a42;">Change Email</button>
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminUserChangePasswordBtn" style="background: #6b5b8c;">Change Password</button>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminUserReviewCloseBtn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin User Change Email/Password Modal -->
+  <div class="account-modal-overlay" id="adminUserChangeModal" aria-hidden="true">
+    <div class="account-modal-card" role="dialog" aria-modal="true" aria-labelledby="adminUserChangeTitle">
+      <button type="button" class="account-modal-close" id="adminUserChangeCloseBtn">&times;</button>
+      <h2 id="adminUserChangeTitle" class="account-modal-title">Change User Account</h2>
+      <p class="account-modal-text" id="adminUserChangeText">Update user email or password securely.</p>
+      <form id="adminUserChangeForm" class="account-modal-form">
+        <div class="account-modal-row" id="adminUserChangeEmailRow" style="display: none;">
+          <label class="account-modal-label" for="adminUserChangeEmailInput">New Email</label>
+          <input id="adminUserChangeEmailInput" class="account-modal-input" type="email" autocomplete="email" placeholder="user@example.com" />
+        </div>
+        <div class="account-modal-row" id="adminUserChangePasswordRow" style="display: none;">
+          <label class="account-modal-label" for="adminUserChangePasswordInput">New Password</label>
+          <input id="adminUserChangePasswordInput" class="account-modal-input" type="password" autocomplete="new-password" placeholder="Enter new password" />
+          <div class="password-strength" id="adminPasswordStrength" style="display: none;">
+            <div class="password-strength-bar" id="adminPasswordStrengthBar"></div>
+          </div>
+        </div>
+        <div class="account-modal-row" id="adminUserChangeConfirmPasswordRow" style="display: none;">
+          <label class="account-modal-label" for="adminUserChangeConfirmPasswordInput">Confirm Password</label>
+          <input id="adminUserChangeConfirmPasswordInput" class="account-modal-input" type="password" autocomplete="new-password" placeholder="Confirm new password" />
+        </div>
+        <div class="account-modal-actions">
+          <button type="button" class="account-modal-btn account-modal-btn--cancel" id="adminUserChangeCancelBtn">Cancel</button>
+          <button type="submit" class="account-modal-btn account-modal-btn--submit" id="adminUserChangeSubmitBtn" disabled>Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin User OTP Verification Modal -->
+  <div class="account-otp-overlay" id="adminUserOtpModal" aria-hidden="true">
+    <div class="account-otp-card" role="dialog" aria-modal="true" aria-labelledby="adminUserOtpTitle">
+      <h3 id="adminUserOtpTitle" class="account-otp-title">Verify Your Identity</h3>
+      <p class="account-otp-text" id="adminUserOtpText">Enter the verification code sent to your email to complete the account change.</p>
+      <form id="adminUserOtpForm" class="account-otp-form">
+        <div class="account-modal-row">
+          <input id="adminUserOtpInput" class="account-otp-input" type="text" maxlength="6" placeholder="000000" autocomplete="one-time-code" />
+        </div>
+        <div class="account-otp-actions">
+          <button type="button" class="account-otp-btn account-otp-btn--send" id="adminUserResendOtpBtn">Resend Code</button>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="account-otp-btn account-otp-btn--cancel" id="adminUserOtpCancelBtn">Cancel</button>
+            <button type="submit" class="account-otp-btn account-otp-btn--submit" id="adminUserOtpSubmitBtn" disabled>Verify</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-dashboard-review-overlay" id="adminReportReviewModal" aria-hidden="true">
+    <div class="admin-dashboard-report-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminReportReviewTitle">
+      <div class="admin-dashboard-report-review-header">
+        <h3 id="adminReportReviewTitle">Reported for "Type of Report"</h3>
+        <button type="button" class="admin-dashboard-report-review-close" id="adminReportReviewCloseBtn">Close</button>
+      </div>
+      <p class="admin-dashboard-report-review-line"><strong>Reported By:</strong> <span id="adminReportReviewReportedBy">—</span></p>
+      <p class="admin-dashboard-report-review-line"><strong id="adminReportReviewInfoLabel">Job Info:</strong></p>
+      <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminReportReviewImageBtn">View Job Image</button>
+      <div class="admin-dashboard-report-review-body" id="adminReportReviewBody">Job Info Here</div>
+      <div class="admin-dashboard-report-review-actions" id="adminReportReviewActions">
+        <button type="button" class="admin-dashboard-report-review-action" id="adminReportInvalidateBtn">Invalidate Report</button>
+        <button type="button" class="admin-dashboard-report-review-action" id="adminReportRemoveBanBtn">Remove Job &amp; Ban User</button>
+        <button type="button" class="admin-dashboard-report-review-action" id="adminReportRemoveJobBtn">Remove Job</button>
+        <button type="button" class="admin-dashboard-report-review-action" id="adminReportBanUserBtn" hidden>Ban User</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-dashboard-review-overlay" id="adminJobImageModal" aria-hidden="true">
+    <div class="admin-dashboard-job-image-modal" role="dialog" aria-modal="true" aria-labelledby="adminJobImageTitle">
+      <div class="admin-dashboard-job-image-head">
+        <h3 id="adminJobImageTitle">Job Image</h3>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminJobImageCloseBtn">Close</button>
+      </div>
+      <img id="adminJobImagePreview" class="admin-dashboard-job-image-preview" alt="Job image preview">
+      <p id="adminJobImageEmpty" class="admin-dashboard-empty" hidden>No job image available for this listing.</p>
+    </div>
+  </div>
+
+  <!-- Job Edit Modal -->
+  <div class="admin-dashboard-review-overlay" id="adminJobEditModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminJobEditModalTitle">
+      <h3 id="adminJobEditModalTitle">Edit Job</h3>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminJobEditTitle">Job Title</label>
+        <input type="text" id="adminJobEditTitle" placeholder="Job title">
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminJobEditCategory">Category</label>
+        <select id="adminJobEditCategory" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminJobEditSchedule">Schedule</label>
+        <select id="adminJobEditSchedule" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminJobEditType">Work Setting</label>
+        <select id="adminJobEditType" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+          <option value="">Loading...</option>
+        </select>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label>Location</label>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobEditLocationBtn" style="width: 100%;">Edit Location</button>
+        <input type="hidden" id="adminJobEditLocation" placeholder="Job location">
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label>Rate</label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <select id="adminJobEditCurrency" style="flex: 1; min-width: 80px; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+            <option value="">Loading...</option>
+          </select>
+          <input type="number" id="adminJobEditRateAmount" placeholder="Amount" style="flex: 2; min-width: 100px; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+          <select id="adminJobEditRateUnit" style="flex: 1; min-width: 80px; padding: 8px; border: 1px solid #ddd; border-radius: 8px;">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label>
+          <input type="checkbox" id="adminJobEditUrgent"> Mark as Urgent
+        </label>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label>Job Image</label>
+        <div id="adminJobEditImagePreview" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; display: none;"></div>
+        <input type="file" id="adminJobEditImageInput" accept="image/*" style="display: none;">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobEditImageBtn" style="width: 100%;">Change Image</button>
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label>Required Skills</label>
+        <div id="adminJobEditSkillsDisplay" style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; min-height: 32px; padding: 6px; border: 1px solid #e0e0e0; border-radius: 8px; background: #f8f9fa;"></div>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobEditSkillsBtn" style="width: 100%;">Select Skills</button>
+        <input type="hidden" id="adminJobEditSkills">
+      </div>
+      <div class="admin-dashboard-filter-group">
+        <label for="adminJobEditDescription">Description</label>
+        <textarea id="adminJobEditDescription" rows="4" placeholder="Job description"></textarea>
+      </div>
+      <div class="admin-dashboard-review-actions">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobEditSaveBtn">Save Changes</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminJobEditCloseBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Location Edit Modal -->
+  <div class="admin-dashboard-review-overlay" id="adminJobLocationModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminJobLocationTitle">
+      <h3 id="adminJobLocationTitle">Edit Job Location</h3>
+      <label for="adminJobLocationUnit">Unit / No.</label>
+      <input type="text" id="adminJobLocationUnit" placeholder="Unit / No. (optional)" inputmode="numeric" pattern="[0-9]*" maxlength="10">
+      <label for="adminJobLocationStreet">Street</label>
+      <input type="text" id="adminJobLocationStreet" placeholder="Street">
+      <label for="adminJobLocationRegion">Region</label>
+      <select id="adminJobLocationRegion">
+        <option value="">Select Region</option>
+      </select>
+      <label for="adminJobLocationProvince">Province</label>
+      <select id="adminJobLocationProvince" disabled>
+        <option value="">Select Province</option>
+      </select>
+      <label for="adminJobLocationCity">City</label>
+      <select id="adminJobLocationCity" disabled>
+        <option value="">Select City</option>
+      </select>
+      <label for="adminJobLocationBarangay">Barangay</label>
+      <select id="adminJobLocationBarangay" disabled>
+        <option value="">Select Barangay</option>
+      </select>
+      <label for="adminJobLocationCountry">Country</label>
+      <input type="text" id="adminJobLocationCountry" placeholder="Country" value="Philippines" readonly>
+      <label for="adminJobLocationZip">ZIP Code</label>
+      <input type="number" id="adminJobLocationZip" placeholder="ZIP Code" inputmode="numeric" min="0" max="9999" maxlength="4">
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobLocationSaveBtn">Save Location</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminJobLocationCloseBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Skills Selection Modal -->
+  <div class="admin-dashboard-review-overlay" id="adminJobSkillsModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminJobSkillsTitle">
+      <h3 id="adminJobSkillsTitle">Select Required Skills</h3>
+      <div id="adminJobSkillsList" style="max-height: 400px; overflow-y: auto; padding: 8px 0;">
+        <!-- Skills will be loaded here dynamically -->
+      </div>
+      <div class="admin-dashboard-review-actions">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminJobSkillsSaveBtn">Save Skills</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminJobSkillsCloseBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Edit Profile Modal -->
+  <div class="admin-dashboard-review-overlay" id="adminUserEditModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal admin-dashboard-user-edit-modal" role="dialog" aria-modal="true" aria-labelledby="adminUserEditModalTitle">
+      <h3 id="adminUserEditModalTitle">Edit User Profile</h3>
+      <div class="admin-dashboard-user-edit-scrollable">
+
+        <!-- Seeker Profile Picture Section -->
+        <div id="adminUserEditProfilePictureSection" class="aue-section">
+          <div class="aue-section-title">Profile Picture</div>
+          <div class="admin-dashboard-filter-group">
+            <div id="adminUserEditProfilePicturePreview" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid #ddd; margin-bottom: 10px; display: none; background-color: #f5f5f5;"></div>
+            <div id="adminUserEditProfilePicturePlaceholder" style="width: 120px; height: 120px; border-radius: 50%; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #999; margin-bottom: 10px;">👤</div>
+            <input type="file" id="adminUserEditProfilePictureInput" accept="image/*" style="display: none;">
+            <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminUserEditProfilePictureBtn" style="width: 200px;">Change Profile Picture</button>
+          </div>
+        </div>
+
+        <!-- Seeker Basic Info Section -->
+        <div id="adminUserEditBasicInfoSection" class="aue-section">
+          <div class="aue-section-title">Basic Information</div>
+          <div class="aue-row-4">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditLastName">Last Name</label>
+              <input type="text" id="adminUserEditLastName" placeholder="Last Name" required>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditFirstName">First Name</label>
+              <input type="text" id="adminUserEditFirstName" placeholder="First Name" required>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditMiddleName">Middle Name</label>
+              <input type="text" id="adminUserEditMiddleName" placeholder="Middle Name">
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditSuffix">Suffix</label>
+              <input type="text" id="adminUserEditSuffix" placeholder="Suffix (e.g., Jr., Sr., III)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Recruiter Company Section -->
+        <div id="adminUserEditCompanySection" class="aue-section" style="display: none;">
+          <div class="aue-section-title">Company Information</div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditFirstName">Company Name *</label>
+              <input type="text" id="adminUserEditFirstName" placeholder="Company Name" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seeker Personal Info Section -->
+        <div id="adminUserEditPersonalInfoSection" class="aue-section">
+          <div class="aue-section-title">Personal Information</div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditSex">Sex *</label>
+              <select id="adminUserEditSex" class="aue-select" required>
+                <option value="">— Select —</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditBirthDate">Birth Date *</label>
+              <input type="date" id="adminUserEditBirthDate" class="aue-select" max="" required>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditPhone">Contact Number *</label>
+              <input type="text" id="adminUserEditPhone" placeholder="Phone number" maxlength="11" inputmode="numeric" pattern="[0-9]{11}" title="Contact number must be exactly 11 numbers" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recruiter Contact Section -->
+        <div id="adminUserEditContactSection" class="aue-section" style="display: none;">
+          <div class="aue-section-title">Contact Information</div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditPhone">Contact Number *</label>
+              <input type="text" id="adminUserEditPhone" placeholder="Phone number" maxlength="11" inputmode="numeric" pattern="[0-9]{11}" title="Contact number must be exactly 11 numbers" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address Section (Shared) -->
+        <div id="adminUserEditAddressSection" class="aue-section">
+          <div class="aue-section-title">Address Information *</div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressUnitNo">Unit / No.</label>
+              <input type="text" id="adminUserEditAddressUnitNo" placeholder="e.g., 302" inputmode="numeric" pattern="[0-9]+" title="Unit number must be numbers only" maxlength="10">
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressStreet">Street *</label>
+              <input type="text" id="adminUserEditAddressStreet" placeholder="Street" required>
+            </div>
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressRegion">Region *</label>
+              <select id="adminUserEditAddressRegion" class="aue-select" required>
+                <option value="">— Select Region —</option>
+              </select>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressProvince">Province *</label>
+              <select id="adminUserEditAddressProvince" class="aue-select" required>
+                <option value="">— Select Province —</option>
+              </select>
+            </div>
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressCity">City *</label>
+              <select id="adminUserEditAddressCity" class="aue-select" required>
+                <option value="">— Select City —</option>
+              </select>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressBarangay">Barangay / Village *</label>
+              <select id="adminUserEditAddressBarangay" class="aue-select" required>
+                <option value="">— Select Barangay —</option>
+              </select>
+            </div>
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressCountry">Country</label>
+              <select id="adminUserEditAddressCountry" class="aue-select">
+                <option value="Philippines" selected>Philippines</option>
+              </select>
+            </div>
+            <div class="admin-dashboard-filter-group">
+              <label for="adminUserEditAddressZip">ZIP Code</label>
+              <input type="text" id="adminUserEditAddressZip" placeholder="e.g., 1000" maxlength="4" inputmode="numeric" pattern="[0-9]{0,4}" title="ZIP code must be numbers only, up to 4 digits">
+            </div>
+          </div>
+        </div>
+
+        <!-- Seeker Education Section -->
+        <div id="adminUserEditEducationInfoSection" class="aue-section">
+          <div class="aue-section-title">Education Information</div>
+          <div class="admin-dashboard-filter-group">
+            <label for="adminUserEditEducationStatus">Education Status *</label>
+            <select id="adminUserEditEducationStatus" class="aue-select" required>
+              <option value="">— Select —</option>
+              <option value="No Formal Education">No Formal Education</option>
+              <option value="Elementary Level">Elementary Level</option>
+              <option value="Elementary Graduate">Elementary Graduate</option>
+              <option value="Junior High School Level">Junior High School Level</option>
+              <option value="Junior High School Graduate">Junior High School Graduate</option>
+              <option value="Senior High School Level">Senior High School Level</option>
+              <option value="Senior High School Graduate">Senior High School Graduate</option>
+              <option value="College Level">College Level</option>
+              <option value="College Graduate">College Graduate</option>
+              <option value="Vocational / Technical Graduate">Vocational / Technical Graduate</option>
+              <option value="Postgraduate Level">Postgraduate Level</option>
+              <option value="Postgraduate Graduate">Postgraduate Graduate</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Seeker Description Section -->
+        <div id="adminUserEditDescriptionSection" class="aue-section">
+          <div class="aue-section-title">Profile Description</div>
+          <div class="admin-dashboard-filter-group">
+            <label for="adminUserEditDescription">About the seeker</label>
+            <textarea id="adminUserEditDescription" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+        </div>
+
+        <!-- Recruiter Profile Links Section -->
+        <div id="adminUserEditLinksSection" class="aue-section" style="display: none;">
+          <div class="aue-section-title">Profile Links *</div>
+          <div class="aue-items-list" id="adminUserEditLinksList"></div>
+          <button type="button" class="aue-btn aue-btn--toggle" id="adminUserEditLinksAddBtn">+ Add Link</button>
+        </div>
+
+        <!-- Seeker Work Experience Section -->
+        <div id="adminUserEditWorkSection" class="aue-section">
+          <div class="aue-section-title">Work Experiences</div>
+          <div class="aue-items-list" id="adminUserEditWorkList"></div>
+        <div class="aue-add-form" id="adminUserEditWorkForm" style="display:none;">
+          <div class="admin-dashboard-filter-group">
+            <label>Name of Position</label>
+            <input type="text" id="adminUserEditWorkPosition" placeholder="e.g., Software Engineer">
+          </div>
+          <div class="admin-dashboard-filter-group">
+            <label>Name of Business/Company</label>
+            <input type="text" id="adminUserEditWorkCompany" placeholder="e.g., Tech Corporation Inc.">
+          </div>
+          <div class="admin-dashboard-filter-group">
+            <label>Location of Business</label>
+            <input type="text" id="adminUserEditWorkLocation" placeholder="e.g., Manila, Philippines">
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group date-group">
+              <label>Start Date</label>
+              <div class="aue-date-group">
+                <select id="adminUserEditWorkStartMonth" class="aue-select">
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input type="text" id="adminUserEditWorkStartYear" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+            </div>
+            <div class="admin-dashboard-filter-group date-group">
+              <label>End Date</label>
+              <div class="aue-date-group">
+                <select id="adminUserEditWorkEndMonth" class="aue-select">
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input type="text" id="adminUserEditWorkEndYear" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="aue-btn aue-btn--add" id="adminUserEditWorkAddBtn">Add</button>
+        </div>
+        <button type="button" class="aue-btn aue-btn--toggle" id="adminUserEditWorkToggleBtn">+ Add Work Experience</button>
+        </div>
+
+        <!-- Seeker Education Section -->
+        <div id="adminUserEditEduSection" class="aue-section">
+          <div class="aue-section-title">Educational Background</div>
+          <div class="aue-items-list" id="adminUserEditEduList"></div>
+        <div class="aue-add-form" id="adminUserEditEduForm" style="display:none;">
+          <div class="admin-dashboard-filter-group">
+            <label>Education Level</label>
+            <select id="adminUserEditEduLevel" class="aue-select">
+              <option value="">Select Education Level</option>
+              <option>Preschool</option>
+              <option>Elementary School</option>
+              <option>Junior High School</option>
+              <option>Senior High School</option>
+              <option>Vocational</option>
+              <option>Technical Training</option>
+              <option>Bachelor's Degree</option>
+              <option>Master's Degree</option>
+              <option>Doctoral Degree</option>
+            </select>
+          </div>
+          <div class="admin-dashboard-filter-group">
+            <label>Name of School</label>
+            <input type="text" id="adminUserEditEduSchool" placeholder="e.g., University of the Philippines">
+          </div>
+          <div class="admin-dashboard-filter-group">
+            <label>Program / Strand / Course</label>
+            <input type="text" id="adminUserEditEduProgram" placeholder="e.g., BS Computer Science (NA if not applicable)">
+          </div>
+          <div class="aue-row-2">
+            <div class="admin-dashboard-filter-group date-group">
+              <label>Start Date</label>
+              <div class="aue-date-group">
+                <select id="adminUserEditEduStartMonth" class="aue-select">
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input type="text" id="adminUserEditEduStartYear" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+            </div>
+            <div class="admin-dashboard-filter-group date-group">
+              <label>End Date</label>
+              <div class="aue-date-group">
+                <select id="adminUserEditEduEndMonth" class="aue-select">
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <input type="text" id="adminUserEditEduEndYear" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+              </div>
+            </div>
+          </div>
+          <button type="button" class="aue-btn aue-btn--add" id="adminUserEditEduAddBtn">Add</button>
+        </div>
+        <button type="button" class="aue-btn aue-btn--toggle" id="adminUserEditEduToggleBtn">+ Add Educational Background</button>
+        </div>
+
+        <!-- Seeker Skills Section -->
+        <div id="adminUserEditSkillsSection" class="aue-section">
+          <div class="aue-section-title">Skills (Max 5)</div>
+          <div class="aue-checkbox-grid" id="adminUserEditSkillsList">
+          <label><input type="checkbox" value="Communication and Teamwork"> Communication and Teamwork</label>
+          <label><input type="checkbox" value="Problem Solving"> Problem Solving</label>
+          <label><input type="checkbox" value="Time Management"> Time Management</label>
+          <label><input type="checkbox" value="Adaptability"> Adaptability</label>
+          <label><input type="checkbox" value="Leadership"> Leadership</label>
+          <label><input type="checkbox" value="Critical Thinking"> Critical Thinking</label>
+          <label><input type="checkbox" value="Microsoft Office (Word, Excel, PowerPoint)"> Microsoft Office (Word, Excel, PowerPoint)</label>
+          <label><input type="checkbox" value="Data Entry"> Data Entry</label>
+          <label><input type="checkbox" value="Basic Programming"> Basic Programming</label>
+          <label><input type="checkbox" value="Web Development"> Web Development</label>
+          <label><input type="checkbox" value="Graphic Design"> Graphic Design</label>
+          <label><input type="checkbox" value="Video Editing"> Video Editing</label>
+          <label><input type="checkbox" value="UI/UX Design"> UI/UX Design</label>
+          <label><input type="checkbox" value="Email Management"> Email Management</label>
+          <label><input type="checkbox" value="Scheduling"> Scheduling</label>
+          <label><input type="checkbox" value="Documentation"> Documentation</label>
+          <label><input type="checkbox" value="Customer Support"> Customer Support</label>
+          <label><input type="checkbox" value="File Organization"> File Organization</label>
+          <label><input type="checkbox" value="Writing"> Writing</label>
+          <label><input type="checkbox" value="Photography"> Photography</label>
+          <label><input type="checkbox" value="Illustration / Drawing"> Illustration / Drawing</label>
+          <label><input type="checkbox" value="Content Creation"> Content Creation</label>
+          <label><input type="checkbox" value="Social Media Management"> Social Media Management</label>
+          <label><input type="checkbox" value="Cleaning"> Cleaning</label>
+          <label><input type="checkbox" value="Cooking / Food Preparation"> Cooking / Food Preparation</label>
+          <label><input type="checkbox" value="Driving"> Driving</label>
+          <label><input type="checkbox" value="Delivery / Logistics"> Delivery / Logistics</label>
+          <label><input type="checkbox" value="Construction / Manual Labor"> Construction / Manual Labor</label>
+          <label><input type="checkbox" value="Heavy Lifting and Carrying"> Heavy Lifting and Carrying</label>
+          <label><input type="checkbox" value="Physical Stamina/Endurance"> Physical Stamina/Endurance</label>
+          <label><input type="checkbox" value="Tutoring / Teaching"> Tutoring / Teaching</label>
+          <label><input type="checkbox" value="Baby / Pet Sitting"> Baby / Pet Sitting</label>
+          <label><input type="checkbox" value="Sales"> Sales</label>
+          <label><input type="checkbox" value="Marketing"> Marketing</label>
+          <label><input type="checkbox" value="Translation"> Translation</label>
+          <label><input type="checkbox" value="Event Planning"> Event Planning</label>
+        </div>
+        </div>
+
+        <!-- Seeker Personality Section -->
+        <div id="adminUserEditPersonalitySection" class="aue-section">
+          <div class="aue-section-title">Personality Traits (Max 5)</div>
+          <div class="aue-checkbox-grid" id="adminUserEditPersonalityList">
+          <label><input type="checkbox" value="Hardworking"> Hardworking</label>
+          <label><input type="checkbox" value="Responsible"> Responsible</label>
+          <label><input type="checkbox" value="Team Player"> Team Player</label>
+          <label><input type="checkbox" value="Adaptable"> Adaptable</label>
+          <label><input type="checkbox" value="Organized"> Organized</label>
+          <label><input type="checkbox" value="Detail-Oriented"> Detail-Oriented</label>
+          <label><input type="checkbox" value="Self-Motivated"> Self-Motivated</label>
+          <label><input type="checkbox" value="Reliable"> Reliable</label>
+          <label><input type="checkbox" value="Creative"> Creative</label>
+          <label><input type="checkbox" value="Proactive"> Proactive</label>
+          <label><input type="checkbox" value="Honest"> Honest</label>
+          <label><input type="checkbox" value="Confident"> Confident</label>
+        </div>
+        </div>
+
+        <!-- Seeker Languages Section -->
+        <div id="adminUserEditLangSection" class="aue-section">
+          <div class="aue-section-title">Languages</div>
+          <div class="aue-items-list" id="adminUserEditLangList"></div>
+          <button type="button" class="aue-btn aue-btn--toggle" id="adminUserEditLangAddBtn">+ Add Language</button>
+        </div>
+
+      </div>
+      <div class="admin-dashboard-review-actions">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminUserEditSaveBtn">Save Changes</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminUserEditCloseBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../lib/database.js"></script>
+  <!-- Verification Review Modal -->
+  <div class="admin-dashboard-review-overlay" id="adminVerifReviewModal" aria-hidden="true">
+    <div class="admin-dashboard-review-modal admin-dashboard-verif-review-modal" role="dialog" aria-modal="true" aria-labelledby="adminVerifReviewTitle">
+      <h3 id="adminVerifReviewTitle">Review Documents</h3>
+
+      <!-- Seeker Info -->
+      <div class="admin-verif-seeker-info">
+        <div class="admin-verif-avatar-wrap">
+          <img id="adminVerifReviewAvatar" class="admin-verif-avatar" src="" alt="Profile" style="display:none;">
+          <div id="adminVerifReviewAvatarPlaceholder" class="admin-verif-avatar-placeholder">👤</div>
+        </div>
+        <div class="admin-verif-seeker-details">
+          <p class="admin-verif-detail"><strong>Name:</strong> <span id="adminVerifReviewName"></span></p>
+          <p class="admin-verif-detail"><strong>Email:</strong> <span id="adminVerifReviewEmail"></span></p>
+          <p class="admin-verif-detail"><strong>Contact:</strong> <span id="adminVerifReviewPhone"></span></p>
+          <p class="admin-verif-detail"><strong>Address:</strong> <span id="adminVerifReviewAddress"></span></p>
+        </div>
+      </div>
+
+      <!-- Scrollable Content -->
+      <div class="admin-dashboard-user-review-scrollable">
+
+        <!-- Valid ID -->
+        <div class="admin-verif-doc-section">
+          <div class="admin-verif-doc-header">
+            <h4 class="admin-verif-doc-title">Valid ID</h4>
+            <div class="admin-verif-doc-actions" id="adminVerifIdActions">
+              <button type="button" class="admin-verif-btn admin-verif-btn--verify" id="adminVerifIdVerifyBtn">✔ Verify</button>
+              <button type="button" class="admin-verif-btn admin-verif-btn--change" id="adminVerifIdChangeBtn">⚠ Request Change</button>
+            </div>
+          </div>
+          <div class="admin-verif-doc-preview" id="adminVerifIdPreview">
+            <img id="adminVerifIdImage" src="" alt="Valid ID" class="admin-verif-doc-image" style="display:none;">
+            <p id="adminVerifIdPlaceholder" class="admin-verif-no-doc">No ID uploaded</p>
+          </div>
+          <p class="admin-verif-current-status">Current Status: <span id="adminVerifIdCurrentStatus" class="admin-verif-status-text"></span></p>
+          <p class="admin-verif-pending-label" id="adminVerifIdPendingLabel" style="display:none;"></p>
+        </div>
+
+        <!-- Valid Certificate -->
+        <div class="admin-verif-doc-section">
+          <div class="admin-verif-doc-header">
+            <h4 class="admin-verif-doc-title">Valid Certificate</h4>
+            <div class="admin-verif-doc-actions" id="adminVerifCertActions">
+              <button type="button" class="admin-verif-btn admin-verif-btn--verify" id="adminVerifCertVerifyBtn">✔ Verify</button>
+              <button type="button" class="admin-verif-btn admin-verif-btn--change" id="adminVerifCertChangeBtn">⚠ Request Change</button>
+            </div>
+          </div>
+          <div class="admin-verif-doc-preview" id="adminVerifCertPreview">
+            <img id="adminVerifCertImage" src="" alt="Valid Certificate" class="admin-verif-doc-image" style="display:none;">
+            <p id="adminVerifCertPlaceholder" class="admin-verif-no-doc">No certificate uploaded</p>
+          </div>
+          <p class="admin-verif-current-status">Current Status: <span id="adminVerifCertCurrentStatus" class="admin-verif-status-text"></span></p>
+          <p class="admin-verif-pending-label" id="adminVerifCertPendingLabel" style="display:none;"></p>
+        </div>
+
+      </div>
+
+      <div class="admin-dashboard-review-actions" style="justify-content: flex-end; gap: 8px;">
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--apply" id="adminVerifSaveBtn">Save</button>
+        <button type="button" class="admin-dashboard-filter-action admin-dashboard-filter-action--cancel" id="adminVerifCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../lib/database.js"></script>
+  <script src="../lib/auth-guard.js"></script>
+  <script src="../lib/app-feedback.js"></script>
+  <script src="../lib/error-handler.js"></script>
+  <script src="../lib/app-confirm.js"></script>
+  <script src="../lib/logout-modal.js"></script>
+  <script src="admin-dashboard.js"></script>
+  <script src="../lib/image-modal.js"></script>
+  
+    
+    <!-- Image Modal -->
+    <div class="image-modal-overlay" id="imageModalOverlay">
+        <div class="image-modal">
+            <button type="button" class="image-modal-close" id="imageModalClose" aria-label="Close image modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <img src="" alt="Full size image" class="image-modal-img" id="imageModalImg">
+        </div>
+    </div>
+  <script src="../lib/register-sw.js"></script>
+</body>
+</html>

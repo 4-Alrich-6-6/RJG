@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Account — Recruiter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../seeker/job-listing.css">
+    <link rel="stylesheet" href="recruiter-account.css">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body class="recruiter-page recruiter-account-page">
+<script src="../lib/app-loader.js"></script>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
+                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            </a>
+            <button type="button" class="menu-btn profile-back-btn" id="accountBackBtn" aria-label="Back to dashboard" title="Back">
+                <img src="../assets/images/Back.png" alt="Back" class="account-back-icon" width="35" height="35">
+            </button>
+        </div>
+        <nav class="nav" aria-label="Account sections">
+            <a class="nav-item" href="../recruiter/recruiter-profile.html">Manage Profile</a>
+            <a class="nav-item active" href="../recruiter/recruiter-account.html">Your Account</a>
+        </nav>
+        <div class="logout">Log out</div>
+    </aside>
+
+    <main class="main ra-main">
+        <section class="ra-card" aria-labelledby="ra-heading">
+            <h1 id="ra-heading" class="ra-card-title">Account Information</h1>
+            <div class="ra-rows">
+                <div class="ra-row">
+                    <span class="ra-label">Email</span>
+                    <div class="ra-field">
+                        <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="email" aria-label="Edit email">
+                            <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+                        </button>
+                        <span class="ra-value ra-value--ellipsis" id="raEmailValue">—</span>
+                    </div>
+                </div>
+                <div class="ra-row">
+                    <span class="ra-label">Password</span>
+                    <div class="ra-field">
+                        <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="password" aria-label="Change password">
+                            <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+                        </button>
+                        <span class="ra-value ra-value--masked" id="raPasswordValue" aria-hidden="true">**************</span>
+                        <span class="visually-hidden">Password hidden</span>
+                    </div>
+                </div>
+
+            <button type="button" class="ra-delete" id="raDeleteBtn">Delete Account</button>
+        </section>
+    </main>
+
+    <!-- OTP Modal -->
+    <div class="ra-modal-overlay" id="raOtpOverlay" aria-hidden="true">
+        <div class="ra-modal-card" role="dialog" aria-modal="true" aria-labelledby="raOtpTitle">
+            <button type="button" class="ra-modal-close" data-modal-close="otp" aria-label="Close">&times;</button>
+            <h2 id="raOtpTitle" class="ra-modal-title">Verify OTP</h2>
+            <p class="ra-modal-text" id="raOtpText">Click "Send OTP" to receive a verification code in your email.</p>
+            <form id="raOtpForm" class="ra-modal-form">
+                <button type="button" class="ra-modal-btn ra-modal-btn--send" id="raSendOtpBtn">Send OTP</button>
+                <div class="ra-modal-row">
+                    <label class="ra-modal-label" for="raOtpInput">OTP Code</label>
+                    <input id="raOtpInput" class="ra-modal-input" type="text" inputmode="numeric" maxlength="8" autocomplete="one-time-code" placeholder="Enter OTP">
+                </div>
+                <div class="ra-modal-actions">
+                    <button type="button" class="ra-modal-btn ra-modal-btn--cancel" data-modal-close="otp">Cancel</button>
+                    <button type="submit" class="ra-modal-btn ra-modal-btn--submit" id="raOtpSubmitBtn" disabled>Verify</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="ra-modal-overlay" id="raEditOverlay" aria-hidden="true">
+        <div class="ra-modal-card" role="dialog" aria-modal="true" aria-labelledby="raEditTitle">
+            <button type="button" class="ra-modal-close" data-modal-close="edit" aria-label="Close">&times;</button>
+            <h2 id="raEditTitle" class="ra-modal-title">Update Account</h2>
+            <p class="ra-modal-text" id="raEditText">Change your email or update your password securely.</p>
+            <form id="raEditForm" class="ra-modal-form">
+                <div class="ra-modal-row" id="raEditEmailRow">
+                    <label class="ra-modal-label" for="raEditEmailInput">New Email</label>
+                    <input id="raEditEmailInput" class="ra-modal-input" type="email" autocomplete="email" placeholder="you@example.com">
+                </div>
+                <div class="ra-modal-row" id="raEditPasswordRow">
+                    <label class="ra-modal-label" for="raEditPasswordInput">New Password</label>
+                    <input id="raEditPasswordInput" class="ra-modal-input" type="password" autocomplete="new-password" placeholder="Enter new password">
+                </div>
+                <div class="ra-modal-row" id="raEditConfirmPasswordRow">
+                    <label class="ra-modal-label" for="raEditConfirmPasswordInput">Confirm Password</label>
+                    <input id="raEditConfirmPasswordInput" class="ra-modal-input" type="password" autocomplete="new-password" placeholder="Confirm new password">
+                </div>
+                <div class="ra-modal-actions">
+                    <button type="button" class="ra-modal-btn ra-modal-btn--cancel" data-modal-close="edit">Cancel</button>
+                    <button type="submit" class="ra-modal-btn ra-modal-btn--submit" id="raEditSubmitBtn" disabled>Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Account Confirmation Modal -->
+    <div class="ra-modal-overlay" id="raDeleteOverlay" aria-hidden="true">
+        <div class="ra-modal-card" role="dialog" aria-modal="true" aria-labelledby="raDeleteTitle">
+            <button type="button" class="ra-modal-close" data-modal-close="delete" aria-label="Close">&times;</button>
+            <h2 id="raDeleteTitle" class="ra-modal-title">Delete Account</h2>
+            <p class="ra-modal-text" id="raDeleteText">This action cannot be undone. Please enter your password to confirm account deletion.</p>
+            <form id="raDeleteForm" class="ra-modal-form">
+                <div class="ra-modal-row">
+                    <label class="ra-modal-label" for="raDeletePasswordInput">Current Password</label>
+                    <input id="raDeletePasswordInput" class="ra-modal-input" type="password" autocomplete="current-password" placeholder="Enter your password">
+                </div>
+                <div class="ra-modal-actions">
+                    <button type="button" class="ra-modal-btn ra-modal-btn--cancel" data-modal-close="delete">Cancel</button>
+                    <button type="submit" class="ra-modal-btn ra-modal-btn--danger" id="raDeleteSubmitBtn">Delete Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="../lib/security-feedback.js"></script>
+    <script src="../lib/error-handler.js"></script>
+    <script src="recruiter-account.js"></script>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>

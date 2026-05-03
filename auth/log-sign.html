@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Log-In / Sign-Up Page</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="log-sign.css">
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#5b8c51" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+        <link rel="apple-touch-icon" href="/assets/images/icon-192.png" /> 
+    </head>
+    <body>
+<script src="../lib/app-loader.js"></script>
+        <div class="container">
+            <div class="left">
+                <div class="banner">
+                    <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+                    <div class="title">
+                        <h1>READY-JOB-GO</h1>
+                        <p>A REAL-TIME JOB REQUEST PLATFORM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="form">
+                    <div class="form-content">
+                        <div class="tab-toggle">
+                            <button class="tab-btn active" data-tab="login">LOGIN</button>
+                            <button class="tab-btn" data-tab="signup">Create an Account</button>
+                        </div>
+                        <div class="lForm">
+                            <h3>Welcome Back!</h3>
+                            <div class="inputs">
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="email" required>
+                                </div>
+                                <div class="form-group password-group">
+                                    <label>Password:</label>
+                                    <div class="password-wrapper">
+                                        <input type="password" class="password-input" required>
+                                        <button class="toggle-password" type="button">
+                                            <svg viewBox="0 0 24 24" width="30" height="30">
+                                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="black"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <a href="forgot-password.html" class="forget-password" id="forgetPasswordLink">Forget Password</a>
+                            </div>
+                            <button class="submit">
+                                <span>LOG-IN</span>
+                            </button>
+                        </div>
+                        <div class="sForm">
+                            <h3>Welcome!</h3>
+                            <div class="signup-role-wrap">
+                                <label class="signup-role-label" for="signupRoleSelect">You are a:</label>
+                                <select id="signupRoleSelect" class="signup-role-select">
+                                    <option value="seeker">Job Seeker</option>
+                                    <option value="recruiter">Recruiter / Employer</option>
+                                </select>
+                            </div>
+                            <div class="inputs">
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="email" required>
+                                </div>
+                                <div class="form-group password-group">
+                                    <label>Password:</label>
+                                    <div class="password-wrapper">
+                                        <input type="password" class="password-input" required>
+                                        <button class="toggle-password" type="button">
+                                            <svg viewBox="0 0 24 24" width="30" height="30">
+                                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="black"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password:</label>
+                                    <div class="password-wrapper">
+                                        <input type="password" class="password-input" required>
+                                        <button class="toggle-password" type="button">
+                                            <svg viewBox="0 0 24 24" width="30" height="30">
+                                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="black"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <label class="terms-check">
+                                    <input type="checkbox" id="signupTermsCheckbox">
+                                    <span>By checking this, you agree to the <a href="../public/terms-con.html" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>.</span>
+                                </label>
+                            </div>
+                            <button class="submit">
+                                <span>SIGN-UP</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="../lib/database.js"></script>
+        <script src="../lib/app-feedback.js"></script>
+        <script src="../lib/app-confirm.js"></script>
+        <script src="../lib/error-handler.js"></script>
+        <script src="log-sign.js"></script>
+        <script src="../lib/register-sw.js"></script>
+    </body>
+</html>

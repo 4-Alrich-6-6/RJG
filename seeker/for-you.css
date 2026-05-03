@@ -1,0 +1,370 @@
+/* For You screen only — selectors scoped so Job Listing styles stay untouched */
+
+/* For You / Job Posting: no fixed search row — only reserve the mobile top bar (avoid gap where cards scroll above sticky headers) */
+@media (max-width: 768px) {
+    .main:has(#view-for-you:not([hidden])),
+    .main:has(#view-posting:not([hidden])) {
+        padding-top: calc(var(--mobile-header-top) + 12px);
+    }
+}
+
+@media (max-width: 560px) {
+    .main:has(#view-for-you:not([hidden])),
+    .main:has(#view-posting:not([hidden])) {
+        padding-top: calc(var(--mobile-header-top) + 10px);
+    }
+}
+
+#view-for-you {
+    min-height: 50vh;
+    background: var(--main-bg, #FDF6EC);
+    margin: -32px -40px;
+    padding: 32px 40px;
+    border-radius: 0;
+}
+
+@media (max-width: 900px) {
+    #view-for-you {
+        margin: -24px -20px;
+        padding: 24px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #view-for-you {
+        margin: 0 -12px;
+        padding: 16px 12px 24px;
+    }
+}
+
+/* Grid keeps title block + Refresh aligned at all widths (avoids messy flex-wrap) */
+#view-for-you .fy-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 14px;
+    margin-bottom: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: var(--main-bg, #FDF6EC);
+    padding-top: 8px;
+    padding-bottom: 16px;
+    margin-top: -8px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#view-for-you .fy-grid {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #view-for-you .fy-header {
+        top: var(--mobile-header-top);
+        padding-top: 10px;
+        margin-top: 0;
+        z-index: 390;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+    }
+}
+
+#view-for-you .fy-title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    min-width: 0;
+    grid-column: 1;
+}
+
+#view-for-you .fy-heading {
+    margin: 0;
+    color: #000;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(1.35rem, 4.2vw, 3rem);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 700;
+    line-height: 1.1;
+    flex-shrink: 0;
+}
+
+#view-for-you .fy-select-wrap {
+    position: relative;
+    flex: 1 1 160px;
+    min-width: 0;
+    max-width: min(100%, 320px);
+}
+
+#view-for-you .fy-select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 42px 12px 22px;
+    font-family: "DM Sans", Inter, system-ui, sans-serif;
+    font-size: clamp(13px, 2.5vw, 15px);
+    font-weight: 600;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 999px;
+    background: #fff;
+    cursor: pointer;
+    min-width: 0;
+    box-shadow: 4px 5px 0 #000, 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+#view-for-you .fy-select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #000;
+    pointer-events: none;
+}
+
+#view-for-you .fy-refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    grid-column: 2;
+    align-self: center;
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    #view-for-you .fy-refresh-btn {
+        gap: 8px;
+    }
+
+    #view-for-you .fy-refresh-label {
+        font-size: 13px;
+    }
+
+    #view-for-you .fy-refresh-icon-wrap {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+#view-for-you .fy-refresh-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #3775F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(91, 140, 81, 0.45);
+}
+
+#view-for-you .fy-refresh-icon{
+    width: 22px;
+    height: 22px;
+    align-self: center;
+}
+
+#view-for-you .fy-refresh-label {
+    font-family: "DM Sans", Inter, system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Same grid + thumb sizing as Job Listing (.cards-grid / .card-thumb) */
+#view-for-you .fy-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
+
+@media (max-width: 900px) {
+    #view-for-you .fy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #view-for-you .fy-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    #view-for-you .fy-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+#view-for-you .fy-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+    animation: fyFadeUp 0.4s ease both;
+}
+
+#view-for-you .fy-card:hover {
+    transform: translateY(-4px);
+}
+
+#view-for-you .fy-grid .fy-card:nth-child(1) { animation-delay: 0.05s; }
+#view-for-you .fy-grid .fy-card:nth-child(2) { animation-delay: 0.10s; }
+#view-for-you .fy-grid .fy-card:nth-child(3) { animation-delay: 0.15s; }
+#view-for-you .fy-grid .fy-card:nth-child(4) { animation-delay: 0.20s; }
+
+@keyframes fyFadeUp {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#view-for-you .fy-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--card-bg, #e0ddd8);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    #view-for-you .fy-thumb {
+        margin-bottom: 6px;
+        max-height: 112px;
+    }
+}
+
+#view-for-you .fy-card-title {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#view-for-you .fy-card-desc {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    #view-for-you .fy-card-title {
+        font-size: 14px;
+    }
+
+    #view-for-you .fy-card-desc {
+        font-size: 12px;
+    }
+}
+
+/* ── Menu Notification Indicator ───────────────────────────────────────────────────────────── */
+.menu-btn {
+  position: relative;
+}
+
+.menu-notification-indicator {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: #dc2626;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.menu-bell-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.menu-notification-indicator[hidden] {
+  display: none !important;
+}
+
+/* For You Card Images */
+.fy-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--card-bg, #f5f5f5);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fy-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.fy-card-img:hover {
+  transform: scale(1.02);
+}
+
+.fy-card-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  background: #f9f9f9;
+}
+
+/* Make card content area flexible */
+#view-for-you .fy-card-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#view-for-you .fy-card-skills {
+  flex-shrink: 0;
+}
+

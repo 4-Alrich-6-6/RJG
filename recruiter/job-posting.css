@@ -1,0 +1,1037 @@
+/* Job Posting / "Your Posted Jobs" — scoped to #view-posting only; does not affect Job Listing */
+
+#view-posting {
+    min-height: 50vh;
+    background: var(--main-bg, #FDF6EC);
+    margin: -32px -40px;
+    padding: 32px 40px;
+    border-radius: 0;
+}
+
+/* Inline cascading dropdowns styling */
+.jp-location-cascading {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.jp-location-cascading select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    background: white;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.jp-location-cascading select:disabled {
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.jp-location-cascading select:not(:disabled):hover {
+    border-color: #5b8c51;
+}
+
+.jp-location-cascading select:focus {
+    outline: none;
+    border-color: #5b8c51;
+    box-shadow: 0 0 0 2px rgba(91, 140, 81, 0.2);
+}
+
+@media (max-width: 900px) {
+    #view-posting {
+        margin: -24px -20px;
+        padding: 24px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    #view-posting {
+        margin: 0 -12px;
+        padding: 16px 12px 24px;
+    }
+}
+
+#view-posting .jp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 28px;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    background: var(--main-bg, #FDF6EC);
+    padding-top: 8px;
+    padding-bottom: 16px;
+    margin-top: -8px;
+}
+
+#view-posting .jp-grid {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #view-posting .jp-header {
+        top: var(--mobile-header-top);
+        padding-top: 10px;
+        margin-top: 0;
+        z-index: 390;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+    }
+    /* Recruiter dashboard doesn't have search bar - reduce top padding */
+    .recruiter-dashb-page .main,
+    body:has(#view-posting) .main {
+        padding-top: calc(var(--mobile-header-top) + 12px);
+    }
+}
+
+#view-posting .jp-title {
+    margin: 0;
+    color: #000;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(1.35rem, 4.2vw, 3rem);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 700;
+    line-height: 1.1;
+    flex-shrink: 0;
+}
+
+#view-posting .jp-post-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+}
+
+#view-posting .jp-post-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #3775F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(91, 140, 81, 0.45);
+}
+
+#view-posting .jp-post-icon-img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+#view-posting .jp-post-label {
+    font-family: "DM Sans", Inter, system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* Same card / grid sizing as Job Listing + For You */
+#view-posting .jp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    #view-posting .jp-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #view-posting .jp-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    #view-posting .jp-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+#view-posting .jp-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    cursor: pointer;
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+    animation: jpFadeUp 0.4s ease both;
+}
+
+#view-posting .jp-card:hover {
+    transform: translateY(-4px);
+}
+
+#view-posting .jp-grid .jp-card:nth-child(1) { animation-delay: 0.05s; }
+#view-posting .jp-grid .jp-card:nth-child(2) { animation-delay: 0.10s; }
+#view-posting .jp-grid .jp-card:nth-child(3) { animation-delay: 0.15s; }
+#view-posting .jp-grid .jp-card:nth-child(4) { animation-delay: 0.20s; }
+
+@keyframes jpFadeUp {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#view-posting .jp-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--card-bg, #e0ddd8);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    #view-posting .jp-thumb {
+        margin-bottom: 6px;
+        max-height: 112px;
+    }
+}
+
+#view-posting .jp-card-title {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#view-posting .jp-card-desc {
+    margin: 0;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #000;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    #view-posting .jp-card-title {
+        font-size: 14px;
+    }
+
+    #view-posting .jp-card-desc {
+        font-size: 12px;
+    }
+}
+
+/* Post Job modal */
+.jp-modal-overlay,
+.jp-submodal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.38);
+    z-index: 600;
+    padding: 16px;
+}
+
+.jp-modal-overlay.open,
+.jp-submodal-overlay.open {
+    display: flex;
+}
+
+.jp-modal {
+    width: min(760px, 100%);
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #ececec;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 32px);
+}
+
+.jp-modal :where(
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, small, strong, em,
+    li, a, label
+),
+.jp-submodal :where(
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, small, strong, em,
+    li, a, label
+) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.jp-modal-header,
+.jp-modal-footer {
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.jp-modal-footer {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.jp-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.jp-modal-header h2 {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    font-size: 24px;
+}
+
+.jp-modal-close {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.jp-modal-body {
+    padding: 16px 18px;
+    overflow: auto;
+}
+
+.jp-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.jp-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.jp-form-group--full {
+    grid-column: 1 / -1;
+}
+
+.jp-form-group label,
+.jp-checkbox-row span {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.jp-form-group input,
+.jp-form-group select,
+.jp-form-group textarea,
+.jp-picker-btn {
+    border: 1px solid #d7d7d7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    background: #fff;
+}
+
+.jp-picker-btn {
+    text-align: left;
+    cursor: pointer;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    min-height: 42px;
+    line-height: 1.2;
+}
+
+.jp-picked-value {
+    margin: 0;
+    font-size: 13px;
+    color: #4f4f4f;
+    font-family: Inter, sans-serif;
+}
+
+.jp-checkbox-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.jp-modal-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.jp-modal-btn--cancel {
+    background: #efefef;
+    color: #111;
+}
+
+.jp-modal-btn--submit {
+    background: #3775F0;
+    color: #fff;
+}
+
+.jp-modal-btn--submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.jp-modal-btn--danger {
+    background: #fff;
+    color: #b42318;
+    border: 1px solid #e0a4a0;
+}
+
+.jp-modal-btn--danger:hover {
+    background: #fff5f5;
+}
+
+.jp-modal-btn--report {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #9e2a2a;
+    color: #fff;
+}
+
+.jp-modal-btn--report:hover {
+    background: #8b2424;
+}
+
+.jp-modal-btn-report-img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.jp-submodal {
+    width: min(520px, 100%);
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #ececec;
+    padding: 16px;
+}
+
+.jp-submodal h3 {
+    margin: 0 0 12px;
+    font-family: Montserrat, sans-serif;
+    font-size: 20px;
+}
+
+.jp-submodal-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.jp-submodal-grid input,
+.jp-submodal-grid select {
+    border: 1px solid #d7d7d7;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+.jp-submodal-grid select:disabled {
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.jp-submodal-grid select:not(:disabled):hover {
+    border-color: #5b8c51;
+}
+
+.jp-submodal-actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.jp-submodal-actions--resume {
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.jp-skills-list {
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    gap: 8px;
+}
+
+.jp-skills-list label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+.jp-submodal--applicants {
+    width: min(480px, 100%);
+}
+
+.applicants-list-job {
+    margin: 0 0 12px;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.applicants-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+    padding: 4px;
+    border-radius: 12px;
+    background: #f0f0f0;
+}
+
+.applicants-tab {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    background: transparent;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.applicants-tab:hover {
+    background: rgba(255, 255, 255, 0.65);
+    color: #222;
+}
+
+.applicants-tab.is-active {
+    background: #fff;
+    color: #111;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.applicants-tab-count {
+    display: inline-block;
+    margin-left: 4px;
+    font-weight: 700;
+    font-size: 12px;
+    opacity: 0.85;
+}
+
+.applicants-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: min(50vh, 360px);
+    overflow-y: auto;
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #fafafa;
+}
+
+.applicants-list-item {
+    padding: 12px 14px;
+    border-bottom: 1px solid #ececec;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+.applicants-list-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.applicants-list-main {
+    min-width: 0;
+    flex: 1;
+}
+
+.applicants-view-resume-btn {
+    flex-shrink: 0;
+    align-self: center;
+    border: 1px solid #5b8c51;
+    background: #fff;
+    color: #3d6b36;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.applicants-view-resume-btn:hover {
+    background: #f4faf3;
+}
+
+.applicants-list-item:last-child {
+    border-bottom: none;
+}
+
+.applicants-list-name {
+    font-weight: 600;
+    color: #111;
+}
+
+.applicants-list-line {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #444;
+}
+
+.applicants-list-line--meta {
+    color: #666;
+    font-size: 12px;
+}
+
+.applicants-list-email {
+    word-break: break-all;
+}
+
+.applicants-list-status {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.applicants-list-status--accepted {
+    background: #e8f3e6;
+    color: #2d5a28;
+}
+
+.applicants-list-status--rejected {
+    background: #fdecea;
+    color: #8a2c24;
+}
+
+.applicants-list-empty {
+    padding: 20px 14px;
+    text-align: center;
+    color: #666;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+.jp-submodal--resume {
+    width: min(520px, 100%);
+}
+
+.jp-submodal--resume-report {
+    width: min(560px, 100%);
+}
+
+.resume-report-subtitle {
+    margin: 0 0 10px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.resume-report-options {
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #fafafa;
+    padding: 10px;
+    display: grid;
+    gap: 8px;
+    max-height: min(45vh, 280px);
+    overflow-y: auto;
+}
+
+.resume-report-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #1f1f1f;
+    cursor: pointer;
+}
+
+.resume-report-option input[type='radio'] {
+    margin-top: 2px;
+    accent-color: #9e2a2a;
+}
+
+.resume-view-applicant {
+    margin: 0 0 12px;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+}
+
+.resume-view-body {
+    max-height: min(45vh, 280px);
+    overflow-y: auto;
+    padding-right: 4px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.45;
+}
+
+.resume-view-contact {
+    margin: 0 0 14px;
+    font-size: 13px;
+    color: #555;
+    word-break: break-all;
+}
+
+.resume-view-section-title {
+    margin: 14px 0 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.resume-view-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.resume-view-p {
+    margin: 0;
+}
+
+.resume-view-p.resume-view-empty {
+    color: #666;
+    font-style: italic;
+}
+
+.resume-view-block {
+    margin-bottom: 14px;
+}
+
+.resume-view-dl {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.resume-view-dl-row {
+    margin-bottom: 6px;
+}
+
+.resume-view-dl-label {
+    font-weight: 600;
+    color: #333;
+    margin-right: 6px;
+}
+
+.resume-view-ul {
+    margin: 0 0 8px;
+    padding-left: 1.15em;
+}
+
+.resume-view-ul--inline {
+    list-style: disc;
+    padding-left: 1.25em;
+}
+
+.resume-view-li {
+    margin-bottom: 8px;
+}
+
+.resume-view-li-sub {
+    font-size: 13px;
+    color: #555;
+}
+
+.resume-view-link {
+    color: #3d6b36;
+    word-break: break-all;
+}
+
+/* Applicants + resume modals — roomier on desktop */
+@media (min-width: 900px) {
+    .jp-submodal--applicants {
+        width: min(720px, 90vw);
+        max-width: 720px;
+        padding: 22px 26px;
+    }
+
+    .jp-submodal--resume {
+        width: min(880px, 92vw);
+        max-width: 880px;
+        padding: 22px 28px;
+    }
+
+    .jp-submodal--applicants h3,
+    .jp-submodal--resume h3 {
+        font-size: 22px;
+        margin-bottom: 14px;
+    }
+
+    .applicants-list-job {
+        font-size: 16px;
+        margin-bottom: 14px;
+    }
+
+    .applicants-tabs {
+        gap: 8px;
+        margin-bottom: 14px;
+        padding: 5px;
+    }
+
+    .applicants-tab {
+        font-size: 14px;
+        padding: 11px 16px;
+    }
+
+    .applicants-list {
+        max-height: min(65vh, 560px);
+    }
+
+    .applicants-list-item {
+        padding: 14px 18px;
+        font-size: 15px;
+    }
+
+    .resume-view-applicant {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .resume-view-body {
+        max-height: min(70vh, 640px);
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    .resume-view-section-title {
+        font-size: 14px;
+        margin: 18px 0 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .jp-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .jp-modal {
+        width: min(420px, 100%);
+    }
+
+    .jp-modal-header h2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .applicants-list-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .applicants-view-resume-btn {
+        align-self: stretch;
+        text-align: center;
+    }
+}
+
+@media (max-width: 560px) {
+    .jp-modal-overlay,
+    .jp-submodal-overlay {
+        align-items: flex-end;
+        padding: 10px;
+    }
+
+    .jp-modal,
+    .jp-submodal {
+        width: 100%;
+        max-height: 90vh;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .jp-modal-footer,
+    .jp-submodal-actions {
+        flex-direction: column;
+    }
+
+    .jp-modal-btn {
+        width: 100%;
+    }
+}
+
+/* Middle initial styling with hover tooltip */
+.middle-initial {
+    cursor: help !important;
+    border-bottom: 1px dotted #666 !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+    position: relative !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.middle-initial:hover {
+    color: #007bff !important;
+    border-bottom-color: #007bff !important;
+    text-decoration: none !important;
+}
+
+/* Recruiter Pagination Styles */
+.jp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.jp-header-pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.jp-pagination-btn {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.jp-pagination-btn:hover:not(:disabled) {
+    background: #f5f5f5;
+    border-color: #999;
+}
+
+.jp-pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f9f9f9;
+    color: #999;
+}
+
+.jp-pagination-text {
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+    margin: 0 4px;
+}
+
+.jp-pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding: 16px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.jp-pagination-info {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.jp-pagination-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .jp-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .jp-title {
+        flex: 1;
+        text-align: left;
+        font-size: 16px;
+        margin: 0;
+        order: 1;
+    }
+    
+    .jp-header-pagination {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        order: 2;
+    }
+    
+    .jp-pagination-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .jp-pagination-text {
+        font-size: 12px;
+        margin: 0 2px;
+    }
+    
+    .jp-post-btn {
+        order: 3;
+        flex-shrink: 0;
+    }
+    
+    .jp-post-label {
+        display: none;
+    }
+}

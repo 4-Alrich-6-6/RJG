@@ -1,0 +1,263 @@
+/* recruiter-account.css — Recruiter account page styles */
+/* Base layout tokens from job-listing.css */
+
+.recruiter-account-page .ra-main {
+  padding: 40px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 769px) {
+  .recruiter-account-page .ra-main {
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 90px;
+  }
+}
+
+.ra-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 28px 32px 32px;
+  border: 1px solid rgba(253, 222, 164, 0.95);
+  border-radius: 16px;
+  background: var(--main-bg, #FDF6EC);
+  box-shadow:
+    0 4px 6px -1px rgba(0,0,0,0.06),
+    0 12px 28px -6px rgba(0,0,0,0.1);
+}
+
+.ra-card-title {
+  font-family: Montserrat, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.ra-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ra-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 38%) minmax(0, 62%);
+  gap: 16px 20px;
+  align-items: start;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+  line-height: 1.45;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.ra-row:last-child {
+  border-bottom: none;
+}
+
+.ra-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  padding-top: 4px;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+  min-width: 0;
+}
+
+.ra-label::after { content: ":"; }
+
+.ra-field {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  text-align: right;
+  min-width: 0;
+  width: 100%;
+}
+
+.ra-row--plain .ra-field { gap: 0; }
+
+.ra-value {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-dark, #1a1a1a);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.25);
+}
+
+.ra-row .profile-edit-btn--inline {
+  flex-shrink: 0;
+}
+
+.ra-value--ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.ra-value--masked {
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-family: ui-monospace, monospace;
+}
+
+.ra-delete {
+  margin-top: 28px;
+  width: 100%;
+  padding: 13px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #70170A;
+  color: #fff;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ra-delete:hover { opacity: 0.9; }
+
+/* Edit button icon */
+.profile-edit-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.profile-edit-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Back button */
+.account-back-icon { width: 35px; height: 35px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Modal */
+.ra-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 1300;
+  padding: 16px;
+}
+
+.ra-modal-overlay.open { display: flex; }
+
+.ra-modal-card {
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+  padding: 28px 30px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 88vh;
+}
+
+.ra-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  border: none; background: transparent;
+  font-size: 28px; line-height: 1; cursor: pointer; color: #1a1a1a;
+}
+
+.ra-modal-title {
+  margin: 0 0 12px;
+  font-family: Montserrat, Inter, sans-serif;
+  font-size: 24px; font-weight: 700; color: #111;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ra-modal-text {
+  margin: 0 0 24px;
+  font-family: Inter, sans-serif;
+  font-size: 15px; line-height: 1.6; color: #444;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.ra-modal-form { display: grid; gap: 14px; }
+
+.ra-modal-row { display: flex; flex-direction: column; gap: 7px; }
+
+.ra-modal-label {
+  font-size: 12px; font-weight: 700;
+  color: #1b1b1b; text-transform: uppercase; letter-spacing: 0.03em;
+}
+
+.ra-modal-input {
+  width: 100%; min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid #d6d6d6; border-radius: 12px;
+  font-size: 15px; color: #111; box-sizing: border-box;
+}
+
+.ra-modal-actions {
+  display: flex; justify-content: flex-end;
+  gap: 10px; flex-wrap: wrap; margin-top: 6px;
+}
+
+.ra-modal-btn {
+  border: none; border-radius: 12px;
+  padding: 12px 18px;
+  font-family: Inter, sans-serif;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+}
+
+.ra-modal-btn--cancel { background: #f3f4f6; color: #111; }
+.ra-modal-btn--send   { background: #3775F0; color: #fff; }
+.ra-modal-btn--submit { background: #3775F0; color: #fff; }
+.ra-modal-btn--submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ra-modal-hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .recruiter-account-page .ra-main {
+    padding: 80px 12px 40px;
+  }
+  .ra-card { padding: 20px 16px 26px; max-width: none; }
+  .ra-rows { gap: 16px; }
+  .ra-row { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .ra-label { padding-top: 0; }
+  .ra-field { justify-content: space-between; text-align: left; flex-wrap: nowrap; align-items: center; }
+  .ra-value { text-align: left; }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Verification</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="signverf.css">
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#5b8c51" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+        <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+    </head>
+    <body>
+<script src="../lib/app-loader.js"></script>
+        <div class="container">
+            <div class="left">
+                <div class="banner">
+                    <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+                    <div class="title">
+                        <h1>READY-JOB-GO</h1>
+                        <p>A REAL-TIME JOB REQUEST PLATFORM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <a href="#" class="return-btn">Return</a>
+                <h1 class="welcome">Welcome!</h1>
+                <p class="instruction">A one-time password (OTP) has been sent to your email. Please enter it to continue.</p>
+                <label for="otp" class="label">Enter Here:</label>
+                <input type="text" id="otp" class="otp-input" maxlength="8" placeholder="Enter OTP">
+                <a href="#" class="resend-link">Didn't get a code? Click here to resend.</a>
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="../lib/database.js"></script>
+        <script src="../lib/app-feedback.js"></script>
+        <script src="../lib/error-handler.js"></script>
+        <script src="signverf.js"></script>
+        <script src="../lib/register-sw.js"></script>
+    </body>
+</html></content>

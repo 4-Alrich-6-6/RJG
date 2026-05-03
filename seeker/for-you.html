@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - For You</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="job-listing.css">
+    <link rel="stylesheet" href="for-you.css">
+    <link rel="stylesheet" href="../recruiter/job-posting.css">
+    <link rel="stylesheet" href="../lib/role-access.css">
+    <script src="../lib/role-bootstrap.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+<script src="../lib/app-loader.js"></script>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
+                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            </a>
+            <div class="header-menu">
+                <button type="button" class="menu-btn" id="headerMenuBtn" aria-label="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="headerMenuDropdown">
+                    <img src="../assets/images/3dots.png" alt="" class="menu-icon" aria-hidden="true">
+                    <div class="menu-notification-indicator" id="menuNotificationIndicator" hidden>
+                        <svg viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" class="menu-bell-icon">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </div>
+                </button>
+                <button type="button" class="sidebar-back-btn" id="sidebarJobBackBtn" aria-label="Back">
+                    <img src="../assets/images/Back.png" alt="" class="sidebar-back-icon" width="35" height="35" aria-hidden="true">
+                </button>
+                <div class="header-menu-dropdown" id="headerMenuDropdown" role="menu" hidden>
+                    <a href="../seeker/profile.html" class="header-menu-item" role="menuitem">Profile</a>
+                    <a href="../seeker/application.html" class="header-menu-item" role="menuitem">My Applications</a>
+                    <a href="../seeker/bookmark.html" class="header-menu-item" role="menuitem">Bookmarks</a>
+                    <a href="../public/notifications.html" class="header-menu-item" role="menuitem">Notifications</a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-item" href="../seeker/dashb.html">Job Listing</a>
+            <a class="nav-item active" href="../seeker/for-you.html">For You</a>
+            <a class="nav-item" href="../recruiter/recruiter-dashb.html">Job Posting</a>
+        </nav>
+
+        <div class="logout">Log out</div>
+    </aside>
+
+    <main class="main">
+        <div id="view-for-you" class="main-view">
+            <header class="fy-header">
+                <div class="fy-title-row">
+                    <h1 class="fy-heading">Based On Your</h1>
+                    <div class="fy-select-wrap">
+                        <select class="fy-select" id="forYouBasis" aria-label="Personalization basis">
+                            <option value="">All Signals</option>
+                            <option value="work">Work Experience</option>
+                            <option value="skills">Skills</option>
+                            <option value="location">Location</option>
+                            <option value="schedule">Schedule</option>
+                            <option value="setting">Work Setting</option>
+                            <option value="type">Job Type</option>
+                            <option value="rate">Rate</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="fy-refresh-btn" onclick="refreshForYou()" title="Refresh recommendations">
+                    <span class="fy-refresh-icon-wrap" aria-hidden="true">
+                        <img src="../assets/images/Refresh.png" alt="Refresh" class="fy-refresh-icon">
+                    </span>
+                    <span class="fy-refresh-label">Refresh</span>
+                </button>
+            </header>
+            <div class="fy-grid" id="fy-grid"></div>
+        </div>
+    </main>
+
+    <!-- Job detail (other people's listings) — layout matches design: cream main, white back, red Report -->
+    <div class="job-detail-overlay" id="jobDetailModal" aria-hidden="true">
+        <div class="job-detail-panel" role="dialog" aria-labelledby="jobDetailTitle" aria-modal="true">
+            <header class="job-detail-top">
+                <h2 class="job-detail-title" id="jobDetailTitle">Title</h2>
+                <div class="job-detail-top-actions">
+                    <button type="button" class="job-detail-report" id="jobDetailReportBtn" title="Report">
+                        <img src="../assets/images/Report.png" alt="" class="job-detail-report-img" width="18" height="18">
+                        <span>Report</span>
+                    </button>
+                    <button type="button" class="job-detail-remove" id="jobDetailRemoveBtn" title="Remove job" hidden>
+                        <span>Remove job</span>
+                    </button>
+                </div>
+            </header>
+            <div class="job-detail-body">
+                <div class="job-detail-hero" aria-hidden="true"></div>
+                <div class="job-detail-meta">
+                    <p class="job-detail-by" id="jobDetailByRow">
+                        <strong>By <span id="jobDetailPoster">User</span></strong>
+                    </p>
+                    <div class="job-detail-owner-open" id="jobDetailOwnerOpenRow" hidden>
+                        <span class="job-detail-owner-open-label" id="jobDetailOpenLabel">Availability</span>
+                        <button
+                            type="button"
+                            class="job-detail-open-toggle"
+                            id="jobDetailOpenToggle"
+                            role="switch"
+                            aria-checked="true"
+                            aria-labelledby="jobDetailOpenLabel"
+                        >
+                            <span class="job-detail-open-toggle-track" aria-hidden="true">
+                                <span class="job-detail-open-toggle-knob"></span>
+                            </span>
+                        </button>
+                        <span class="job-detail-open-state" id="jobDetailOpenStateText">Open</span>
+                    </div>
+                    <p class="job-detail-posted-line" id="jobDetailPostedAgo">3 Days Ago</p>
+                    <p class="job-detail-kv"><strong>Schedule:</strong> <span id="jobDetailSchedule">Full-time</span></p>
+                    <p class="job-detail-kv"><strong>Type:</strong> <span id="jobDetailType">Job</span></p>
+                    <p class="job-detail-line job-detail-line--icon">
+                        <span class="jd-icon-wrap" aria-hidden="true">
+                            <img src="../assets/images/Location.png" alt="" class="jd-icon-img" width="18" height="18">
+                        </span>
+                        <span id="jobDetailLocation">BLDG, Street, Barangay, City, Province, Country</span>
+                    </p>
+                    <p class="job-detail-line job-detail-line--icon">
+                        <span class="jd-icon-wrap" aria-hidden="true">
+                            <img src="../assets/images/Rate.png" alt="" class="jd-icon-img" width="18" height="18">
+                        </span>
+                        <span id="jobDetailSalary">₱### / Hour</span>
+                    </p>
+                    <p class="job-detail-kv"><strong>Settings:</strong> <span id="jobDetailSettings">On-site</span></p>
+                    <div class="job-detail-skills">
+                        <span class="job-detail-skills-label">Skill Requirement(s):</span>
+                        <div class="job-detail-tags" id="jobDetailTags"></div>
+                    </div>
+                    <div class="job-detail-desc">
+                        <span class="job-detail-desc-label">Description:</span>
+                        <p id="jobDetailDescription" class="job-detail-desc-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="job-detail-actions job-detail-actions--seeker" id="jobDetailActionsSeeker">
+                <button type="button" class="job-detail-btn job-detail-btn--primary" id="jobDetailApplyBtn">Apply</button>
+                <button type="button" class="job-detail-btn job-detail-btn--primary" id="jobDetailBookmarkBtn">Bookmark</button>
+            </div>
+            <div class="job-detail-actions job-detail-actions--owner" id="jobDetailActionsOwner" hidden>
+                <button type="button" class="job-detail-btn job-detail-btn--primary" id="jobDetailApplicantsBtn">Applied Users List</button>
+                <button type="button" class="job-detail-btn job-detail-btn--primary" id="jobDetailEditBtn">Edit Info</button>
+            </div>
+            <section class="job-detail-more" aria-labelledby="jobDetailMoreHeading">
+                <h3 class="job-detail-more-title" id="jobDetailMoreHeading">More like this</h3>
+                <div class="job-detail-more-row" id="jobDetailMoreRow"></div>
+            </section>
+        </div>
+    </div>
+
+    <div class="jp-modal-overlay" id="postJobModal">
+        <div class="jp-modal">
+            <div class="jp-modal-header">
+                <h2 id="jpModalTitle">Post a Job</h2>
+                <button type="button" class="jp-modal-close" id="closePostJobModal" aria-label="Close">&times;</button>
+            </div>
+            <div class="jp-modal-body">
+                <div class="jp-form-grid">
+                    <div class="jp-form-group">
+                        <label for="jpJobName">Name of the Job</label>
+                        <input id="jpJobName" type="text" placeholder="e.g., Front Desk Staff">
+                    </div>
+                    <div class="jp-form-group">
+                        <label for="jpCategory">Type</label>
+                        <select id="jpCategory">
+                            <option value="">Select type</option>
+                            <option>Job</option>
+                            <option>Commission</option>
+                            <option>Gig</option>
+                        </select>
+                    </div>
+                    <div class="jp-form-group">
+                        <label for="jpSchedule">Schedule</label>
+                        <select id="jpSchedule">
+                            <option value="">Select schedule</option>
+                            <option>Full-time</option>
+                            <option>Part-time</option>
+                            <option>Contract</option>
+                        </select>
+                    </div>
+                    <div class="jp-form-group">
+                        <label>Location</label>
+                        <button type="button" class="jp-picker-btn" id="jpPickLocationBtn">Set Location</button>
+                        <p class="jp-picked-value" id="jpPickedLocation">No location selected</p>
+                    </div>
+                    <div class="jp-form-group">
+                        <label>Rate</label>
+                        <button type="button" class="jp-picker-btn" id="jpPickRateBtn">Set Rate</button>
+                        <p class="jp-picked-value" id="jpPickedRate">No rate selected</p>
+                    </div>
+                    <div class="jp-form-group">
+                        <label for="jpType">Settings</label>
+                        <select id="jpType">
+                            <option value="">Select settings</option>
+                            <option>On-Site</option>
+                            <option>Remote</option>
+                        </select>
+                    </div>
+                    <div class="jp-form-group">
+                        <label>Skills Requirement(s)</label>
+                        <button type="button" class="jp-picker-btn" id="jpPickSkillsBtn">Set Skills</button>
+                        <p class="jp-picked-value" id="jpPickedSkills">No skills selected</p>
+                    </div>
+                    <div class="jp-form-group jp-form-group--full">
+                        <label for="jpDescription">Description</label>
+                        <textarea id="jpDescription" rows="4" placeholder="Write the job details, responsibilities, and qualifications."></textarea>
+                    </div>
+                    <div class="jp-form-group jp-form-group--full">
+                        <label class="jp-checkbox-row">
+                            <input type="checkbox" id="jpIsUrgent">
+                            <span>Urgent Hiring (Optional)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="jp-modal-footer">
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="jpCancelPostBtn">Cancel</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="jpSubmitPostBtn" disabled>Post Job</button>
+            </div>
+        </div>
+    </div>
+    <div class="jp-submodal-overlay" id="jpLocationModal">
+        <div class="jp-submodal">
+            <h3>Set Location</h3>
+            <div class="jp-submodal-grid">
+                <input id="jpLocationUnit" type="text" placeholder="Unit / No. (optional)">
+                <input id="jpLocationStreet" type="text" placeholder="Street">
+                <input id="jpLocationBarangay" type="text" placeholder="Barangay/Village">
+                <input id="jpLocationCity" type="text" placeholder="City">
+                <input id="jpLocationProvince" type="text" placeholder="Province">
+                <input id="jpLocationCountry" type="text" placeholder="Country">
+            </div>
+            <div class="jp-submodal-actions">
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="jpCancelLocationBtn">Cancel</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="jpSaveLocationBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="jp-submodal-overlay" id="jpRateModal">
+        <div class="jp-submodal">
+            <h3>Set Rate</h3>
+            <div class="jp-submodal-grid">
+                <input id="jpRateAmount" type="number" min="1" placeholder="Rate amount">
+                <select id="jpRateCurrency">
+                    <option value="">Select currency</option>
+                    <option value="PHP">PHP (Philippine Peso)</option>
+                    <option value="USD">USD (US Dollar)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="JPY">JPY (Japanese Yen)</option>
+                    <option value="GBP">GBP (British Pound)</option>
+                </select>
+                <select id="jpRateUnit">
+                    <option value="">Select unit</option>
+                    <option>Hour</option>
+                    <option>Day</option>
+                    <option>Week</option>
+                    <option>Month</option>
+                    <option>Project</option>
+                    <option>Session</option>
+                </select>
+            </div>
+            <div class="jp-submodal-actions">
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="jpCancelRateBtn">Cancel</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="jpSaveRateBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="jp-submodal-overlay" id="jpSkillsModal">
+        <div class="jp-submodal">
+            <h3>Set Skills Requirement(s)</h3>
+            <div class="jp-skills-list" id="jpSkillsList"></div>
+            <div class="jp-submodal-actions">
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="jpCancelSkillsBtn">Cancel</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="jpSaveSkillsBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="jp-submodal-overlay" id="applicantsListModal" aria-hidden="true">
+        <div class="jp-submodal jp-submodal--applicants">
+            <h3>Applicants</h3>
+            <p class="applicants-list-job" id="applicantsListJobTitle"></p>
+            <div class="applicants-tabs" role="tablist" aria-label="Applicant status">
+                <button type="button" class="applicants-tab is-active" role="tab" id="tab-applicants-pending" aria-selected="true" aria-controls="applicantsListBody" data-applicants-tab="pending">
+                    Pending <span class="applicants-tab-count">0</span>
+                </button>
+                <button type="button" class="applicants-tab" role="tab" id="tab-applicants-accepted" aria-selected="false" aria-controls="applicantsListBody" data-applicants-tab="accepted">
+                    Accepted <span class="applicants-tab-count">0</span>
+                </button>
+                <button type="button" class="applicants-tab" role="tab" id="tab-applicants-rejected" aria-selected="false" aria-controls="applicantsListBody" data-applicants-tab="rejected">
+                    Rejected <span class="applicants-tab-count">0</span>
+                </button>
+            </div>
+            <ul class="applicants-list" id="applicantsListBody" role="tabpanel" aria-labelledby="tab-applicants-pending"></ul>
+            <div class="jp-submodal-actions">
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="applicantsListCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+    <div class="jp-submodal-overlay" id="resumeViewModal" aria-hidden="true">
+        <div class="jp-submodal jp-submodal--resume">
+            <h3>Resume</h3>
+            <p class="resume-view-applicant" id="resumeViewApplicantName"></p>
+            <div class="resume-view-body" id="resumeViewBody"></div>
+            <div class="jp-submodal-actions jp-submodal-actions--resume">
+                <button type="button" class="jp-modal-btn jp-modal-btn--report" id="resumeViewReportBtn">
+                    <img src="../assets/images/Report.png" alt="" class="jp-modal-btn-report-img" width="18" height="18" aria-hidden="true">
+                    <span>Report Resume</span>
+                </button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--danger" id="resumeViewRejectBtn">Reject</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="resumeViewAcceptBtn">Accept</button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--cancel" id="resumeViewCloseBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/role-access.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="seeker-application.js"></script>
+    <script src="../lib/bookmarks-store.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="dashb.js"></script>
+    <link rel="stylesheet" href="for-you-ai.css">
+    <script src="../lib/ai-job-matcher.js"></script>
+    <script src="for-you.js"></script>
+    <script src="../lib/image-modal.js"></script>
+    
+    <!-- Image Modal -->
+    <div class="image-modal-overlay" id="imageModalOverlay">
+        <div class="image-modal">
+            <button type="button" class="image-modal-close" id="imageModalClose" aria-label="Close image modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <img src="" alt="Full size image" class="image-modal-img" id="imageModalImg">
+        </div>
+    </div>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>

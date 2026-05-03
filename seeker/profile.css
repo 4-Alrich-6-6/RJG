@@ -1,0 +1,1673 @@
+/* Profile page — content + small overrides; sidebar/layout/colors from job-listing.css */
+
+:root {
+  --profile-heading: "Montserrat", "DM Sans", system-ui, sans-serif;
+}
+
+.profile-page .profile-main {
+  padding: 40px 48px 64px;
+  opacity: 0;
+}
+
+.profile-page .profile-main.profile-main--loading {
+  opacity: 0;
+}
+
+.profile-page .profile-main.profile-main--ready {
+  opacity: 1;
+  transition: opacity 0.12s ease;
+}
+
+/* Hide seeker-only elements for recruiters */
+.profile-page.recruiter .seeker-only {
+  display: none !important;
+}
+
+/* Back control uses shared .menu-btn; icon size */
+.profile-page .profile-back-btn .profile-back-icon {
+  width: 35px;
+  height: 35px;
+  color: var(--text-dark);
+}
+
+/* ── Main content ── */
+.profile-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-avatar-row {
+  margin-bottom: 12px;
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #eee;
+  display: inline-block;
+  background: #f5f5f5;
+}
+
+.profile-avatar-edit-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.profile-avatar-edit-btn:hover {
+  background: #3775F0;
+}
+
+.profile-avatar-edit-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.profile-name-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.profile-name {
+  font-family: Montserrat, sans-serif;
+  font-size: 38px;
+  font-style: normal;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 700;
+  color: #000;
+  line-height: normal;
+}
+
+.profile-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 20px;
+  color: var(--text-dark);
+  line-height: 1.35;
+}
+
+.profile-contact-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.profile-edit-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.profile-edit-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.profile-edit-btn:hover {
+  transform: scale(1.06);
+  opacity: 0.92;
+}
+
+.profile-edit-btn--inline {
+  width: 28px;
+  height: 28px;
+}
+
+.profile-edit-btn--inline svg {
+  width: 14px;
+  height: 14px;
+}
+
+.profile-block {
+  margin-bottom: 36px;
+}
+
+.profile-block--full {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.profile-section-title {
+  font-family: Montserrat, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-description {
+  color: #000;
+  text-align: justify;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  /* Info Regular */
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 920px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.profile-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 64px;
+  align-items: start;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 901px) {
+  .profile-page .profile-main {
+    padding: 40px 56px 64px;
+  }
+
+  .profile-block--full {
+    max-width: none;
+    width: 100%;
+  }
+
+  .profile-description,
+  .profile-meta,
+  .profile-school-info,
+  .profile-work-period,
+  .profile-work-org {
+    max-width: none;
+  }
+
+  .profile-columns {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 64px;
+  }
+}
+
+.profile-columns > .profile-block {
+  margin-bottom: 0;
+}
+
+.profile-timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-edit-date-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.profile-edit-date-group select,
+.profile-edit-date-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.profile-timeline li {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.profile-work-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-work-item {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-school-name {
+  display: block;
+  font-family: Inter, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Shared “meta” line (dates, subtitles); use .profile-meta anywhere, or the scoped school/work classes */
+.profile-meta,
+.profile-school-info,
+.profile-work-period {
+  /* Info Regular */
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 920px;
+}
+
+.profile-work-org {
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  max-width: 920px;
+}
+
+.profile-position-name {
+  display: block;
+  font-family: Inter, sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: normal;
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-empty {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.profile-dl {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-dl > div {
+  display: flex;
+  font-family: Inter, sans-serif;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-dl dt {
+  font-weight: 700;
+  flex: 0 1 auto;
+}
+
+.profile-dl dt::after {
+  content: ":";
+}
+
+.profile-dl dd {
+  margin: 0;
+  font-weight: 100;
+  flex: 1 1 auto;
+  text-align: right;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.profile-competency-group {
+  margin-bottom: 20px;
+}
+
+.profile-competency-group:last-child {
+  margin-bottom: 0;
+}
+
+.profile-competency-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: normal;
+  margin-bottom: 8px;
+  color: #000;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-bullets {
+  margin-left: 1.1em;
+  font-size: 16px;
+  line-height: 1.5;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-bullets li {
+  margin-bottom: 4px;
+}
+
+.profile-see-more-btn {
+  margin-top: 8px;
+  border: none;
+  background: transparent;
+  color: #5b8c51;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.profile-see-more-btn:hover {
+  opacity: 0.85;
+}
+
+.profile-bullets--languages .profile-lang-sep {
+  margin: 0 0.2em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.profile-bullets--languages .profile-lang-level {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+@media (max-width: 900px) {
+  .profile-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .profile-column {
+    display: contents;
+  }
+
+  .profile-section--education {
+    order: 1;
+  }
+
+  .profile-section--work {
+    order: 2;
+  }
+
+  .profile-section--personal {
+    order: 3;
+  }
+
+  .profile-section--competencies {
+    order: 4;
+  }
+
+  .profile-section--links {
+    order: 5;
+  }
+}
+
+/* Mobile: no job search bar on this page — match For You / Job Posting top offset */
+@media (max-width: 768px) {
+  .profile-page .main.profile-main {
+    padding: calc(var(--mobile-header-top) + 12px) 12px calc(var(--mobile-bottom-nav) + 14px + env(safe-area-inset-bottom));
+  }
+
+  .profile-page .sidebar .nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profile-name {
+    font-size: 1.35rem;
+  }
+
+  .profile-name-row {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .profile-contact {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .profile-contact-info {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    text-align: left;
+  }
+
+  .profile-contact-info > span {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .profile-edit-btn--inline {
+    margin-left: auto;
+  }
+
+  .profile-dl {
+    gap: 14px;
+  }
+
+  .profile-block-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-content: unset;
+    align-items: center;
+    column-gap: 10px;
+  }
+
+  .profile-block-head .profile-section-title {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .profile-block-head .profile-edit-btn {
+    margin-left: 0;
+    flex-shrink: 0;
+    justify-self: end;
+  }
+
+  .profile-columns,
+  .profile-column,
+  .profile-block {
+    width: 100%;
+  }
+
+  .profile-dl > div {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 6px 10px;
+  }
+
+  .profile-dl dd {
+    text-align: left;
+    margin-left: auto;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 560px) {
+  .profile-page .main.profile-main {
+    padding-top: calc(var(--mobile-header-top) + 10px);
+  }
+}
+
+.profile-edit-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 700;
+  padding: 16px;
+}
+
+.profile-edit-modal-overlay[hidden] {
+  display: none !important;
+}
+
+.profile-edit-modal {
+  width: min(620px, 100%);
+  max-height: 88vh;
+  background: #fff;
+  border: 1px solid #ece6db;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-edit-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee5d6;
+}
+
+.profile-edit-modal-header h3 {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.profile-edit-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.profile-edit-modal-body {
+  padding: 14px 16px;
+  overflow-y: auto;
+  display: grid;
+  gap: 10px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.profile-edit-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-edit-modal-field label {
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.profile-edit-modal-field .required {
+  color: #b82222;
+}
+
+.profile-edit-modal-field .optional {
+  color: #6b6355;
+  font-weight: 500;
+}
+
+.profile-edit-modal-field input,
+.profile-edit-modal-field textarea,
+.profile-edit-modal-field select {
+  border: 1px solid #d8cfbf;
+  border-radius: 10px;
+  padding: 9px 10px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+}
+
+.profile-edit-modal-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.profile-edit-modal-field.date-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-edit-modal-field.date-group label {
+  margin-bottom: 0;
+  min-width: 80px;
+}
+
+.profile-edit-modal-field.date-group .profile-edit-date-group {
+  flex: 1;
+}
+
+.profile-edit-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee3d1;
+  border-radius: 10px;
+  background: #fffdfa;
+}
+
+.profile-edit-modal-row .profile-edit-modal-field {
+  margin: 0;
+}
+
+.profile-edit-modal-row .profile-edit-modal-field--full {
+  grid-column: 1 / -1;
+}
+
+.profile-edit-row-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-edit-row-remove {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ffe5e5;
+  color: #b82222;
+}
+
+.profile-edit-row-add {
+  border: 1px dashed #c9bda9;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #fffdfa;
+  color: #2d2a26;
+}
+
+.profile-edit-modal-checkboxes {
+  border: 1px solid #eee3d1;
+  border-radius: 10px;
+  background: #fffdfa;
+  padding: 10px;
+  display: grid;
+  gap: 7px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.profile-edit-modal-checkboxes label {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .profile-edit-modal-overlay {
+    align-items: flex-end;
+    padding: 10px;
+  }
+
+  .profile-edit-modal {
+    width: 100%;
+    max-height: 90vh;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .profile-edit-modal-header {
+    padding: 12px 14px;
+  }
+
+  .profile-edit-modal-header h3 {
+    font-size: 18px;
+  }
+
+  .profile-edit-modal-body {
+    padding: 12px 14px;
+  }
+
+  .profile-edit-modal-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 9px;
+  }
+
+  .profile-edit-modal-actions {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 14px 14px;
+  }
+
+  .profile-edit-modal-btn {
+    width: 100%;
+  }
+
+  .recruiter-profile-card {
+    margin-top: 16px;
+    padding: 20px 16px;
+  }
+
+  .recruiter-form-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .recruiter-form-field {
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .recruiter-form-links {
+    align-items: flex-start;
+  }
+}
+
+.profile-edit-modal-hint {
+  margin: 0;
+  color: #6b6355;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+}
+
+.profile-edit-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 16px 14px;
+  border-top: 1px solid #eee5d6;
+}
+
+.profile-edit-modal-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.profile-edit-modal-btn-cancel {
+  background: #f0f0f0;
+  color: #fff;
+}
+
+.profile-edit-modal-btn-save {
+  background: #3775F0;
+  color: #fff;
+}
+
+.recruiter-profile-card {
+  width: 100%;
+  max-width: 620px;
+  margin: 48px auto 0;
+  padding: 28px 32px;
+  border: 1px solid rgba(253, 222, 164, 0.95);
+  border-radius: 16px;
+  background: var(--main-bg);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.06),
+    0 12px 28px -6px rgba(0, 0, 0, 0.1);
+}
+
+.recruiter-profile-card-title {
+  margin: 0 0 18px;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.recruiter-form-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recruiter-form-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 35%) minmax(0, 65%);
+  gap: 12px 16px;
+  align-items: start;
+}
+
+.recruiter-form-label {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  color: #000;
+}
+
+.recruiter-form-label::after {
+  content: ":";
+}
+
+.recruiter-form-field {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+  text-align: right;
+}
+
+.recruiter-form-field--links {
+  align-items: flex-start;
+}
+
+.recruiter-form-value {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  color: #000;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.recruiter-form-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  max-height: 84px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.recruiter-form-links-list {
+  margin: 0;
+  padding-left: 18px;
+  max-width: 100%;
+  text-align: left;
+}
+
+.recruiter-form-links-list li {
+  margin-bottom: 4px;
+}
+
+.recruiter-form-link {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #1f5fbf;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Profile Links Styling */
+.profile-section--links .profile-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-link-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8faf8;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #333;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-link-item:hover {
+  background: #3775F0;
+  color: white;
+  border-color: #5b8c51;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91, 140, 81, 0.15);
+}
+
+.profile-link-item::before {
+  content: "🔗";
+  margin-right: 10px;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.profile-link-item:hover::before {
+  transform: scale(1.1);
+}
+
+.profile-link-item::after {
+  content: "↗";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.profile-link-item:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(2px);
+}
+
+/* Profile Edit Modal Cascading Dropdowns */
+.profile-edit-field select {
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  background: #fff;
+  width: 100%;
+}
+
+.profile-edit-field select:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.profile-edit-field select:not(:disabled):hover {
+  border-color: #5b8c51;
+}
+
+/* Profile Picture Modal */
+.profile-pic-options {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.profile-pic-option-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 32px;
+  border: 2px solid #d7d7d7;
+  border-radius: 12px;
+  background: #3775F0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  min-width: 120px;
+}
+
+.profile-pic-option-btn:hover {
+  border-color: #5b8c51;
+  background: #3f7fFf;
+  transform: translateY(-2px);
+}
+
+.profile-pic-option-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* Camera Modal */
+.camera-modal {
+  width: min(600px, 100%);
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+#cameraVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+#cameraCanvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Valid Documents Section */
+.valid-documents-container {
+  display: flex;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.doc-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.doc-title {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.doc-type {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.doc-preview {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.doc-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.doc-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+}
+
+.doc-add-icon {
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+}
+
+.doc-placeholder span {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-view {
+  background: #f0f0f0;
+  color: #000;
+}
+
+.btn-view:hover {
+  background: #e0e0e0;
+}
+
+.btn-upload {
+  background: #3775F0;
+  color: white;
+}
+
+.btn-upload:hover {
+  background: #2956CC;
+}
+
+.btn-capture {
+  background: #3775F0;
+  color: white;
+}
+
+.btn-capture:hover {
+  background: #2956CC;
+}
+
+@media (max-width: 768px) {
+  .valid-documents-container {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .doc-preview {
+    height: 160px;
+  }
+}
+
+/* Verification badges in seeker profile */
+.doc-verification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.doc-verification-badge--verified { background: #d4edda; color: #1a7a35; }
+.doc-verification-badge--change   { background: #fff3cd; color: #856404; }
+.doc-verification-badge--pending  { background: #e2e8f0; color: #555; }
+
+/* ── Print / PDF Download Button ── */
+.profile-print-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-download-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: #3775F0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 2px 8px rgba(55, 117, 240, 0.25);
+}
+
+.profile-download-pdf-btn:hover {
+  background: #2956CC;
+  transform: translateY(-1px);
+}
+
+.profile-download-pdf-btn:active {
+  transform: translateY(0);
+}
+
+.profile-download-pdf-btn svg {
+  flex-shrink: 0;
+}
+
+
+/* ══════════════════════════════════════════════════
+   PDF / PRINT RESUME LAYOUT  — min font 13px
+   ══════════════════════════════════════════════════ */
+
+/* ── Hidden elements in both PDF and print ── */
+body.pdf-printing .sidebar,
+body.pdf-printing .profile-print-actions,
+body.pdf-printing .profile-avatar-edit-btn,
+body.pdf-printing .profile-edit-btn,
+body.pdf-printing .profile-section--links,
+body.pdf-printing .seeker-only,
+body.pdf-printing .profile-edit-modal-overlay,
+body.pdf-printing .image-modal-overlay {
+  display: none !important;
+}
+
+/* Sidebar fully out of layout flow */
+body.pdf-printing .sidebar {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+body.pdf-printing {
+  display: block !important;
+  background: #fff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* ── PDF: page wrapper ── */
+body.pdf-printing .profile-main {
+  opacity: 1 !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  /* width forced via inline style in JS */
+}
+
+/* ── PDF: Hero — photo LEFT, name+contact RIGHT ── */
+body.pdf-printing .profile-hero {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 18px !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #111 !important;
+}
+
+body.pdf-printing .profile-avatar-row {
+  flex-shrink: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+body.pdf-printing .profile-avatar {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+body.pdf-printing .profile-hero-text-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  flex: 1 !important;
+}
+
+body.pdf-printing .profile-name-row {
+  margin-bottom: 6px !important;
+  justify-content: flex-start !important;
+}
+
+body.pdf-printing .profile-name {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  line-height: 1.15 !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  color: #111 !important;
+  font-family: Montserrat, sans-serif !important;
+}
+
+body.pdf-printing .profile-contact {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 2px !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+}
+
+body.pdf-printing .profile-contact-info {
+  justify-content: flex-start !important;
+  flex-wrap: nowrap !important;
+  font-size: 11px !important;
+  margin: 0 !important;
+}
+
+/* ── PDF: Full-width sections ── */
+body.pdf-printing .profile-block--full {
+  max-width: none !important;
+  width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1.5px solid #ddd !important;
+}
+
+/* ── PDF: Flatten two-column into stacked ── */
+body.pdf-printing .profile-columns {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body.pdf-printing .profile-column {
+  display: contents !important;
+}
+
+body.pdf-printing .profile-block {
+  width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1.5px solid #ddd !important;
+}
+
+body.pdf-printing .profile-block:last-child,
+body.pdf-printing .profile-block--full:last-of-type {
+  border-bottom: none !important;
+}
+
+/* Section order */
+body.pdf-printing .profile-section--education    { order: 1 !important; }
+body.pdf-printing .profile-section--work         { order: 2 !important; }
+body.pdf-printing .profile-section--personal     { order: 3 !important; }
+body.pdf-printing .profile-section--competencies { order: 4 !important; }
+
+/* ── PDF: Section titles ── */
+body.pdf-printing .profile-block-head {
+  margin-bottom: 8px !important;
+}
+
+body.pdf-printing .profile-section-title {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  margin-bottom: 0 !important;
+  color: #111 !important;
+  font-family: Montserrat, sans-serif !important;
+}
+
+/* ── PDF: Profile Description ── */
+body.pdf-printing .profile-description {
+  font-size: 11px !important;
+  text-shadow: none !important;
+  line-height: 1.65 !important;
+  text-align: justify !important;
+  color: #222 !important;
+  font-family: Inter, sans-serif !important;
+}
+
+/* ── PDF: Education ── */
+body.pdf-printing .profile-timeline {
+  gap: 6px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+body.pdf-printing .profile-timeline li {
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+body.pdf-printing .profile-school-name {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  display: block !important;
+  font-family: Inter, sans-serif !important;
+  color: #111 !important;
+}
+
+body.pdf-printing .profile-school-info {
+  font-size: 11px !important;
+  text-shadow: none !important;
+  color: #555 !important;
+  display: block !important;
+  font-family: Inter, sans-serif !important;
+}
+
+/* ── PDF: Work Experience ── */
+body.pdf-printing .profile-job {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  margin-bottom: 6px !important;
+}
+
+body.pdf-printing .profile-position-name {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  display: block !important;
+  font-family: Inter, sans-serif !important;
+  color: #111 !important;
+}
+
+body.pdf-printing .profile-work-period,
+body.pdf-printing .profile-work-org {
+  font-size: 11px !important;
+  text-shadow: none !important;
+  color: #555 !important;
+  display: block !important;
+  font-family: Inter, sans-serif !important;
+}
+
+/* ── PDF: Personal Details ── */
+body.pdf-printing .profile-dl {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 6px 40px !important;
+}
+
+body.pdf-printing .profile-dl > div {
+  font-size: 11px !important;
+  text-shadow: none !important;
+  display: flex !important;
+  gap: 6px !important;
+  align-items: baseline !important;
+  font-family: Inter, sans-serif !important;
+}
+
+body.pdf-printing .profile-dl dt {
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  color: #111 !important;
+}
+
+body.pdf-printing .profile-dl dd {
+  text-align: left !important;
+  color: #333 !important;
+}
+
+/* ── PDF: Competencies ── */
+body.pdf-printing .profile-competency-group {
+  display: inline-block !important;
+  vertical-align: top !important;
+  margin-right: 28px !important;
+  margin-bottom: 4px !important;
+}
+
+body.pdf-printing .profile-competency-label {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+  margin-bottom: 4px !important;
+  color: #111 !important;
+  font-family: Inter, sans-serif !important;
+}
+
+body.pdf-printing .profile-bullets {
+  font-size: 11px !important;
+  text-shadow: none !important;
+  margin-left: 1.2em !important;
+  line-height: 1.7 !important;
+  font-family: Inter, sans-serif !important;
+}
+
+body.pdf-printing .profile-bullets li {
+  margin-bottom: 1px !important;
+  font-size: 11px !important;
+  color: #333 !important;
+}
+
+body.pdf-printing .profile-bullets--languages .profile-lang,
+body.pdf-printing .profile-bullets--languages .profile-lang-sep,
+body.pdf-printing .profile-bullets--languages .profile-lang-level {
+  font-size: 11px !important;
+}
+
+body.pdf-printing .profile-empty {
+  font-size: 13px !important;
+  color: #888 !important;
+}
+
+
+
+/* ── Remove ALL text-shadow in PDF/print ── */
+body.pdf-printing *,
+body.pdf-printing .profile-school-name,
+body.pdf-printing .profile-school-info,
+body.pdf-printing .profile-position-name,
+body.pdf-printing .profile-work-period,
+body.pdf-printing .profile-work-org,
+body.pdf-printing .profile-section-title,
+body.pdf-printing .profile-name,
+body.pdf-printing .profile-description,
+body.pdf-printing .profile-dl dt,
+body.pdf-printing .profile-dl dd,
+body.pdf-printing .profile-bullets li,
+body.pdf-printing .profile-competency-label,
+body.pdf-printing .profile-timeline li {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════
+   @media print  (Ctrl+P / browser print)
+   ══════════════════════════════════════════════════ */
+@media print {
+  .sidebar,
+  .profile-print-actions,
+  .profile-avatar-edit-btn,
+  .profile-edit-btn,
+  .profile-section--links,
+  .seeker-only,
+  .profile-edit-modal-overlay,
+  .image-modal-overlay {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 14mm 14mm 14mm 14mm;
+  }
+
+  html, body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.profile-page { display: block !important; }
+
+  .profile-main {
+    padding: 0 !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+
+  .profile-hero {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20pt !important;
+    text-align: left !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 10pt !important;
+    border-bottom: 2pt solid #111 !important;
+  }
+
+  .profile-avatar-row { flex-shrink: 0 !important; margin-bottom: 0 !important; }
+  .profile-avatar { width: 75px !important; height: 75px !important; border-radius: 50% !important; }
+
+  .profile-name-row { justify-content: flex-start !important; margin-bottom: 4pt !important; }
+  .profile-name { font-size: 22pt !important; text-shadow: none !important; text-transform: uppercase !important; font-weight: 800 !important; color: #111 !important; }
+
+  .profile-contact { flex-direction: column !important; align-items: flex-start !important; gap: 2px !important; font-size: 11pt !important; }
+  .profile-contact-info { justify-content: flex-start !important; font-size: 11pt !important; }
+
+  .profile-block--full { max-width: none !important; width: 100% !important; margin-top: 12pt !important; margin-bottom: 0 !important; padding-bottom: 12pt !important; border-bottom: 1pt solid #ccc !important; }
+
+  .profile-columns { display: flex !important; flex-direction: column !important; gap: 0 !important; width: 100% !important; margin: 0 !important; }
+  .profile-column { display: contents !important; }
+  .profile-block { width: 100% !important; margin-top: 12pt !important; margin-bottom: 0 !important; padding-bottom: 12pt !important; border-bottom: 1pt solid #ccc !important; page-break-inside: avoid; }
+
+  .profile-section--education    { order: 1 !important; }
+  .profile-section--work         { order: 2 !important; }
+  .profile-section--personal     { order: 3 !important; }
+  .profile-section--competencies { order: 4 !important; }
+
+  .profile-section-title { font-size: 12pt !important; font-weight: 800 !important; text-shadow: none !important; text-transform: uppercase !important; letter-spacing: 0.07em !important; margin-bottom: 5pt !important; }
+
+  .profile-description { font-size: 10pt !important; text-shadow: none !important; line-height: 1.65 !important; text-align: justify !important; }
+
+  .profile-school-name, .profile-position-name { font-size: 11pt !important; font-weight: 700 !important; text-shadow: none !important; }
+  .profile-school-info, .profile-work-period, .profile-work-org { font-size: 10pt !important; text-shadow: none !important; color: #555 !important; }
+  .profile-timeline { gap: 8pt !important; list-style: none !important; }
+  .profile-timeline li { font-size: 10pt !important; }
+
+  .profile-job { margin-bottom: 8pt !important; }
+
+  .profile-dl { display: flex !important; flex-direction: row !important; flex-wrap: wrap !important; gap: 5pt 32pt !important; }
+  .profile-dl > div { font-size: 10pt !important; text-shadow: none !important; display: flex !important; gap: 5pt !important; }
+  .profile-dl dd { text-align: left !important; }
+
+  .profile-competency-group { display: inline-block !important; vertical-align: top !important; margin-right: 28pt !important; margin-bottom: 6pt !important; }
+  .profile-competency-label { font-size: 10pt !important; font-weight: 700 !important; text-shadow: none !important; margin-bottom: 3pt !important; }
+  .profile-bullets { font-size: 10pt !important; text-shadow: none !important; margin-left: 1.2em !important; line-height: 1.65 !important; }
+  .profile-bullets li { margin-bottom: 1pt !important; }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="terms-con.css">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+<script src="../lib/app-loader.js"></script>
+    <button type="button" class="terms-back-btn" id="termsBackBtn" aria-label="Go back">
+        <img src="../assets/images/Back.png" alt="Back" class="terms-back-icon" aria-hidden="true">
+    </button>
+
+    <div class="container">
+        <div class="banner">
+            <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            <div class="banner-title">
+                <h3>READY-JOB-GO</h3>
+                <p>A REAL-TIME JOB REQUEST PLATFORM</p>
+            </div>
+        </div>
+
+        <h1>Terms and Conditions</h1>
+        <p>By using our service, you agree to the following terms and conditions:</p>
+
+        <h2><strong>Data Privacy and Personal Information</strong></h2>
+        <p>Since your platform uses personal information for resumes, you must comply with the <a href="https://privacy.gov.ph/data-privacy-act/">Data Privacy Act of 2012</a> (RA 10173).</p>
+        <ul>
+            <li><strong>Purpose of Collection:</strong> Explicitly state that personal data (name, contact details, work history, etc.) is collected solely for job matching and recruitment.</li>
+            <li><strong>User Consent:</strong> Require users to provide informed consent before their resume data is shared with potential employers.</li>
+            <li><strong>Data Accuracy (Rectification):</strong> Users have the right to <a href="https://ph.jobstreet.com/terms">access and correct</a> any inaccurate personal information in their profiles at any time.</li>
+            <li><strong>Data Retention:</strong> Clearly define how long you will store resumes (e.g., 12 months) before they are archived or deleted.</li>
+        </ul>
+
+        <h2><strong>Truthfulness of Information</strong></h2>
+        <p>To maintain the platform's integrity, include a clause on the "Duty of Truthfulness" for both job seekers and employers.</p>
+        <ul>
+            <li><strong>For Candidates:</strong> State that misrepresenting qualifications, experience, or identity is strictly prohibited and can lead to <a href="https://www.termsfeed.com/blog/sample-terms-and-conditions-template/">account termination</a>.</li>
+            <li><strong>For Employers:</strong> Mandate that all job postings must be <a href="https://pmap.org.ph/privacy-policy/job-posting-terms-conditions/">authentic, accurate, and non-discriminatory</a>.</li>
+            <li><strong>Verification:</strong> Include a disclaimer that while you provide the platform, the <a href="https://help.ph.jobstreet.com/s/article/The-dos-and-don-ts-of-protecting-your-privacy-while-job-hunting">final responsibility for verifying</a> information lies with the parties involved in the hiring process.</li>
+        </ul>
+
+        <h2><strong>Age Requirements & Parental Consent</strong></h2>
+        <p>To ensure safety and compliance with data privacy standards, we enforce strict age-based controls. Legal protections for minors require us to verify eligibility and ensure proper guardian guidance.</p>
+        <ul>
+            <li><strong>Minimum Age:</strong> You must be at least 15 years old to create an account on our platform.</li>
+            <li><strong>Ages from 15 to 17:</strong> Users in this range must have explicit parental or guardian consent to use the service.</li>
+            <li><strong>Ages under 15:</strong> Registration is strictly probihited; the developer is not responsible for those who provide false information to bypass this rule</li>
+            <li><strong>Liability:</strong> Users who ignore these requirements do so at their own risk; the developer are not liable for such actions.</li>
+        </ul>
+
+        <h2><strong>Netiquette and Professional Conduct</strong></h2>
+        <p>Establish rules for how users should interact to ensure a respectful digital environment.</p>
+        <ul>
+            <li><strong>Professional Language:</strong> Discourage the use of <a href="https://www.indeed.com/career-advice/career-development/dos-and-donts-of-netiquette">slang, coarse language</a>, or all-caps (which signifies shouting) in communications.</li>
+            <li><strong>Responsiveness:</strong> Encourage punctual <a href="https://www.indeed.com/career-advice/career-development/netiquettes">responses</a> to job inquiries and messages to show respect for others' time.</li>
+            <li><strong>Respect Privacy:</strong> Forbid users from sharing <a href="https://www.knowledgecity.com/blog/2022-internet-etiquette-guidelines-for-your-workplace/">private communications</a> or screenshots without the other party's explicit permission.</li>
+            <li><strong>Anti-Spam:</strong> Prohibit sending <a href="https://www.verywellmind.com/ten-rules-of-netiquette-22285">unsolicited messages</a> or repetitive "pleading" messages to recruiters.</li>
+        </ul>
+    </div>
+
+    <script>
+        (function () {
+            function goBackOrClose() {
+                try { window.open("", "_self"); } catch (e) {}
+                try { window.close(); } catch (e) {}
+
+                const ref = document.referrer ? String(document.referrer).trim() : "";
+                setTimeout(() => {
+                    if (ref) {
+                        window.location.href = ref;
+                        return;
+                    }
+                    if (window.history.length > 1) {
+                        window.history.back();
+                        return;
+                    }
+                    window.location.href = "../seeker/setup.html";
+                }, 120);
+            }
+
+            const btn = document.getElementById("termsBackBtn");
+            if (!btn) return;
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                goBackOrClose();
+            });
+            btn.addEventListener("touchend", function (e) {
+                e.preventDefault();
+                goBackOrClose();
+            }, { passive: false });
+        })();
+    </script>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>

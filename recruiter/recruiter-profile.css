@@ -1,0 +1,396 @@
+/* recruiter-profile.css — Recruiter-only profile page styles */
+/* Base layout tokens from job-listing.css */
+
+.recruiter-profile-page .rp-main {
+  padding: 40px 48px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 769px) {
+  .recruiter-profile-page .rp-main {
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: 80px;
+  }
+}
+
+.rp-card {
+  width: 100%;
+  max-width: 640px;
+  padding: 32px 36px 40px;
+  border: 1px solid rgba(253, 222, 164, 0.95);
+  border-radius: 18px;
+  background: var(--main-bg, #FDF6EC);
+  box-shadow:
+    0 4px 6px -1px rgba(0,0,0,0.06),
+    0 12px 28px -6px rgba(0,0,0,0.1);
+}
+
+.rp-card-title {
+  font-family: Montserrat, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 4px rgba(0,0,0,0.2);
+  margin-bottom: 24px;
+}
+
+.rp-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rp-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 36%) minmax(0, 64%);
+  gap: 12px 18px;
+  align-items: start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.rp-row:last-child {
+  border-bottom: none;
+}
+
+.rp-label {
+  font-family: Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+  padding-top: 3px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.rp-label::after {
+  content: ":";
+}
+
+.rp-field {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rp-field--links {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.rp-value {
+  font-family: Inter, sans-serif;
+  font-size: 15px;
+  color: var(--text-dark, #1a1a1a);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  text-align: right;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.12);
+}
+
+.rp-links {
+  text-align: right;
+}
+
+.rp-link {
+  display: block;
+  color: #3d6b36;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  word-break: break-all;
+  margin-bottom: 4px;
+}
+
+.rp-empty {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Edit buttons reuse profile.css .profile-edit-btn styles */
+.profile-edit-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.profile-edit-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Edit Modal */
+.rp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.rp-modal-overlay[hidden] {
+  display: none;
+}
+
+.rp-modal {
+  width: min(520px, 100%);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 22px 50px rgba(0,0,0,0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 88vh;
+}
+
+.rp-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rp-modal-header h3 {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.rp-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+  color: #111;
+}
+
+.rp-modal-body {
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+}
+
+.rp-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rp-modal-field label {
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #1b1b1b;
+}
+
+.rp-modal-field input,
+.rp-modal-field textarea {
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #111;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rp-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 22px 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.rp-modal-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rp-modal-btn--cancel { background: #f3f4f6; color: #111; }
+.rp-modal-btn--save { background: #3775F0; color: #fff; }
+
+/* Profile Links — add-row UI inside edit modal */
+.rp-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rp-link-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rp-link-input {
+  flex: 1;
+  border: 1px solid #d6d6d6;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  color: #111;
+  box-sizing: border-box;
+}
+
+.rp-link-input:focus {
+  outline: none;
+  border-color: #5b8c51;
+}
+
+.rp-link-remove {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #f3f4f6;
+  color: #555;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.rp-link-remove:hover {
+  background: #fde8e8;
+  color: #c0392b;
+}
+
+.rp-add-link-btn {
+  margin-top: 6px;
+  border: none;
+  background: transparent;
+  color: #5b8c51;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 0;
+  align-self: flex-start;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rp-add-link-btn:hover {
+  color: #3d6b36;
+}
+
+/* Back button */
+.profile-back-btn .profile-back-icon {
+  width: 35px;
+  height: 35px;
+}
+
+@media (max-width: 768px) {
+  .recruiter-profile-page .rp-main {
+    padding: 80px 14px 40px;
+  }
+  .rp-card {
+    padding: 22px 16px 28px;
+    max-width: none;
+  }
+  .rp-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rp-field {
+    justify-content: flex-start;
+  }
+  .rp-value {
+    text-align: left;
+  }
+}
+
+/* ── Location Cascading Dropdowns ───────────────────────────────────────────────────────────── */
+.rp-location-cascade {
+  display: grid;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.rp-location-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rp-field-label {
+  font-family: Inter, "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.rp-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: Inter, "DM Sans", sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rp-select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.rp-select:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .rp-location-cascade {
+    gap: 10px;
+  }
+  
+  .rp-select {
+    padding: 12px;
+    font-size: 16px; /* Better for mobile touch */
+  }
+}

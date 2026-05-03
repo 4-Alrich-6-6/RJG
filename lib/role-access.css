@@ -1,0 +1,78 @@
+/* Seeker: hide Job Posting, restore all seeker-only links */
+html[data-rjg-role="seeker"] .nav a[href="../recruiter/recruiter-dashb.html"] {
+  display: none !important;
+}
+html[data-rjg-role="seeker"] .nav a[href="dashb.html"],
+html[data-rjg-role="seeker"] .nav a[href="for-you.html"],
+html[data-rjg-role="seeker"] #headerMenuDropdown a[href="application.html"],
+html[data-rjg-role="seeker"] #headerMenuDropdown a[href="bookmark.html"] {
+  display: block !important;
+}
+
+/* Recruiter: hide seeker-only nav, show Job Posting */
+html[data-rjg-role="recruiter"] .nav a[href="dashb.html"],
+html[data-rjg-role="recruiter"] .nav a[href="for-you.html"],
+html[data-rjg-role="recruiter"] #headerMenuDropdown a[href="application.html"],
+html[data-rjg-role="recruiter"] #headerMenuDropdown a[href="bookmark.html"] {
+  display: none !important;
+}
+html[data-rjg-role="recruiter"] .nav a[href="job-posting.html"] {
+  display: block !important;
+}
+
+/* Employer: same as recruiter */
+html[data-rjg-role="employer"] .nav a[href="dashb.html"],
+html[data-rjg-role="employer"] .nav a[href="for-you.html"],
+html[data-rjg-role="employer"] #headerMenuDropdown a[href="application.html"],
+html[data-rjg-role="employer"] #headerMenuDropdown a[href="bookmark.html"] {
+  display: none !important;
+}
+html[data-rjg-role="employer"] .nav a[href="../recruiter/recruiter-dashb.html"] {
+  display: block !important;
+}
+
+/* ── Notification Bell ────────────────────────────────────────────────────── */
+.notification-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+}
+
+.notification-bell:hover {
+  background: rgba(0,0,0,0.05);
+  color: #1a1a1a;
+}
+
+.notification-bell .bell-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: #dc3545;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.notification-badge[hidden] {
+  display: none !important;
+}

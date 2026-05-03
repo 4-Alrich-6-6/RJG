@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading – RJG</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #5b8c51;
+    --green-dark: #2d5a28;
+    --blue: #3775F0;
+    --black: #1a1a1a;
+  }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: Montserrat, sans-serif;
+    background: #fff;
+  }
+  #rjg-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: #fff;
+  }
+  .loader-logo {
+    width: 80px; height: 80px;
+    object-fit: contain;
+    animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 20px rgba(91,140,81,0.2));
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1);    opacity: 1;    }
+    50%      { transform: scale(1.08); opacity: 0.72; }
+  }
+  .loader-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase; color: #bbb;
+  }
+  .loader-message {
+    font-size: 15px; font-weight: 500;
+    color: var(--black); letter-spacing: 0.3px; min-height: 22px;
+  }
+  .loader-bar-track {
+    width: 200px; height: 3px;
+    background: #ebebeb; border-radius: 99px; overflow: hidden;
+  }
+  .loader-bar-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--green) 0%, var(--blue) 100%);
+    border-radius: 99px;
+    transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+    animation: indeterminate 1.6s ease-in-out infinite;
+  }
+  @keyframes indeterminate {
+    0%   { transform: translateX(-100%) scaleX(0.4); }
+    50%  { transform: translateX(0%)    scaleX(0.8); }
+    100% { transform: translateX(100%)  scaleX(0.4); }
+  }
+  .loader-dots { display: flex; gap: 7px; }
+  .loader-dots span {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+    animation: bounce 1.3s ease-in-out infinite;
+  }
+  .loader-dots span:nth-child(2) { animation-delay:.15s; background:#89b87f; }
+  .loader-dots span:nth-child(3) { animation-delay:.30s; background:var(--blue); }
+  @keyframes bounce {
+    0%,80%,100% { transform:translateY(0);    opacity:.45; }
+    40%          { transform:translateY(-8px); opacity:1;  }
+  }
+</style>
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#5b8c51" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+<link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+
+<div id="rjg-loader" role="status" aria-live="polite" aria-label="Loading">
+  <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="loader-logo">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+    <span class="loader-label">RJG</span>
+    <span class="loader-message" id="loader-msg">Loading…</span>
+  </div>
+  <div class="loader-bar-track">
+    <div class="loader-bar-fill" id="loader-bar"></div>
+  </div>
+  <div class="loader-dots"><span></span><span></span><span></span></div>
+</div>
+
+<script>
+  window.RJGLoader = {
+    el:  document.getElementById("rjg-loader"),
+    bar: document.getElementById("loader-bar"),
+    msg: document.getElementById("loader-msg"),
+    show(message) {
+      this.msg.textContent = message || "Loading…";
+      this.bar.style.animation = "indeterminate 1.6s ease-in-out infinite";
+      this.el.style.display = "flex";
+    },
+    hide() {
+      this.el.style.opacity = "0";
+      this.el.style.transition = "opacity 0.3s ease";
+      setTimeout(() => { this.el.style.display = "none"; }, 350);
+    },
+    progress(pct) {
+      this.bar.style.animation = "none";
+      this.bar.style.width = Math.min(100, Math.max(0, pct)) + "%";
+    },
+    update(message) { this.msg.textContent = message; }
+  };
+</script>
+<script src="../lib/register-sw.js"></script>
+</body>
+</html>

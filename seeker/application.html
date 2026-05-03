@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="job-listing.css">
+    <link rel="stylesheet" href="application.css">
+    <link rel="stylesheet" href="../lib/role-access.css">
+    <script src="../lib/role-bootstrap.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body class="application-page">
+<script src="../lib/app-loader.js"></script>
+    <aside class="sidebar sidebar--application">
+        <div class="sidebar-top">
+            <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
+                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            </a>
+            <button type="button" class="menu-btn application-back-btn" id="applicationBackBtn" aria-label="Back" title="Back">
+                <img src="../assets/images/Back.png" alt="" class="profile-back-icon" width="35" height="35" aria-hidden="true">
+            </button>
+        </div>
+
+        <div class="logout" role="button" tabindex="0">Log out</div>
+    </aside>
+
+    <main class="main application-main">
+        <div class="application-shell">
+            <section class="section application-section">
+                <div class="section-header application-section-header">
+                    <h1 class="section-title">My Applications</h1>
+                </div>
+                <ul class="application-list" id="applicationList" aria-live="polite"></ul>
+            </section>
+        </div>
+    </main>
+
+    <div class="app-job-modal" id="applicationJobModal" aria-hidden="true" role="presentation">
+        <div class="app-job-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="applicationJobModalTitle">
+            <header class="app-job-modal__head">
+                <h2 class="app-job-modal__title" id="applicationJobModalTitle">Job</h2>
+                <button type="button" class="app-job-modal__close" id="applicationJobModalCloseHeader">Close</button>
+            </header>
+            <!-- Filled atomically by application.js (avoids missing nodes / id clashes) -->
+            <div class="app-job-modal__body" id="applicationJobModalBodyMount"></div>
+        </div>
+    </div>
+
+    <div class="employer-contacts-modal" id="employerContactsModal" aria-hidden="true" role="presentation">
+        <div class="employer-contacts-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="employerContactsTitle">
+            <header class="employer-contacts-modal__head">
+                <h2 class="employer-contacts-modal__title" id="employerContactsTitle">Employer contacts</h2>
+                <button type="button" class="employer-contacts-modal__close" id="employerContactsCloseBtn">Close</button>
+            </header>
+            <div class="employer-contacts-modal__body">
+                <p class="employer-contacts-modal__for" id="employerContactsForLine"></p>
+                <dl class="employer-contacts-dl">
+                    <dt>Contact number</dt>
+                    <dd id="employerContactsPhone">—</dd>
+                    <dt>Email</dt>
+                    <dd id="employerContactsEmail">—</dd>
+                    <dt>Profile links</dt>
+                    <dd id="employerContactsLinksMount">—</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/role-access.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/ban-notification.js"></script>
+    <script src="../lib/ban-check.js"></script>
+    <script src="application.js"></script>
+    <script src="../lib/image-modal.js"></script>
+    <script src="../lib/register-sw.js"></script>
+    
+    
+    <!-- Image Modal -->
+    <div class="image-modal-overlay" id="imageModalOverlay">
+        <div class="image-modal">
+            <button type="button" class="image-modal-close" id="imageModalClose" aria-label="Close image modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <img src="" alt="Full size image" class="image-modal-img" id="imageModalImg">
+        </div>
+    </div>
+</body>
+</html>

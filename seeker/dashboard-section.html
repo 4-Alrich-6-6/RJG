@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Section</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="job-listing.css">
+  <link rel="stylesheet" href="../lib/dashboard-section.css">
+  <link rel="stylesheet" href="../lib/role-access.css">
+  <script src="../lib/role-bootstrap.js"></script>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#5b8c51" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+  <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+<script src="../lib/app-loader.js"></script>
+<script src="../lib/auth-guard.js"></script>
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+      <div class="header-menu">
+        <button type="button" class="menu-btn" id="headerMenuBtn" aria-label="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="headerMenuDropdown">
+          <img src="../assets/images/3dots.png" alt="" class="menu-icon" aria-hidden="true">
+        </button>
+        <div class="header-menu-dropdown" id="headerMenuDropdown" role="menu" hidden>
+          <a href="../seeker/profile.html" class="header-menu-item" role="menuitem">Profile</a>
+          <a href="../seeker/application.html" class="header-menu-item" role="menuitem">My Applications</a>
+          <a href="../seeker/bookmark.html" class="header-menu-item" role="menuitem">Bookmarks</a>
+          <a href="../public/notifications.html" class="header-menu-item" role="menuitem">Notifications</a>
+        </div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="nav-item active" href="../seeker/dashb.html">Job Listing</a>
+      <a class="nav-item" href="../seeker/for-you.html">For You</a>
+      <a class="nav-item" href="../recruiter/recruiter-dashb.html">Job Posting</a>
+    </nav>
+    <div class="logout">Log out</div>
+  </aside>
+
+  <main class="main dashboard-section-main">
+    <div class="search-row">
+      <div class="search-wrap">
+        <img src="../assets/images/Search.png" alt="Search" class="search-icon">
+        <input class="search-input" type="text" placeholder="Search Jobs by Title" id="sectionSearchInput">
+        <div class="divider-v"></div>
+        <button class="search-btn" type="button" id="sectionSearchBtn">Search</button>
+      </div>
+      <button class="filter-btn" type="button" id="sectionFilterBtn">
+        <img src="../assets/images/Filter.png" alt="Filter" class="filter-icon">
+        Filter
+      </button>
+    </div>
+
+    <section class="section">
+      <div class="section-header">
+        <button type="button" class="menu-btn dashboard-section-back-btn" id="sectionBackBtn" aria-label="Back to dashboard">
+          <img src="../assets/images/Back.png" alt="" class="dashboard-section-back-icon" width="35" height="35" aria-hidden="true">
+        </button>
+        <h2 class="section-title" id="sectionTitle">Jobs</h2>
+        
+        <!-- Pagination buttons in header -->
+        <div class="header-pagination" id="headerPagination" hidden>
+          <button type="button" class="pagination-btn header-pagination-btn" id="headerPrevPageBtn" disabled>Previous</button>
+          <span class="header-pagination-text" id="headerPaginationText">Page 1 of 1</span>
+          <button type="button" class="pagination-btn header-pagination-btn" id="headerNextPageBtn" disabled>Next</button>
+        </div>
+      </div>
+      <p class="dashboard-section-subtitle" id="sectionSubtitle"></p>
+      <div class="cards-grid" id="sectionGrid"></div>
+      <p class="dashboard-section-empty" id="sectionEmpty" hidden>No jobs found for this section.</p>
+      
+      <!-- Pagination Controls -->
+      <div class="pagination-controls" id="sectionPagination" hidden>
+        <div class="pagination-info">
+          <span id="paginationText">Page 1 of 1</span>
+        </div>
+        <div class="pagination-buttons">
+          <button type="button" class="pagination-btn" id="prevPageBtn" disabled>Previous</button>
+          <button type="button" class="pagination-btn" id="nextPageBtn" disabled>Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="sectionFilterModal">
+    <div class="modal">
+      <h3>Filter Jobs</h3>
+      <div class="filter-group">
+        <label>Type</label>
+        <div class="filter-chips">
+          <button class="chip" data-group="category" data-value="Job">Job</button>
+          <button class="chip" data-group="category" data-value="Commission">Commission</button>
+          <button class="chip" data-group="category" data-value="Gig">Gig</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Schedule</label>
+        <div class="filter-chips">
+          <button class="chip" data-group="schedule" data-value="Full-time">Full-time</button>
+          <button class="chip" data-group="schedule" data-value="Part-time">Part-time</button>
+          <button class="chip" data-group="schedule" data-value="Contract">Contract</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Settings</label>
+        <div class="filter-chips">
+          <button class="chip" data-group="type" data-value="On-Site">On-Site</button>
+          <button class="chip" data-group="type" data-value="Remote">Remote</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Rate Range</label>
+        <div class="filter-range-row">
+          <input type="number" id="sectionFilterRateMin" class="filter-range-input" placeholder="Min amount" min="0">
+          <input type="number" id="sectionFilterRateMax" class="filter-range-input" placeholder="Max amount" min="0">
+          <select id="sectionFilterRateCurrency" class="filter-range-select">
+            <option value="">Any currency</option>
+            <option value="PHP">PHP</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="JPY">JPY</option>
+            <option value="GBP">GBP</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Rate</label>
+        <div class="filter-chips">
+          <button class="chip" data-group="rateUnit" data-value="Hour">/Hour</button>
+          <button class="chip" data-group="rateUnit" data-value="Day">/Day</button>
+          <button class="chip" data-group="rateUnit" data-value="Week">/Week</button>
+          <button class="chip" data-group="rateUnit" data-value="Month">/Month</button>
+          <button class="chip" data-group="rateUnit" data-value="Project">/Project</button>
+          <button class="chip" data-group="rateUnit" data-value="Session">/Session</button>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" type="button" id="sectionFilterResetBtn">Reset</button>
+        <button class="btn-apply" type="button" id="sectionFilterApplyBtn">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../lib/database.js"></script>
+  <script src="../lib/role-access.js"></script>
+  <script src="../lib/app-feedback.js"></script>
+  <script src="../lib/logout-modal.js"></script>
+  <script src="seeker-application.js"></script>
+  <script src="dashboard-section.js"></script>
+  <script src="../lib/register-sw.js"></script>
+</body>
+</html>

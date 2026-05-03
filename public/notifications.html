@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../seeker/job-listing.css">
+    <link rel="stylesheet" href="../seeker/application.css">
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="../lib/role-access.css">
+    <script src="../lib/role-bootstrap.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body class="application-page notifications-page">
+<script src="../lib/app-loader.js"></script>
+    <aside class="sidebar sidebar--application">
+        <div class="sidebar-top">
+            <a href="about-us.html" class="logo-link" aria-label="Go to About Us page">
+                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            </a>
+            <button type="button" class="menu-btn application-back-btn" id="notificationsBackBtn" aria-label="Back" title="Back">
+                <img src="../assets/images/Back.png" alt="" class="profile-back-icon" width="35" height="35" aria-hidden="true">
+            </button>
+        </div>
+
+        <div class="logout" role="button" tabindex="0">Log out</div>
+    </aside>
+
+    <main class="main application-main">
+        <div class="application-shell">
+            <section class="section application-section">
+                <div class="section-header application-section-header">
+                    <h1 class="section-title">Notifications</h1>
+                </div>
+                <ul class="application-list" id="notificationList" aria-live="polite"></ul>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/role-access.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="../lib/ban-notification.js"></script>
+    <script src="../lib/ban-check.js"></script>
+    <script src="../lib/notifications-store.js"></script>
+    <script src="notifications.js"></script>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>

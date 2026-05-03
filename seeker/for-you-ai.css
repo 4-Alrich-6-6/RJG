@@ -1,0 +1,297 @@
+/* ── for-you-ai.css — AI match card styles for Ready-Job-Go ──────────────── */
+
+/* ── Grid ─────────────────────────────────────────────────────────────────── */
+.fy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 8px 0 8px;
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+.fy-card {
+  background: #fff;
+  border: 1px solid #e8e3dc;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, transform 0.18s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  outline: none;
+  min-height: 320px;
+}
+.fy-card:hover,
+.fy-card:focus {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+
+/* ── Card top ─────────────────────────────────────────────────────────────── */
+.fy-card-top { display: flex; flex-direction: column; gap: 4px; }
+
+.fy-card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.fy-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+}
+.fy-card-meta {
+  font-size: 12px;
+  color: #6b6b6b;
+  margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-height: 36px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.fy-card-rate {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c0392b;
+  margin: 0;
+}
+.fy-card-posted {
+  font-size: 11px;
+  color: #aaa;
+  margin: 0;
+}
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+.fy-badges { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; flex-shrink: 0; }
+
+.fy-urgent-badge,
+.fy-applied-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.fy-urgent-badge  { background: #fff0f0; color: #c0392b; border: 1px solid #f5c6c6; }
+.fy-applied-badge { background: #f0f7ff; color: #1a6fc4; border: 1px solid #b8d9f8; }
+
+/* ── Skill tags ───────────────────────────────────────────────────────────── */
+.fy-card-skills { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.fy-skill-tag {
+  font-size: 11px;
+  background: #E2E6FF;
+  color: #555;
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+.fy-skill-more { color: #888; font-style: italic; }
+
+/* ── Match bar ────────────────────────────────────────────────────────────── */
+.fy-match-bar { display: flex; flex-direction: column; gap: 5px; }
+
+.fy-match-score {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.fy-match-pct {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+.fy-match-label {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.85;
+}
+.fy-match-progress-track {
+  height: 5px;
+  background: #D4D9F0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fy-match-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+/* ── Match reasons ────────────────────────────────────────────────────────── */
+.fy-reasons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 90px;
+  overflow: auto;
+  padding-right: 4px;
+}
+.fy-reasons li {
+  font-size: 11px;
+  color: #555;
+  padding-left: 14px;
+  position: relative;
+}
+.fy-reasons li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #2d9f6e;
+  font-weight: 700;
+}
+
+/* ── Preference signals ──────────────────────────────────────────────────── */
+.fy-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 2px 0;
+}
+.fy-signals-title {
+  font-size: 10px;
+  color: #888;
+  font-weight: 500;
+}
+.fy-signals-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.fy-signal-badge {
+  font-size: 10px;
+  background: #DDE8FF;
+  color: #2d6a4f;
+  border: 1px solid #b7e4c7;
+  border-radius: 12px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.fy-card-top,
+.fy-card-skills,
+.fy-match-bar,
+.fy-card-posted {
+  flex-shrink: 0;
+}
+
+/* ── Empty / error state ──────────────────────────────────────────────────── */
+.fy-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+}
+.fy-empty-icon  { font-size: 40px; margin: 0 0 12px; }
+.fy-empty-title { font-size: 16px; font-weight: 700; color: #333; margin: 0 0 6px; }
+.fy-empty-sub   { font-size: 13px; color: #888; margin: 0; max-width: 320px; display: inline-block; }
+.fy-empty--error .fy-empty-title { color: #c0392b; }
+.fy-retry-btn {
+  margin-top: 16px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ── Skeleton loader ──────────────────────────────────────────────────────── */
+.fy-card--skeleton { pointer-events: none; gap: 12px; }
+
+.fy-skel {
+  background: linear-gradient(90deg, #D4D9F0 25%, #E0E5F5 50%, #D4D9F0 75%);
+  background-size: 200% 100%;
+  animation: fy-shimmer 1.4s infinite;
+  border-radius: 6px;
+}
+.fy-skel--title { height: 18px; width: 70%; }
+.fy-skel--meta  { height: 12px; width: 90%; }
+.fy-skel--meta.short { width: 55%; }
+.fy-skel--bar   { height: 40px; width: 100%; border-radius: 8px; margin-top: 4px; }
+
+@keyframes fy-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Header row ───────────────────────────────────────────────────────────── */
+.fy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fy-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.fy-heading   { font-size: 20px; font-weight: 800; color: #1a1a1a; margin: 0; }
+
+.fy-select-wrap { position: relative; }
+.fy-select {
+  appearance: none;
+  background: #E2E6FF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23555'/%3E%3C/svg%3E") no-repeat right 10px center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 32px 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+}
+
+.fy-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.fy-refresh-btn:hover { background: #D4D9F0; }
+.fy-refresh-icon { width: 16px; height: 16px; }
+
+/* ── Responsive Design ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .fy-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    padding: 4px 0 4px;
+  }
+  
+  .fy-card {
+    min-height: 280px;
+    padding: 14px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .fy-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 2px 0 2px;
+  }
+  
+  .fy-card {
+    min-height: 260px;
+    padding: 12px;
+    gap: 6px;
+  }
+}

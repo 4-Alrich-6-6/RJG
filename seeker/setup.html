@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="setup.css">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body>
+<script src="../lib/app-loader.js"></script>
+    <div class="container">
+        <div class="banner">
+                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            <div class="banner-title">
+                <h1>READY-JOB-GO</h1>
+                <p>A REAL-TIME JOB REQUEST PLATFORM</p>
+            </div>
+        </div>
+
+        <div class="setup-card">
+            <div class="card-header">
+                <div class="header-content">
+                    <h2>Welcome!</h2>
+                </div>
+            </div>
+
+            <div class="toggle-section">
+                <p>I will mainly use it for...</p>
+                <div class="toggle">
+                    <button class="toggle-btn active">Seeking</button>
+                    <button class="toggle-btn">Recruiter</button>
+                </div>
+            </div>
+
+            <!-- SEEKING FORM (Default) -->
+            <form class="seeking-form form-section">
+                <!-- Row 0: Profile Picture -->
+                <div class="form-row">
+                    <div class="form-group form-group--profile-pic">
+                        <label>Professional Profile Picture</label>
+                        <div class="profile-pic-wrap">
+                            <div class="profile-pic-preview" id="seekerProfilePicPreview">
+                                <span class="profile-pic-placeholder">+</span>
+                            </div>
+                            <div class="profile-pic-actions">
+                                <input type="file" id="seekerProfilePicInput" accept="image/png,image/jpeg,image/jpg" hidden>
+                                <button type="button" class="profile-pic-btn" id="seekerProfilePicCaptureBtn">Capture</button>
+                                <button type="button" class="profile-pic-btn" id="seekerProfilePicBtn">Choose Image</button>
+                                <p class="profile-pic-hint">Max 3MB (JPG, PNG)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 1: Name, Sex, Birth Date (3 cols) -->
+                <div class="form-row row-3-cols">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="editNameBtnSeeking"><img src="../assets/images/pencil.png" alt="Edit Name"></button>
+                    </div>
+                    <div class="form-group select-group">
+                        <label>Sex:</label>
+                        <select class="sex-select">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Birth Date:</label><input type="date" id="seekerBirthDate" max=""></div>
+                </div>
+
+                <!-- Row 2: Address, Contact Number, Education Status (3 cols) -->
+                <div class="form-row row-3-cols">
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="editAddressBtnSeeking"><img src="../assets/images/pencil.png" alt="Edit Address"></button>
+                    </div>
+                    <div class="form-group"><label>Contact Number:</label><input type="number" id="seekerContact" inputmode="numeric" min="0" placeholder="e.g., 09123456789"></div>
+                    <div class="form-group select-group"><label>Highest Educational Attainment:</label>
+                        <select id="seekerEducationStatus">
+                            <option>No Formal Education</option>
+                            <option>Elementary Level</option>
+                            <option>Elementary Graduate</option>
+                            <option>Junior High School Level</option>
+                            <option>Junior High School Graduate</option>
+                            <option>Senior High School Level</option>
+                            <option>Senior High School Graduate</option>
+                            <option>College Level</option>
+                            <option>College Graduate</option>
+                            <option>Vocational / Technical Graduate</option>
+                            <option>Postgraduate Level</option>
+                            <option>Postgraduate Graduate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Row 3: Profile Description (full width) -->
+                <div class="form-row">
+                    <div class="form-group"><label>Professional Profile Description:</label><textarea id="seekerDescription"></textarea></div>
+                </div>
+
+                <!-- Row 4: Work Experiences, Educational Background (2 cols) -->
+                <div class="form-row row-2-cols">
+                    <div class="form-group">
+                        <label>Work Experiences:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addWorkExperienceBtn">+</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Educational Background:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addEducationBtn">+</button>
+                    </div>
+                </div>
+
+                <!-- Row 5: Valid Documentations (full width) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Valid Documents:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addValidDocsBtn">+</button>
+                    </div>
+                </div>
+
+                <!-- Row 6: Skills, Languages, Personality (3 cols) -->
+                <div class="form-row row-3-cols-alt">
+                    <div class="form-group">
+                        <label>Skills:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addSkillsBtn">+</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Languages:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addLanguagesBtn">+</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Personality:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addPersonalityBtn">+</button>
+                    </div>
+                </div>
+
+                <!-- Row 6: Profile Links (full width) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Profile Links (Facebook, Instagram, etc.)</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addProfileLinksBtn"><img src="../assets/images/Clip.png" alt="Add Link"></button>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- RECRUITMENT FORM -->
+            <form class="recruitment-form form-section">
+                <div class="form-row">
+                    <div class="form-group"><label>Company Name:</label><input type="text" id="employerCompanyName"></div>
+                </div>
+
+                <div class="form-row row-2-cols">
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="editAddressBtnRecruitment"><img src="../assets/images/pencil.png" alt="Edit Address"></button>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number:</label>
+                        <input type="number" id="employerContact" inputmode="numeric" min="0" placeholder="e.g., 09123456789">
+                    </div>
+                </div>
+
+                <!-- Row 4: Profile Links (full width) -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Profile Links (Facebook, Instagram, etc.)</label>
+                        <button type="button" class="icon-btn icon-btn-full" id="addProfileLinksBtnRecruitment"><img src="../assets/images/Clip.png" alt="Add Link"></button>
+                    </div>
+                </div>
+            </form>
+            <button class="save-btn">SAVE</button>
+        </div>
+
+        <!-- WORK EXPERIENCE MODAL -->
+        <div class="modal-overlay" id="workExperienceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Work Experiences</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-form">
+                        <h3 class="modal-section-title">Add New Work Experience</h3>
+                        <div class="form-group">
+                            <label>Name of Position:</label>
+                            <input type="text" placeholder="e.g., Software Engineer">
+                        </div>
+                        <div class="form-group">
+                            <label>Name of Business/Company:</label>
+                            <input type="text" placeholder="e.g., Tech Corporation Inc.">
+                        </div>
+                        <div class="form-group">
+                            <label>Location of Business:</label>
+                            <input type="text" placeholder="e.g., Manila, Philippines">
+                        </div>
+                        <div class="form-row row-2-cols">
+                            <div class="form-group date-group">
+                                <label>Start Date</label>
+                                <div class="date-input-group">
+                                    <select class="month-select" placeholder="Month">
+                                        <option value="">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <input type="text" class="year-input" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                                </div>
+                            </div>
+                            <div class="form-group date-group">
+                                <label>End Date</label>
+                                <div class="date-input-group">
+                                    <select class="month-select" placeholder="Month">
+                                        <option value="">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <input type="text" class="year-input" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="submit" class="btn-add">Add</button>
+                        </div>
+                    </form>
+                    
+                    <div class="modal-divider"></div>
+                    
+                    <div class="storage-section">
+                        <h3 class="modal-section-title">Your Work Experiences</h3>
+                        <div class="items-storage" id="workExperiencesStorage"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDUCATIONAL BACKGROUND MODAL -->
+        <div class="modal-overlay" id="educationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Educational Background</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-form">
+                        <h3 class="modal-section-title">Add New Educational Background</h3>
+                        <div class="form-group select-group">
+                            <label>Education Level:</label>
+                            <select>
+                                <option value="">Select Education Level</option>
+                                <option>Preschool</option>
+                                <option>Elementary School</option>
+                                <option>Junior High School</option>
+                                <option>Senior High School</option>
+                                <option>Vocational</option>
+                                <option>Technical Training</option>
+                                <option>Bachelor's Degree</option>
+                                <option>Master's Degree</option>
+                                <option>Doctoral Degree</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Name of School:</label>
+                            <input type="text" placeholder="e.g., University of the Philippines">
+                        </div>
+                        <div class="form-group">
+                            <label>Program/Strand/Course:</label>
+                            <input type="text" placeholder="e.g., BS Computer Science (NA if not applicable)">
+                        </div>
+                        <div class="form-row row-2-cols">
+                            <div class="form-group date-group">
+                                <label>Start Date</label>
+                                <div class="date-input-group">
+                                    <select class="month-select" placeholder="Month">
+                                        <option value="">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <input type="text" class="year-input" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                                </div>
+                            </div>
+                            <div class="form-group date-group">
+                                <label>End Date</label>
+                                <div class="date-input-group">
+                                    <select class="month-select" placeholder="Month">
+                                        <option value="">Month</option>
+                                        <option value="01">January</option>
+                                        <option value="02">February</option>
+                                        <option value="03">March</option>
+                                        <option value="04">April</option>
+                                        <option value="05">May</option>
+                                        <option value="06">June</option>
+                                        <option value="07">July</option>
+                                        <option value="08">August</option>
+                                        <option value="09">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                    <input type="text" class="year-input" placeholder="YYYY" inputmode="numeric" maxlength="4" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="submit" class="btn-add">Add</button>
+                        </div>
+                    </form>
+                    
+                    <div class="modal-divider"></div>
+                    
+                    <div class="storage-section">
+                        <h3 class="modal-section-title">Your Educational Background</h3>
+                        <div class="items-storage" id="educationBackgroundStorage"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS MODAL -->
+        <div class="modal-overlay" id="skillsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Skills</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h3 class="modal-section-title">Select Your Skills (Max 5)</h3>
+                        <div class="skills-checkboxes">
+                            <label><input type="checkbox" value="Communication and Teamwork"> Communication and Teamwork</label><br>
+                            <label><input type="checkbox" value="Problem Solving"> Problem Solving</label><br>
+                            <label><input type="checkbox" value="Time Management"> Time Management</label><br>
+                            <label><input type="checkbox" value="Adaptability"> Adaptability</label><br>
+                            <label><input type="checkbox" value="Leadership"> Leadership</label><br>
+                            <label><input type="checkbox" value="Critical Thinking"> Critical Thinking</label><br>
+                            <label><input type="checkbox" value="Microsoft Office (Word, Excel, PowerPoint)"> Microsoft Office (Word, Excel, PowerPoint)</label><br>
+                            <label><input type="checkbox" value="Data Entry"> Data Entry</label><br>
+                            <label><input type="checkbox" value="Basic Programming"> Basic Programming</label><br>
+                            <label><input type="checkbox" value="Web Development"> Web Development</label><br>
+                            <label><input type="checkbox" value="Graphic Design"> Graphic Design</label><br>
+                            <label><input type="checkbox" value="Video Editing"> Video Editing</label><br>
+                            <label><input type="checkbox" value="UI/UX Design"> UI/UX Design</label><br>
+                            <label><input type="checkbox" value="Email Management"> Email Management</label><br>
+                            <label><input type="checkbox" value="Scheduling"> Scheduling</label><br>
+                            <label><input type="checkbox" value="Documentation"> Documentation</label><br>
+                            <label><input type="checkbox" value="Customer Support"> Customer Support</label><br>
+                            <label><input type="checkbox" value="File Organization"> File Organization</label><br>
+                            <label><input type="checkbox" value="Writing"> Writing</label><br>
+                            <label><input type="checkbox" value="Photography"> Photography</label><br>
+                            <label><input type="checkbox" value="Illustration / Drawing"> Illustration / Drawing</label><br>
+                            <label><input type="checkbox" value="Content Creation"> Content Creation</label><br>
+                            <label><input type="checkbox" value="Social Media Management"> Social Media Management</label><br>
+                            <label><input type="checkbox" value="Cleaning"> Cleaning</label><br>
+                            <label><input type="checkbox" value="Cooking / Food Preparation"> Cooking / Food Preparation</label><br>
+                            <label><input type="checkbox" value="Driving"> Driving</label><br>
+                            <label><input type="checkbox" value="Delivery / Logistics"> Delivery / Logistics</label><br>
+                            <label><input type="checkbox" value="Construction / Manual Labor"> Construction / Manual Labor</label><br>
+                            <label><input type="checkbox" value="Heavy Lifting and Carrying"> Heavy Lifting and Carrying</label><br>
+                            <label><input type="checkbox" value="Physical Stamina/Endurance"> Physical Stamina/Endurance</label><br>
+                            <label><input type="checkbox" value="Tutoring / Teaching"> Tutoring / Teaching</label><br>
+                            <label><input type="checkbox" value="Baby / Pet Sitting"> Baby / Pet Sitting</label><br>
+                            <label><input type="checkbox" value="Sales"> Sales</label><br>
+                            <label><input type="checkbox" value="Marketing"> Marketing</label><br>
+                            <label><input type="checkbox" value="Translation"> Translation</label><br>
+                            <label><input type="checkbox" value="Event Planning"> Event Planning</label><br>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-add" id="addSkillsToStorage">Add</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-divider"></div>
+                    
+                    <div class="storage-section">
+                        <h3 class="modal-section-title">Your Skills</h3>
+                        <div class="items-storage" id="skillsStorage"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LANGUAGES MODAL -->
+        <div class="modal-overlay" id="languagesModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Languages</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h3 class="modal-section-title">Your Languages</h3>
+                        <div class="language-rows" id="languageRows"></div>
+                        <div class="modal-actions language-actions">
+                            <button type="button" class="btn-add" id="addLanguageRowBtn">+ Add Language</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE LINKS MODAL -->
+        <div class="modal-overlay" id="profileLinksModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Profile Links</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h3 class="modal-section-title">Add Your Profile Links</h3>
+                        <div class="link-rows" id="profileLinkRows"></div>
+                        <div class="modal-actions language-actions">
+                            <button type="button" class="btn-add" id="addProfileLinkRowBtn">+ Add Link</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADDRESS MODAL -->
+        <div class="modal-overlay" id="addressModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Address</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h3 class="modal-section-title">Enter Your Address</h3>
+                        <div class="modal-form-row">
+                            <div class="form-group">
+                                <label>Unit / No.:</label>
+                                <input type="number" id="unitNoInput" placeholder="e.g., 302" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>ZIP Code:</label>
+                                <input type="number" id="zipInput" inputmode="numeric" min="0" max="9999" placeholder="e.g., 1000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Street:</label>
+                            <input type="text" id="streetInput">
+                        </div>
+                        <div class="form-row row-2-cols">
+                            <div class="form-group">
+                                <label>Region:</label>
+                                <select id="regionSelect">
+                                    <option value="">Select Region</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Province:</label>
+                                <select id="provinceSelect" disabled>
+                                    <option value="">Select Province</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row row-2-cols">
+                            <div class="form-group">
+                                <label>City / Municipality:</label>
+                                <select id="citySelect" disabled>
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Barangay / Village:</label>
+                                <select id="barangaySelect" disabled>
+                                    <option value="">Select Barangay</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Country:</label>
+                            <input type="text" id="countryInput" value="Philippines" readonly>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-save" id="saveAddressBtn">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERSONALITY MODAL -->
+        <div class="modal-overlay" id="personalityModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Personality</h2>
+                    <button type="button" class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-form">
+                        <h3 class="modal-section-title">Select Your Personality Traits (Max 5)</h3>
+                        <div class="skills-checkboxes">
+                            <label><input type="checkbox" value="Hardworking"> Hardworking</label><br>
+                            <label><input type="checkbox" value="Responsible"> Responsible</label><br>
+                            <label><input type="checkbox" value="Team Player"> Team Player</label><br>
+                            <label><input type="checkbox" value="Adaptable"> Adaptable</label><br>
+                            <label><input type="checkbox" value="Organized"> Organized</label><br>
+                            <label><input type="checkbox" value="Detail-Oriented"> Detail-Oriented</label><br>
+                            <label><input type="checkbox" value="Self-Motivated"> Self-Motivated</label><br>
+                            <label><input type="checkbox" value="Reliable"> Reliable</label><br>
+                            <label><input type="checkbox" value="Creative"> Creative</label><br>
+                            <label><input type="checkbox" value="Proactive"> Proactive</label><br>
+                            <label><input type="checkbox" value="Honest"> Honest</label><br>
+                            <label><input type="checkbox" value="Confident"> Confident</label><br>
+                        </div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-add" id="addPersonalityToStorage">Add</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-divider"></div>
+                    
+                    <div class="storage-section">
+                        <h3 class="modal-section-title">Your Personality Traits</h3>
+                        <div class="items-storage" id="personalityStorage"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-done">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name Edit Modal for Seekers -->
+    <div class="modal-overlay" id="nameEditModal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Name</h2>
+                <button type="button" class="modal-close" id="nameEditModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-form">
+                    <h3 class="modal-section-title">Enter Your Name</h3>
+                    <div class="form-group">
+                        <label>Last Name <span style="color:red;">*</span></label>
+                        <input type="text" id="lastNameInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label>First Name <span style="color:red;">*</span></label>
+                        <input type="text" id="firstNameInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name <span style="color:#666;">(optional)</span></label>
+                        <input type="text" id="middleNameInput">
+                    </div>
+                    <div class="form-group">
+                        <label>Suffix <span style="color:#666;">(optional)</span></label>
+                        <input type="text" id="suffixInput" placeholder="e.g., Jr., Sr., III">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-save" id="nameEditModalSave">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="setup.js"></script>
+    <script>
+        // Load dropdown options from database for setup form
+        (async function loadSetupDropdowns() {
+            if (!window.RJGDb || typeof window.RJGDb.ensureDropdownOptionCache !== 'function') {
+                console.warn('RJGDb not available for dropdown loading');
+                return;
+            }
+
+            try {
+                const supa = window.RJGDb.getClient ? window.RJGDb.getClient() : null;
+                if (supa) {
+                    await window.RJGDb.ensureDropdownOptionCache(supa);
+                }
+
+                // Helper to populate select element
+                function populateSelect(selectId, options) {
+                    const select = document.getElementById(selectId);
+                    if (!select) return;
+                    // Keep first option (the placeholder)
+                    const placeholder = select.options[0];
+                    select.innerHTML = '';
+                    if (placeholder) select.appendChild(placeholder);
+                    // Add options from DB (filter out isOther)
+                    options.filter(opt => !opt.isOther).forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt.label;
+                        option.textContent = opt.label;
+                        option.dataset.code = opt.code;
+                        select.appendChild(option);
+                    });
+                }
+
+                // Load and populate dropdowns (same categories as preferences page)
+                const scheduleOpts = window.RJGDb.getDropdownOptions ? window.RJGDb.getDropdownOptions('schedule') : [];
+                const settingOpts = window.RJGDb.getDropdownOptions ? window.RJGDb.getDropdownOptions('work_setting') : [];
+                const categoryOpts = window.RJGDb.getDropdownOptions ? window.RJGDb.getDropdownOptions('job_category') : [];
+                const currencyOpts = window.RJGDb.getDropdownOptions ? window.RJGDb.getDropdownOptions('currency') : [];
+                const rateUnitOpts = window.RJGDb.getDropdownOptions ? window.RJGDb.getDropdownOptions('rate_unit') : [];
+
+                populateSelect('prefSchedule', scheduleOpts);
+                populateSelect('prefSetting', settingOpts);
+                populateSelect('prefType', categoryOpts);
+                populateSelect('prefCurrency', currencyOpts);
+                populateSelect('prefRateUnit', rateUnitOpts);
+
+            } catch (err) {
+                console.error('Failed to load dropdown options:', err);
+            }
+        })();
+    </script>
+
+    <!-- Valid Documentations Modal -->
+    <div class="modal-overlay" id="validDocsModal">
+        <div class="modal-content" style="max-width:600px;">
+            <div class="modal-header">
+                <h2>Valid Documents</h2>
+                <button type="button" class="modal-close" id="validDocsModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Valid ID Section -->
+                <div class="doc-section">
+                    <h3 class="modal-section-title">Valid ID</h3>
+                    <div class="form-group">
+                        <label>Select Type:</label>
+                        <select id="validIdType" class="doc-type-select">
+                            <option value="">Select ID Type</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Method:</label>
+                        <div class="upload-method-buttons">
+                            <button type="button" class="upload-method-btn active" id="validIdUploadBtn" data-method="upload">Upload</button>
+                            <button type="button" class="upload-method-btn" id="validIdCaptureBtn" data-method="capture">Capture</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="validIdUploadGroup">
+                        <label>Upload Image:</label>
+                        <input type="file" id="validIdInput" accept="image/png,image/jpeg,image/jpg" hidden>
+                        <button type="button" class="btn-upload" id="validIdSelectBtn">Choose Image</button>
+                    </div>
+                    <div class="form-group" id="validIdCaptureGroup" style="display:none;">
+                        <label>Capture Image:</label>
+                        <button type="button" class="btn-upload" id="validIdCameraBtn">Open Camera</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Preview:</label>
+                        <div id="validIdPreview" class="doc-preview">
+                            <span class="preview-placeholder">No image selected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-divider"></div>
+
+                <!-- Valid Certificate Section -->
+                <div class="doc-section">
+                    <h3 class="modal-section-title">Valid Certificate</h3>
+                    <div class="form-group">
+                        <label>Select Type:</label>
+                        <select id="validCertType" class="doc-type-select">
+                            <option value="">Select Certificate Type</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Method:</label>
+                        <div class="upload-method-buttons">
+                            <button type="button" class="upload-method-btn active" id="validCertUploadBtn" data-method="upload">Upload</button>
+                            <button type="button" class="upload-method-btn" id="validCertCaptureBtn" data-method="capture">Capture</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="validCertUploadGroup">
+                        <label>Upload Image:</label>
+                        <input type="file" id="validCertInput" accept="image/png,image/jpeg,image/jpg" hidden>
+                        <button type="button" class="btn-upload" id="validCertSelectBtn">Choose Image</button>
+                    </div>
+                    <div class="form-group" id="validCertCaptureGroup" style="display:none;">
+                        <label>Capture Image:</label>
+                        <button type="button" class="btn-upload" id="validCertCameraBtn">Open Camera</button>
+                    </div>
+                    <div class="form-group">
+                        <label>Preview:</label>
+                        <div id="validCertPreview" class="doc-preview">
+                            <span class="preview-placeholder">No image selected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-save" id="saveValidDocsBtn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Capture Modal -->
+    <div class="modal-overlay" id="cameraModal">
+        <div class="modal-content" style="max-width:500px;">
+            <div class="modal-header">
+                <h2>Capture Photo</h2>
+                <button type="button" class="modal-close" id="cameraModalClose">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <div class="camera-disclaimer">
+                        <p>Make sure you have a good light source and the subject is clearly visible.</p>   
+                </div>
+                <video id="cameraVideo" autoplay playsinline style="width:100%;max-height:400px;background:#000;border-radius:12px;"></video>
+                <canvas id="cameraCanvas" style="display:none;"></canvas>
+                <div style="margin-top:20px;">
+                    <button type="button" class="btn-save" id="cameraCaptureBtn" style="padding:10px 20px;border:none;border-radius:999px;background:#3775F0;color:#fff;font-weight:600;cursor:pointer;">Take Photo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>

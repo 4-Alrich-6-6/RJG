@@ -1,0 +1,28 @@
+{
+  "name": "Ready-Job-Go",
+  "short_name": "RJG",
+  "description": "A Real-Time Job Request Platform connecting local job seekers and recruiters.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#5b8c51",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["business", "productivity"]
+}

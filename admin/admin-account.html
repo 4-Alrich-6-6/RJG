@@ -1,0 +1,121 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Account — Ready Job Go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../seeker/job-listing.css">
+    <link rel="stylesheet" href="../seeker/profile.css">
+    <link rel="stylesheet" href="../seeker/account.css">
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#5b8c51" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
+</head>
+<body class="account-page">
+<script src="../lib/app-loader.js"></script>
+<script src="../lib/auth-guard.js"></script>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+        <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
+            <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+        </a>
+            <button type="button" class="menu-btn profile-back-btn" id="accountBackBtn" aria-label="Back to admin dashboard" title="Back">
+                <img src="../assets/images/Back.png" alt="Back" class="account-back-icon">
+            </button>
+        </div>
+        <nav class="nav" aria-label="Account sections">
+            <a class="nav-item active" href="../admin/admin-account.html">Manage Account</a>
+        </nav>
+        <div class="logout">Log out</div>
+    </aside>
+
+    <main class="main account-main">
+        <section class="account-card" aria-labelledby="account-heading">
+            <h1 id="account-heading" class="account-card-title">Manage Account</h1>
+
+            <div class="account-rows">
+                <div class="account-row">
+                    <span class="account-label">Email</span>
+                    <div class="account-field">
+                        <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="email" aria-label="Edit email">
+                            <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+                        </button>
+                        <span class="account-value account-value--ellipsis">No email set</span>
+                    </div>
+                </div>
+
+                <div class="account-row">
+                    <span class="account-label">Password</span>
+                    <div class="account-field">
+                        <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="password" aria-label="Change password">
+                            <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+                        </button>
+                        <span class="account-value account-value--masked" aria-hidden="true">********</span>
+                        <span class="visually-hidden">Password hidden</span>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <div class="account-modal-overlay" id="accountOtpOverlay" aria-hidden="true">
+      <div class="account-modal-card" role="dialog" aria-modal="true" aria-labelledby="accountOtpTitle">
+        <button type="button" class="account-modal-close" data-modal-close="otp" aria-label="Close">&times;</button>
+        <h2 id="accountOtpTitle" class="account-modal-title">Verify OTP</h2>
+        <p class="account-modal-text" id="accountOtpText">Click "Send Email" to receive a verification link in your email.</p>
+        <form id="accountOtpForm" class="account-modal-form">
+          <button type="button" class="account-modal-btn account-modal-btn--send" id="accountSendOtpBtn">Send Email</button>
+          <div class="account-modal-row">
+            <label class="account-modal-label" for="accountOtpInput">OTP Code</label>
+            <input id="accountOtpInput" class="account-modal-input" type="text" inputmode="numeric" maxlength="8" autocomplete="one-time-code" placeholder="Enter OTP" />
+          </div>
+          <div class="account-modal-actions">
+            <button type="button" class="account-modal-btn account-modal-btn--cancel" data-modal-close="otp">Cancel</button>
+            <button type="submit" class="account-modal-btn account-modal-btn--submit" id="accountOtpSubmitBtn" disabled>Verify</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="account-modal-overlay" id="accountEditOverlay" aria-hidden="true">
+      <div class="account-modal-card" role="dialog" aria-modal="true" aria-labelledby="accountEditTitle">
+        <button type="button" class="account-modal-close" data-modal-close="edit" aria-label="Close">&times;</button>
+        <h2 id="accountEditTitle" class="account-modal-title">Update Account</h2>
+        <p class="account-modal-text" id="accountEditText">Change your email or update your password securely.</p>
+        <form id="accountEditForm" class="account-modal-form">
+          <div class="account-modal-row" id="accountEditEmailRow">
+            <label class="account-modal-label" for="editEmailInput">New Email</label>
+            <input id="editEmailInput" class="account-modal-input" type="email" autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="account-modal-row" id="accountEditPasswordRow">
+            <label class="account-modal-label" for="editPasswordInput">New Password</label>
+            <input id="editPasswordInput" class="account-modal-input" type="password" autocomplete="new-password" placeholder="Enter new password" />
+          </div>
+          <div class="account-modal-row" id="accountEditConfirmPasswordRow">
+            <label class="account-modal-label" for="editConfirmPasswordInput">Confirm Password</label>
+            <input id="editConfirmPasswordInput" class="account-modal-input" type="password" autocomplete="new-password" placeholder="Confirm new password" />
+          </div>
+          <div class="account-modal-actions">
+            <button type="button" class="account-modal-btn account-modal-btn--cancel" data-modal-close="edit">Cancel</button>
+            <button type="submit" class="account-modal-btn account-modal-btn--submit" id="accountEditSubmitBtn" disabled>Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/error-handler.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="../lib/security-feedback.js"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="admin-account.js"></script>
+    <script src="../lib/register-sw.js"></script>
+</body>
+</html>
