@@ -3,7 +3,7 @@
     const role = String(
       (sessionStorage.getItem('rjgUserRole') || localStorage.getItem('rjgUserRole') || '')
     ).toLowerCase();
-    return role === 'recruiter' || role === 'employer' ? 'recruiter-dashb.html' : 'dashb.html';
+    return role === 'recruiter' || role === 'employer' ? '/recruiter/recruiter-dashb.html' : '/seeker/dashb.html';
   }
   async function resolveRoleHomePage() {
     if (window.RJGDb && typeof window.RJGDb.getCurrentUserRole === 'function') {
@@ -12,7 +12,7 @@
         if (dbRole) {
           sessionStorage.setItem('rjgUserRole', dbRole);
           localStorage.setItem('rjgUserRole', dbRole);
-          return dbRole === 'recruiter' || dbRole === 'employer' ? 'recruiter-dashb.html' : 'dashb.html';
+          return dbRole === 'recruiter' || dbRole === 'employer' ? '/recruiter/recruiter-dashb.html' : '/seeker/dashb.html';
         }
       } catch (error) {}
     }
