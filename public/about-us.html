@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - My Website</title>
+    <title>About Us - Ready Job Go</title>
     <link rel="stylesheet" href="about-us.css">
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#5b8c51" />
@@ -13,10 +13,10 @@
 </head>
 <body>
 <script src="../lib/app-loader.js"></script>
-    <button type="button" class="back-btn" id="termsBackBtn" aria-label="Go back">
+
+    <button type="button" class="back-btn" id="backBtn" aria-label="Go back">
         <img src="../assets/images/Back.png" alt="Back" class="back-icon" aria-hidden="true">
     </button>
-
 
     <div class="container">
         <div class="banner">
@@ -26,47 +26,26 @@
                 <p>A REAL-TIME JOB REQUEST PLATFORM</p>
             </div>
         </div>
-    <header class="header">
-        <h1>About Us</h1>
-    </header>
-    <main>
-        <p>Welcome to our website our dear Job Seeker and Job Recruiters! We are a team of passionate individuals dedicated to providing the best service possible.</p>
+        <header class="header">
+            <h1>About Us</h1>
+        </header>
+        <main>
+            <p>Welcome to our website our dear Job Seeker and Job Recruiters! We are a team of passionate individuals dedicated to providing the best service possible.</p>
+            <p>For any inquiries, please contact us at <a href="mailto:202411209@gordoncollege.edu.ph">202411209@gordoncollege.edu.ph</a>.</p>
+        </main>
+    </div>
 
-        <p>For any inquiries, please contact us at <a href="mailto:info@mywebsite.com">202411209@gordoncollege.edu.ph</a>.</p>
-    </main>
     <script>
-              (function () {
-            function goBackOrClose() {
-                try { window.open("", "_self"); } catch (e) {}
-                try { window.close(); } catch (e) {}
-
-                const ref = document.referrer ? String(document.referrer).trim() : "";
-                setTimeout(() => {
-                    if (ref) {
-                        window.location.href = ref;
-                        return;
-                    }
-                    if (window.history.length > 1) {
-                        window.history.back();
-                        return;
-                    }
-                    window.location.href = "../seeker/setup.html";
-                }, 120);
+        document.getElementById("backBtn").addEventListener("click", function(e) {
+            e.preventDefault();
+            const ref = document.referrer ? String(document.referrer).trim() : "";
+            if (ref && ref.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                window.location.href = "/public/landing.html";
             }
-
-            const btn = document.getElementById("termsBackBtn");
-            if (!btn) return;
-            btn.addEventListener("click", function (e) {
-                e.preventDefault();
-                goBackOrClose();
-            });
-            btn.addEventListener("touchend", function (e) {
-                e.preventDefault();
-                goBackOrClose();
-            }, { passive: false });
-        })();
+        });
     </script>
     <script src="../lib/register-sw.js"></script>
 </body>
-
 </html>
