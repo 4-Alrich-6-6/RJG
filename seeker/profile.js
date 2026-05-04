@@ -283,7 +283,7 @@
           <span class="recruiter-form-label">Name</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="name" aria-label="Edit name">
-              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${profileData.name || "Not set"}</span>
           </div>
@@ -298,7 +298,7 @@
           <span class="recruiter-form-label">Contact Number</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="phone" aria-label="Edit contact number">
-              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${profileData.phone || "Not set"}</span>
           </div>
@@ -307,7 +307,7 @@
           <span class="recruiter-form-label">Address</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="address" aria-label="Edit address">
-              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${formatAddress(profileData.address) || "Not set"}</span>
           </div>
@@ -316,7 +316,7 @@
           <span class="recruiter-form-label">Profile Links</span>
           <div class="recruiter-form-field recruiter-form-field--links">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="links" aria-label="Edit profile links">
-              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <div class="recruiter-form-links">${linksHTML}</div>
           </div>
@@ -1219,7 +1219,9 @@
 
     try {
       if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
-        await window.RJGDb.saveCurrentUserProfile(data);
+        if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
+              await window.RJGDb.saveCurrentUserProfile(data);
+              if (window.RJGLoading) window.RJGLoading.hide();
       }
     } catch (err) {
       console.error("Unable to save profile updates to DB:", err);
@@ -1289,7 +1291,9 @@
       
       try {
         if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === 'function') {
-          await window.RJGDb.saveCurrentUserProfile(data);
+          if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
+              await window.RJGDb.saveCurrentUserProfile(data);
+              if (window.RJGLoading) window.RJGLoading.hide();
         }
         localStorage.setItem('profileData', JSON.stringify(data));
         notify('Company name updated successfully.');
@@ -1334,7 +1338,9 @@
 
     try {
       if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
-        await window.RJGDb.saveCurrentUserProfile(data);
+        if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
+              await window.RJGDb.saveCurrentUserProfile(data);
+              if (window.RJGLoading) window.RJGLoading.hide();
       }
     } catch (err) {
       console.error("Unable to save name updates to DB:", err);
@@ -1353,10 +1359,10 @@
   function goBack() {
     const role = readCachedRole();
     if (isRecruiterLikeRole(role)) {
-      window.location.href = "../recruiter/recruiter-dashb.html";
+      window.location.href = "job-posting.html";
       return;
     }
-    window.location.href = "../seeker/dashb.html";
+    window.location.href = "dashb.html";
   }
 
   if (backBtn) {
@@ -1439,6 +1445,7 @@
       try {
         // Upload to Supabase
         if (window.RJGDb && typeof window.RJGDb.uploadProfileImage === 'function') {
+          if (window.RJGLoading) window.RJGLoading.show("Uploading image...");
           const uploadedUrl = await window.RJGDb.uploadProfileImage(file);
           if (uploadedUrl) {
             // Update profile data
@@ -1446,7 +1453,9 @@
             data.avatarUrl = uploadedUrl;
             
             if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === 'function') {
+              if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
               await window.RJGDb.saveCurrentUserProfile(data);
+              if (window.RJGLoading) window.RJGLoading.hide();
             }
             localStorage.setItem('profileData', JSON.stringify(data));
             
@@ -1552,7 +1561,9 @@
               data.avatarUrl = uploadedUrl;
               
               if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === 'function') {
-                await window.RJGDb.saveCurrentUserProfile(data);
+                if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
+              await window.RJGDb.saveCurrentUserProfile(data);
+              if (window.RJGLoading) window.RJGLoading.hide();
               }
               localStorage.setItem('profileData', JSON.stringify(data));
               

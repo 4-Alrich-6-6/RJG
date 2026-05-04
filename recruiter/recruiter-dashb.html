@@ -7,27 +7,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../seeker/job-listing.css">
+    <link rel="stylesheet" href="job-listing.css">
     <link rel="stylesheet" href="recruiter-dashb.css">
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#5b8c51" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Ready-Job-Go" />
-    <link rel="apple-touch-icon" href="/assets/images/icon-192.png" />
 </head>
 <body class="recruiter-page">
-<script src="../lib/app-loader.js"></script>
+<script src="app-loader.js"></script>
     <aside class="sidebar">
         <div class="sidebar-top">
-            <a href="../public/about-us.html" class="logo-link" aria-label="Go to About Us page">
-                <img src="../assets/images/Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
+            <a href="about-us.html" class="logo-link" aria-label="Go to About Us page">
+                <img src="Logo_RJG.png" alt="Ready-Job-Go Logo" class="logo">
             </a>
             <div class="header-menu">
                 <button type="button" class="sidebar-back-btn" id="sidebarJobBackBtn" aria-label="Back to posted jobs">
-                    <img src="../assets/images/Back.png" alt="Back" class="sidebar-back-icon" width="35" height="35" aria-hidden="true">
+                    <img src="Back.png" alt="Back" class="sidebar-back-icon" width="35" height="35" aria-hidden="true">
                 </button>
                 <button type="button" class="menu-btn" id="headerMenuBtn" aria-label="Menu" aria-expanded="false" aria-haspopup="true" aria-controls="headerMenuDropdown">
-                    <img src="../assets/images/3dots.png" alt="" class="menu-icon" aria-hidden="true">
+                    <img src="3dots.png" alt="" class="menu-icon" aria-hidden="true">
                     <div class="menu-notification-indicator" id="menuNotificationIndicator" hidden>
                         <svg viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" class="menu-bell-icon">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -36,20 +31,20 @@
                     </div>
                 </button>
                 <div class="header-menu-dropdown" id="headerMenuDropdown" role="menu" hidden>
-                    <a href="../recruiter/recruiter-profile.html" class="header-menu-item" role="menuitem">Profile</a>
-                    <a href="../public/notifications.html" class="header-menu-item" role="menuitem">Notifications</a>
+                    <a href="recruiter-profile.html" class="header-menu-item" role="menuitem">Profile</a>
+                    <a href="notifications.html" class="header-menu-item" role="menuitem">Notifications</a>
                 </div>
             </div>
         </div>
         <nav class="nav">
-            <a class="nav-item active" href="../recruiter/recruiter-dashb.html">Job Posting</a>
+            <a class="nav-item active" href="recruiter-dashb.html">Job Posting</a>
         </nav>
         <div class="logout">Log out</div>
     </aside>
     <main class="main">
         <div id="view-posting" class="main-view">
             <header class="jp-header">
-                <h1 class="jp-title">Posted Jobs</h1>
+                <h1 class="jp-title">Your Posted Jobs</h1>
                 <div class="jp-header-pagination" id="jpHeaderPagination" hidden>
                     <button type="button" class="pagination-btn jp-pagination-btn" id="jpPrevPageBtn" disabled>Previous</button>
                     <span class="jp-pagination-text" id="jpPaginationText">Page 1 of 1</span>
@@ -57,7 +52,7 @@
                 </div>
                 <button type="button" class="jp-post-btn" id="openPostJobBtn" title="Post a new job">
                     <span class="jp-post-icon" aria-hidden="true">
-                        <img src="../assets/images/Plus.png" alt="Post Job" class="jp-post-icon-img">
+                        <img src="Plus.png" alt="Post Job" class="jp-post-icon-img">
                     </span>
                     <span class="jp-post-label">Post Job</span>
                 </button>
@@ -207,7 +202,7 @@
             <p class="resume-view-applicant" id="resumeViewApplicantName"></p>
             <div class="resume-view-body" id="resumeViewBody"></div>
             <div class="jp-submodal-actions jp-submodal-actions--resume">
-                <button type="button" class="jp-modal-btn jp-modal-btn--report" id="resumeViewReportBtn"><img src="../assets/images/Report.png" alt="" class="jp-modal-btn-report-img" width="18" height="18" aria-hidden="true"><span>Report Resume</span></button>
+                <button type="button" class="jp-modal-btn jp-modal-btn--report" id="resumeViewReportBtn"><img src="Report.png" alt="" class="jp-modal-btn-report-img" width="18" height="18" aria-hidden="true"><span>Report Resume</span></button>
                 <button type="button" class="jp-modal-btn jp-modal-btn--danger" id="resumeViewTerminateBtn">Terminate</button>
                 <button type="button" class="jp-modal-btn jp-modal-btn--danger" id="resumeViewRejectBtn">Reject</button>
                 <button type="button" class="jp-modal-btn jp-modal-btn--submit" id="resumeViewAcceptBtn">Accept</button>
@@ -237,8 +232,8 @@
                     <p class="job-detail-posted-line" id="jobDetailPostedAgo"></p>
                     <p class="job-detail-kv"><strong>Schedule:</strong> <span id="jobDetailSchedule"></span></p>
                     <p class="job-detail-kv"><strong>Type:</strong> <span id="jobDetailType"></span></p>
-                    <p class="job-detail-line job-detail-line--icon"><span class="jd-icon-wrap" aria-hidden="true"><img src="../assets/images/Location.png" alt="" class="jd-icon-img" width="18" height="18"></span><span id="jobDetailLocation"></span></p>
-                    <p class="job-detail-line job-detail-line--icon"><span class="jd-icon-wrap" aria-hidden="true"><img src="../assets/images/Rate.png" alt="" class="jd-icon-img" width="18" height="18"></span><span id="jobDetailSalary"></span></p>
+                    <p class="job-detail-line job-detail-line--icon"><span class="jd-icon-wrap" aria-hidden="true"><img src="Location.png" alt="" class="jd-icon-img" width="18" height="18"></span><span id="jobDetailLocation"></span></p>
+                    <p class="job-detail-line job-detail-line--icon"><span class="jd-icon-wrap" aria-hidden="true"><img src="Rate.png" alt="" class="jd-icon-img" width="18" height="18"></span><span id="jobDetailSalary"></span></p>
                     <p class="job-detail-kv"><strong>Settings:</strong> <span id="jobDetailSettings"></span></p>
                     <div class="job-detail-skills"><span class="job-detail-skills-label">Skill Requirement(s):</span><div class="job-detail-tags" id="jobDetailTags"></div></div>
                     <div class="job-detail-desc"><span class="job-detail-desc-label">Description:</span><p id="jobDetailDescription" class="job-detail-desc-text"></p></div>
@@ -251,14 +246,14 @@
                     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../lib/database.js"></script>
-    <script src="../lib/auth-guard.js"></script>
-    <script src="../lib/app-feedback.js"></script>
-    <script src="../lib/error-handler.js"></script>
-    <script src="../lib/logout-modal.js"></script>
-    <script src="../lib/app-confirm.js"></script>
-    <script src="../lib/ban-notification.js"></script>
-    <script src="../lib/ban-check.js"></script>
+    <script src="database.js"></script>
+    <script src="auth-guard.js"></script>
+    <script src="app-feedback.js"></script>
+    <script src="error-handler.js"></script>
+    <script src="logout-modal.js"></script>
+    <script src="app-confirm.js"></script>
+    <script src="ban-notification.js"></script>
+    <script src="ban-check.js"></script>
     <script src="recruiter-dashb.js"></script>
     <script>
         // Update notification bell with unread count
@@ -283,7 +278,7 @@
             setInterval(refreshBadge, 30000);
         })();
     </script>
-<script src="../lib/image-modal.js"></script>
+<script src="image-modal.js"></script>
 <!-- Image Modal -->
         <div class="image-modal-overlay" id="imageModalOverlay">
             <div class="image-modal">
@@ -295,6 +290,12 @@
                 <img src="" alt="Full size image" class="image-modal-img" id="imageModalImg">
             </div>
         </div>
-        <script src="../lib/register-sw.js"></script>
+
+<!-- RJG Loading Overlay -->
+<div class="rjg-loading-overlay" id="rjgLoadingOverlay" hidden>
+  <div class="rjg-loading-spinner"></div>
+  <p class="rjg-loading-text" id="rjgLoadingText">Please wait...</p>
+</div>
+<script src="app-loading.js"></script>
 </body>
 </html>

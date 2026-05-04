@@ -1,5 +1,4 @@
-
-  const listingFilters = {
+const listingFilters = {
     category: null,
     schedule: null,
     type: null,
@@ -2087,7 +2086,9 @@
       if (!jobId || !applicantId) return false;
       if (!window.RJGDb || typeof window.RJGDb.updateApplicationStatus !== 'function') return false;
 
+      if (window.RJGLoading) window.RJGLoading.show("Updating status...");
       await window.RJGDb.updateApplicationStatus(jobId, applicantId, status);
+      if (window.RJGLoading) window.RJGLoading.hide();
 
       a.applicationStatus = status;
       const storeIdx = postedJobPlaceholders.findIndex(p =>

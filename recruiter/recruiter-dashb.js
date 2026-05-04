@@ -150,8 +150,8 @@
     try {
       const role = (await window.RJGDb.getCurrentUserRole()) || "";
       const r = role.toLowerCase();
-      if (!r) { window.location.href = "../auth/log-sign.html"; return; }
-      if (r !== "recruiter" && r !== "employer") { window.location.href = "../seeker/dashb.html"; }
+      if (!r) { window.location.href = "log-sign.html"; return; }
+      if (r !== "recruiter" && r !== "employer") { window.location.href = "dashb.html"; }
       try { sessionStorage.setItem("rjgUserRole", r); localStorage.setItem("rjgUserRole", r); } catch (e) {}
     } catch (e) {
       console.error("Role check failed:", e);
@@ -196,9 +196,9 @@
     logoutBtn.addEventListener("click", function () {
       if (window.showLogoutModal) { window.showLogoutModal(); return; }
       if (window.RJGDb && typeof window.RJGDb.resetClient === "function") {
-        window.RJGDb.resetClient().then(function () { window.location.href = "../auth/log-sign.html"; });
+        window.RJGDb.resetClient().then(function () { window.location.href = "log-sign.html"; });
       } else {
-        window.location.href = "../auth/log-sign.html";
+        window.location.href = "log-sign.html";
       }
     });
   }
@@ -617,6 +617,7 @@
 
   if (jpSubmitPostBtn) {
     jpSubmitPostBtn.addEventListener("click", async function () {
+      if (window.RJGLoading) window.RJGLoading.show("Posting job...");
       if (!window.RJGDb) { notify("Database not ready.", "error"); return; }
       const title = jpJobName.value.trim();
       const description = jpDescription ? jpDescription.value.trim() : "";
@@ -1190,6 +1191,7 @@
           // Submit resume report to database
           if (window.RJGDb && typeof window.RJGDb.submitReport === 'function') {
             try {
+              if (window.RJGLoading) window.RJGLoading.show("Submitting report...");
               await window.RJGDb.submitReport({
                 targetType: 'resume',
                 targetJobId: null,

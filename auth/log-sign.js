@@ -87,6 +87,7 @@ function validateLoginForm() {
     loginEmail.addEventListener("input", checkLogin);
     loginPassword.addEventListener("input", checkLogin);
     loginSubmit.addEventListener("click", async (e) => {
+    if (window.RJGLoading) window.RJGLoading.show("Signing in...");
         e.preventDefault();
         if (loginSubmit.disabled) return;
         const emailValue = loginEmail.value.trim();
@@ -183,13 +184,13 @@ function validateLoginForm() {
 
             // Admins bypass profile setup and go directly to admin dashboard
             if (roleLower === "admin") {
-                window.location.href = "../admin/admin-dashboard.html";
+                window.location.href = "admin-dashboard.html";
                 return;
             }
 
             if (!profileComplete) {
                 sessionStorage.setItem("forceProfileSetup", "1");
-                window.location.href = "../seeker/setup.html";
+                window.location.href = "setup.html";
                 return;
             }
 
@@ -197,7 +198,7 @@ function validateLoginForm() {
             if (authGuardRedirect) {
                 window.location.href = authGuardRedirect;
             } else {
-                window.location.href = (roleLower === "recruiter" || roleLower === "employer") ? "../recruiter/recruiter-dashb.html" : "../seeker/dashb.html";
+                window.location.href = (roleLower === "recruiter" || roleLower === "employer") ? "recruiter-dashb.html" : "dashb.html";
             }
         } catch (error) {
             const errStr = String(error && error.message ? error.message : "").toLowerCase();
@@ -279,6 +280,7 @@ function validateSignupForm() {
     signupPassword.forEach(input => input.addEventListener("input", checkSignup));
     if (termsCheckbox) termsCheckbox.addEventListener("change", checkSignup);
     signupSubmit.addEventListener("click", async (e) => {
+    if (window.RJGLoading) window.RJGLoading.show("Creating account...");
         e.preventDefault();
         if (signupSubmit.disabled) return;
         signupSubmit.disabled = true;
@@ -311,7 +313,7 @@ function validateSignupForm() {
             sessionStorage.setItem("pendingSignupEmail", emailValue);
             sessionStorage.setItem("pendingSignupAccountData", JSON.stringify(pendingSignupAccountData));
             notify("Verification code sent to your email.", "success");
-            window.location.href = "../auth/signverf.html";
+            window.location.href = "signverf.html";
         } catch (error) {
             console.error("[RJG signup error]", error);
             let msg = error && error.message ? error.message : "Sign up failed.";

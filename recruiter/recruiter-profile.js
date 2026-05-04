@@ -7,15 +7,15 @@
     try {
       const role = (await window.RJGDb.getCurrentUserRole()) || "";
       const r = role.toLowerCase();
-      if (!r) { window.location.href = "../auth/log-sign.html"; return; }
-      if (r !== "recruiter" && r !== "employer") { window.location.href = "../seeker/profile.html"; }
+      if (!r) { window.location.href = "log-sign.html"; return; }
+      if (r !== "recruiter" && r !== "employer") { window.location.href = "profile.html"; }
       try { sessionStorage.setItem("rjgUserRole", r); localStorage.setItem("rjgUserRole", r); } catch (e) {}
     } catch (e) { console.error("Role check failed:", e); }
   }
 
   // ── Back button ──
   const backBtn = document.getElementById("profileBackBtn");
-  if (backBtn) backBtn.addEventListener("click", function () { window.location.href = "../recruiter/recruiter-dashb.html"; });
+  if (backBtn) backBtn.addEventListener("click", function () { window.location.href = "recruiter-dashb.html"; });
 
   // ── Logout ──
   const logoutBtn = document.querySelector(".logout");
@@ -23,9 +23,9 @@
     logoutBtn.addEventListener("click", function () {
       if (window.showLogoutModal) { window.showLogoutModal(); return; }
       if (window.RJGDb && typeof window.RJGDb.resetClient === "function") {
-        window.RJGDb.resetClient().then(function () { window.location.href = "../auth/log-sign.html"; });
+        window.RJGDb.resetClient().then(function () { window.location.href = "log-sign.html"; });
       } else {
-        window.location.href = "../auth/log-sign.html";
+        window.location.href = "log-sign.html";
       }
     });
   }
@@ -328,7 +328,9 @@
       const merged = Object.assign({}, currentProfile, updates);
       rpModalSave.disabled = true;
       try {
+        if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
         await window.RJGDb.saveCurrentUserProfile(merged);
+        if (window.RJGLoading) window.RJGLoading.hide();
         renderProfile(merged);
         try { localStorage.setItem("profileData", JSON.stringify(merged)); } catch (e) {}
         notify("Profile updated.", "success");
@@ -344,12 +346,8 @@
 
   function collectEdits(section) {
     if (section === "name") {
-      const val = (document.getElementById("rpEditName")?.value || "").trim();
-      return {
-        name: val,
-        firstName: val,
-        lastName: null
-      };
+      const val = (document.getElementById("rpEditName") || {}).value || "";
+      return { name: val.trim() };
     }
     if (section === "phone") {
       const val = (document.getElementById("rpEditPhone") || {}).value || "";

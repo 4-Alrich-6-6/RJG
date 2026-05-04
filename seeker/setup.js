@@ -131,7 +131,7 @@ function showLoginRequiredModal() {
     `;
     overlay.appendChild(card);
     document.body.appendChild(overlay);
-    const redirect = () => { window.location.href = "../auth/log-sign.html"; };
+    const redirect = () => { window.location.href = "log-sign.html"; };
     card.querySelector("#authRequiredBtn").addEventListener("click", redirect);
     setTimeout(redirect, 2500);
 }
@@ -1386,7 +1386,8 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("profileData", JSON.stringify(profileData));
 
         try {
-            if (window.RJGDb?.saveCurrentUserProfile) await window.RJGDb.saveCurrentUserProfile(profileData);
+            if (window.RJGDb?.saveCurrentUserProfile) if (window.RJGLoading) window.RJGLoading.show("Saving setup...");
+    await window.RJGDb.saveCurrentUserProfile(profileData);
         } catch (err) {
             console.error("Unable to save profile to DB:", err);
             notify("Unable to save your profile. Please try again.", "error");
@@ -1412,9 +1413,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         notify("Profile setup saved.");
         if (profileData.role === "admin") {
-            window.location.href = "../admin/admin-dashboard.html";
+            window.location.href = "admin-dashboard.html";
         } else {
-            window.location.href = profileData.role === "employer" ? "../recruiter/recruiter-dashb.html" : "../seeker/dashb.html";
+            window.location.href = profileData.role === "employer" ? "recruiter-dashb.html" : "dashb.html";
         }
     });
 
