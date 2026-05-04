@@ -1271,6 +1271,11 @@ input[type="number"] {
         white-space: normal;
     }
 
+    .form-group select {
+        background-position: right 10px center;
+        padding-right: 32px;
+    }
+
     /* Save button */
     .save-btn {
         width: 100px;
