@@ -1261,6 +1261,10 @@ input[type="number"] {
         grid-template-columns: 1fr;
     }
 
+    .form-group .icon-btn.icon-btn-full {
+        width: 100% !important;
+    }
+
     /* Labels */
     .form-group label {
         font-size: 13px;
