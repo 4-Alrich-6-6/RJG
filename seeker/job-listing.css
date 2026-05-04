@@ -1740,151 +1740,52 @@ section.job-detail-more[hidden] {
   }
 }
 
-/* ── RJG Loading Overlay ─────────────────────────────────────────────────── */
-.rjg-loading-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-}
+@media (max-width: 400px) {
+    .job-detail-panel {
+        padding: 12px;
+    }
 
-.rjg-loading-overlay[hidden] {
-  display: none !important;
-}
+    .job-detail-title {
+        font-size: 16px;
+    }
 
-.rjg-loading-spinner {
-  width: 52px;
-  height: 52px;
-  border: 5px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: rjgSpin 0.75s linear infinite;
-}
+    .job-detail-by,
+    .job-detail-posted-line,
+    .job-detail-kv,
+    .job-detail-line,
+    .job-detail-desc-text {
+        font-size: 12px;
+    }
 
-.rjg-loading-text {
-  color: #fff;
-  font-family: Inter, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  margin: 0;
-  text-align: center;
-  padding: 0 24px;
-}
+    .job-detail-skills-label,
+    .job-detail-desc-label {
+        font-size: 12px;
+    }
 
-@keyframes rjgSpin {
-  to { transform: rotate(360deg); }
-}
+    .job-detail-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
 
-/* ── Mobile job-detail panel — 370px screen ─────────────────────────────── */
-@media (max-width: 480px) {
-  .job-detail-panel {
-    padding: 12px 12px 32px !important;
-  }
+    .job-detail-btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
 
-  .job-detail-title {
-    font-size: 18px !important;
-    text-shadow: none !important;
-  }
+    .job-detail-hero {
+        height: 140px;
+    }
 
-  .job-detail-by strong {
-    font-size: 15px !important;
-  }
+    .job-detail-top {
+        padding: 10px 12px;
+    }
 
-  .job-detail-owner-open-label {
-    font-size: 14px !important;
-  }
+    .job-detail-meta {
+        padding: 10px 12px;
+    }
 
-  .job-detail-open-state {
-    font-size: 13px !important;
-  }
-
-  .job-detail-open-toggle {
-    width: 38px !important;
-    height: 22px !important;
-  }
-
-  .job-detail-open-toggle-knob {
-    width: 16px !important;
-    height: 16px !important;
-    top: 3px !important;
-    left: 3px !important;
-  }
-
-  .job-detail-open-toggle[aria-checked="true"] .job-detail-open-toggle-knob {
-    transform: translateX(16px) !important;
-  }
-
-  .job-detail-posted-line {
-    font-size: 12px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .job-detail-meta {
-    font-size: 13px !important;
-  }
-
-  .job-detail-kv {
-    font-size: 13px !important;
-    margin-bottom: 6px !important;
-  }
-
-  .job-detail-line {
-    font-size: 13px !important;
-    margin-bottom: 6px !important;
-  }
-
-  .job-detail-hero {
-    height: 140px !important;
-    min-height: 140px !important;
-  }
-
-  .job-detail-skills-label,
-  .job-detail-desc-label {
-    font-size: 13px !important;
-    margin-bottom: 6px !important;
-  }
-
-  .job-detail-tag {
-    font-size: 11px !important;
-    padding: 4px 10px !important;
-  }
-
-  .job-detail-desc-text {
-    font-size: 12px !important;
-    max-height: 130px !important;
-  }
-
-  .job-detail-btn {
-    font-size: 14px !important;
-    padding: 12px 16px !important;
-    border-radius: 10px !important;
-  }
-
-  .job-detail-top {
-    gap: 8px !important;
-    margin-bottom: 12px !important;
-  }
-
-  .job-detail-remove {
-    font-size: 11px !important;
-    padding: 6px 10px !important;
-  }
-
-  .job-detail-actions {
-    gap: 8px !important;
-    margin-top: 16px !important;
-  }
-
-  .job-detail-tags {
-    max-height: 80px !important;
-  }
-
-  .job-detail-skills {
-    margin: 10px 0 10px !important;
-  }
+    .job-detail-actions {
+        padding: 10px 12px;
+        gap: 8px;
+    }
 }

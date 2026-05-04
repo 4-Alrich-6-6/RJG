@@ -1386,10 +1386,8 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("profileData", JSON.stringify(profileData));
 
         try {
-            if (window.RJGDb?.saveCurrentUserProfile) if (window.RJGLoading) window.RJGLoading.show("Saving setup...");
-    await window.RJGDb.saveCurrentUserProfile(profileData);
+            if (window.RJGDb?.saveCurrentUserProfile) await window.RJGDb.saveCurrentUserProfile(profileData);
         } catch (err) {
-            if (window.RJGLoading) window.RJGLoading.hide();
             console.error("Unable to save profile to DB:", err);
             notify("Unable to save your profile. Please try again.", "error");
             return;

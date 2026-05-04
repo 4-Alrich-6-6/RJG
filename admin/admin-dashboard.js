@@ -3405,9 +3405,7 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
         let imageUrl = currentEditingJob?.image || '';
         if (pendingImageFile && window.RJGDb.uploadJobImage) {
           try {
-            if (window.RJGLoading) window.RJGLoading.show("Uploading image...");
             const uploadResult = await window.RJGDb.uploadJobImage(pendingImageFile, currentEditingJobId);
-            if (window.RJGLoading) window.RJGLoading.hide();
             if (uploadResult) {
               imageUrl = uploadResult; // uploadJobImage returns URL directly, not an object
             }

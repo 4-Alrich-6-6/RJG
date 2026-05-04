@@ -328,9 +328,7 @@
       const merged = Object.assign({}, currentProfile, updates);
       rpModalSave.disabled = true;
       try {
-        if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
         await window.RJGDb.saveCurrentUserProfile(merged);
-        if (window.RJGLoading) window.RJGLoading.hide();
         renderProfile(merged);
         try { localStorage.setItem("profileData", JSON.stringify(merged)); } catch (e) {}
         notify("Profile updated.", "success");

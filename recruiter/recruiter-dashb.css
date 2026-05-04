@@ -378,7 +378,6 @@
         right: 24px;
         z-index: 999;
         background: #3775F0;
-        border: solid 2px #fff;
         border-radius: 50%;
         width: 56px;
         height: 56px;
@@ -386,43 +385,6 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }
-
-    #view-posting .jp-post-btn:hover {
-        transform: translateY(-4px) !important;
-    }
-
-    #view-posting .jp-post-icon {
-        background: transparent;
-        box-shadow: none;
-        width: 32px;
-        height: 32px;
-    }
-
-    #view-posting .jp-post-label {
-        display: none !important;
-    }
-}
-
-@media (max-width: 720px) {
-    #view-posting .jp-post-btn {
-        position: fixed;
-        bottom: 80px;
-        right: 24px;
-        z-index: 999;
-        background: #3775F0;
-        border: solid 2px #fff;
-        border-radius: 50%;
-        width: 56px;
-        height: 56px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    }
-
-    #view-posting .jp-post-btn:hover {
-        transform: translateY(-4px) !important;
     }
 
     #view-posting .jp-post-icon {

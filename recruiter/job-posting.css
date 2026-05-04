@@ -119,6 +119,13 @@
     #view-posting .jp-post-label {
         display: none !important;
     }
+
+    /* Recruiter dashboard doesn't have search bar - reduce top padding */
+    .recruiter-dashb-page .main,
+    body:has(#view-posting) .main {
+        padding-top: calc(var(--mobile-header-top) + 12px);
+    }
+
     /* Recruiter dashboard doesn't have search bar - reduce top padding */
     .recruiter-dashb-page .main,
     body:has(#view-posting) .main {
@@ -893,32 +900,14 @@
 @media (max-width: 768px) {
     .jp-form-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
     }
 
     .jp-modal {
-        width: 100%;
+        width: min(420px, 100%);
     }
 
     .jp-modal-header h2 {
         font-size: 20px;
-    }
-
-    .jp-modal-body {
-        padding: 16px;
-    }
-
-    .jp-form-group input,
-    .jp-form-group select,
-    .jp-form-group textarea,
-    .jp-picker-btn {
-        padding: 12px 14px;
-        font-size: 15px;
-        border-radius: 10px;
-    }
-
-    .jp-form-group label {
-        font-size: 13px;
     }
 }
 

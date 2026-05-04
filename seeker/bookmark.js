@@ -280,9 +280,7 @@
         onConfirm: async function () {
           try {
             if (window.RJGDb && typeof window.RJGDb.toggleBookmark === 'function' && job.id != null) {
-              if (window.RJGLoading) window.RJGLoading.show("Updating bookmark...");
               await window.RJGDb.toggleBookmark(String(job.id));
-              if (window.RJGLoading) window.RJGLoading.hide();
             }
             closeBookmarkModal();
             await renderList();

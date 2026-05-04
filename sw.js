@@ -1,4 +1,4 @@
-const CACHE_NAME = "rjg-v4";
+const CACHE_NAME = "rjg-v1";
 
 // Static assets to cache on install
 const PRECACHE_URLS = [

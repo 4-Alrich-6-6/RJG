@@ -87,7 +87,6 @@ function validateLoginForm() {
     loginEmail.addEventListener("input", checkLogin);
     loginPassword.addEventListener("input", checkLogin);
     loginSubmit.addEventListener("click", async (e) => {
-    if (window.RJGLoading) window.RJGLoading.show("Signing in...");
         e.preventDefault();
         if (loginSubmit.disabled) return;
         const emailValue = loginEmail.value.trim();
@@ -229,7 +228,6 @@ function validateLoginForm() {
             }
             notify(msg, "warn");
             if (focusField) focusField.focus();
-            if (window.RJGLoading) window.RJGLoading.hide();
             loginSubmit.disabled = false;
             checkLogin();
         }
@@ -281,7 +279,6 @@ function validateSignupForm() {
     signupPassword.forEach(input => input.addEventListener("input", checkSignup));
     if (termsCheckbox) termsCheckbox.addEventListener("change", checkSignup);
     signupSubmit.addEventListener("click", async (e) => {
-    if (window.RJGLoading) window.RJGLoading.show("Creating account...");
         e.preventDefault();
         if (signupSubmit.disabled) return;
         signupSubmit.disabled = true;
@@ -296,7 +293,6 @@ function validateSignupForm() {
                     signupEmail.classList.add("input-error");
                     signupEmail.focus();
                     notify("This email is already registered. Please enter a different email instead.", "warn");
-                    if (window.RJGLoading) window.RJGLoading.hide();
                     return;
                 }
             }
@@ -351,7 +347,6 @@ function validateSignupForm() {
             notify(msg, "warn");
             if (focusField) focusField.focus();
         } finally {
-            if (window.RJGLoading) window.RJGLoading.hide();
             checkSignup();
         }
     });
