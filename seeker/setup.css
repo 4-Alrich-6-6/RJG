@@ -451,6 +451,12 @@ body {
     padding: 0 15px;
 }
 
+.form-group .icon-btn.icon-btn-full {
+    width: 38px !important;
+    padding: 0;
+    font-size: 24px;
+}
+
 .icon-btn img {
     width: 20px;
     height: 20px;
