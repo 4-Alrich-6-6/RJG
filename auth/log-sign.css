@@ -513,7 +513,7 @@ body {
 
     .form-group label,
     .forget-password {
-        font-size: clamp(1rem, 3.8vw, 1.15rem);
+        font-size: 14px;
     }
 
     .submit {
@@ -526,7 +526,22 @@ body {
     }
 
     .tab-btn {
-        padding: 10px 12px;
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .form-group input {
+        height: 38px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .signup-role-select {
+        height: 38px;
+        font-size: 14px;
+    }
+
+    .signup-role-label {
         font-size: 14px;
     }
 }
