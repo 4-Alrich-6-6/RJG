@@ -7,15 +7,15 @@
     try {
       const role = (await window.RJGDb.getCurrentUserRole()) || "";
       const r = role.toLowerCase();
-      if (!r) { window.location.href = "log-sign.html"; return; }
-      if (r !== "recruiter" && r !== "employer") { window.location.href = "profile.html"; }
+      if (!r) { window.location.href = "../auth/log-sign.html"; return; }
+      if (r !== "recruiter" && r !== "employer") { window.location.href = "../seeker/profile.html"; }
       try { sessionStorage.setItem("rjgUserRole", r); localStorage.setItem("rjgUserRole", r); } catch (e) {}
     } catch (e) { console.error("Role check failed:", e); }
   }
 
   // ── Back button ──
   const backBtn = document.getElementById("profileBackBtn");
-  if (backBtn) backBtn.addEventListener("click", function () { window.location.href = "recruiter-dashb.html"; });
+  if (backBtn) backBtn.addEventListener("click", function () { window.location.href = "../recruiter/recruiter-dashb.html"; });
 
   // ── Logout ──
   const logoutBtn = document.querySelector(".logout");
@@ -23,9 +23,9 @@
     logoutBtn.addEventListener("click", function () {
       if (window.showLogoutModal) { window.showLogoutModal(); return; }
       if (window.RJGDb && typeof window.RJGDb.resetClient === "function") {
-        window.RJGDb.resetClient().then(function () { window.location.href = "log-sign.html"; });
+        window.RJGDb.resetClient().then(function () { window.location.href = "../auth/log-sign.html"; });
       } else {
-        window.location.href = "log-sign.html";
+        window.location.href = "../auth/log-sign.html";
       }
     });
   }

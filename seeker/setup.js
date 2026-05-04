@@ -131,7 +131,7 @@ function showLoginRequiredModal() {
     `;
     overlay.appendChild(card);
     document.body.appendChild(overlay);
-    const redirect = () => { window.location.href = "log-sign.html"; };
+    const redirect = () => { window.location.href = "../auth/log-sign.html"; };
     card.querySelector("#authRequiredBtn").addEventListener("click", redirect);
     setTimeout(redirect, 2500);
 }
@@ -1414,9 +1414,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         notify("Profile setup saved.");
         if (profileData.role === "admin") {
-            window.location.href = "admin-dashboard.html";
+            window.location.href = "../admin/admin-dashboard.html";
         } else {
-            window.location.href = profileData.role === "employer" ? "recruiter-dashb.html" : "dashb.html";
+            window.location.href = profileData.role === "employer" ? "../recruiter/recruiter-dashb.html" : "../seeker/dashb.html";
         }
     });
 

@@ -444,7 +444,7 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
               <div class="admin-dashboard-row-actions">
                 <button type="button" class="admin-dashboard-review-btn" data-user-action="review">Review Info</button>
                 <button type="button" class="admin-dashboard-delete-btn" data-user-action="${isArchived ? 'restore' : 'delete'}" aria-label="${isArchived ? 'Restore user' : 'Delete user'}">
-                  <img src="${isArchived ? 'Restore.png' : 'Delete.png'}" alt="" class="admin-dashboard-delete-icon" aria-hidden="true">
+                  <img src="${isArchived ? '../assets/images/Restore.png' : '../assets/images/Delete.png'}" alt="" class="admin-dashboard-delete-icon" aria-hidden="true">
                 </button>
               </div>
             </article>`;
@@ -804,7 +804,7 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
         <div class="admin-dashboard-row-actions">
           <button type="button" class="admin-dashboard-review-btn" data-action="review">Review Job</button>
           <button type="button" class="admin-dashboard-delete-btn" data-action="${isArchived ? 'restore' : 'delete'}" aria-label="${isArchived ? 'Restore job' : 'Delete job'}">
-            <img src="${isArchived ? 'Restore.png' : 'Delete.png'}" alt="" class="admin-dashboard-delete-icon" aria-hidden="true">
+            <img src="${isArchived ? '../assets/images/Restore.png' : '../assets/images/Delete.png'}" alt="" class="admin-dashboard-delete-icon" aria-hidden="true">
           </button>
         </div>
       </article>

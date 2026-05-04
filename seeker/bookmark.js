@@ -10,7 +10,7 @@
     const role = String(
       (sessionStorage.getItem('rjgUserRole') || localStorage.getItem('rjgUserRole') || '')
     ).toLowerCase();
-    return role === 'recruiter' || role === 'employer' ? 'job-posting.html' : 'dashb.html';
+    return role === 'recruiter' || role === 'employer' ? '../recruiter/recruiter-dashb.html' : '../seeker/dashb.html';
   }
   async function resolveRoleHomePage() {
     if (window.RJGDb && typeof window.RJGDb.getCurrentUserRole === 'function') {
@@ -19,7 +19,7 @@
         if (dbRole) {
           sessionStorage.setItem('rjgUserRole', dbRole);
           localStorage.setItem('rjgUserRole', dbRole);
-          return dbRole === 'recruiter' || dbRole === 'employer' ? 'job-posting.html' : 'dashb.html';
+          return dbRole === 'recruiter' || dbRole === 'employer' ? '../recruiter/recruiter-dashb.html' : '../seeker/dashb.html';
         }
       } catch (error) {}
     }
@@ -101,12 +101,12 @@
       escapeHtml(d.typeLabel) +
       '</p>' +
       '<p class="app-job-modal__row app-job-modal__row--icon">' +
-      '<img src="Location.png" alt="" class="app-job-modal__icon" width="18" height="18">' +
+      '<img src="../assets/images/Location.png" alt="" class="app-job-modal__icon" width="18" height="18">' +
       '<span>' +
       escapeHtml(d.location) +
       '</span></p>' +
       '<p class="app-job-modal__row app-job-modal__row--icon">' +
-      '<img src="Rate.png" alt="" class="app-job-modal__icon" width="18" height="18">' +
+      '<img src="../assets/images/Rate.png" alt="" class="app-job-modal__icon" width="18" height="18">' +
       '<span>' +
       escapeHtml(d.salary) +
       '</span></p>' +
@@ -188,7 +188,7 @@
     }
     if (!items.length) {
       ul.innerHTML =
-        '<li class="application-empty">You have no bookmarked jobs yet. Open <a href="dashb.html">Job Listing</a> and tap Bookmark on a job.</li>';
+        '<li class="application-empty">You have no bookmarked jobs yet. Open <a href="../seeker/dashb.html">Job Listing</a> and tap Bookmark on a job.</li>';
       return;
     }
     ul.innerHTML = items

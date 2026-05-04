@@ -283,7 +283,7 @@
           <span class="recruiter-form-label">Name</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="name" aria-label="Edit name">
-              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${profileData.name || "Not set"}</span>
           </div>
@@ -298,7 +298,7 @@
           <span class="recruiter-form-label">Contact Number</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="phone" aria-label="Edit contact number">
-              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${profileData.phone || "Not set"}</span>
           </div>
@@ -307,7 +307,7 @@
           <span class="recruiter-form-label">Address</span>
           <div class="recruiter-form-field">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="address" aria-label="Edit address">
-              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <span class="recruiter-form-value">${formatAddress(profileData.address) || "Not set"}</span>
           </div>
@@ -316,7 +316,7 @@
           <span class="recruiter-form-label">Profile Links</span>
           <div class="recruiter-form-field recruiter-form-field--links">
             <button type="button" class="profile-edit-btn profile-edit-btn--inline" data-edit="links" aria-label="Edit profile links">
-              <img src="Pencil.png" alt="Edit" class="profile-edit-icon">
+              <img src="../assets/images/Pencil.png" alt="Edit" class="profile-edit-icon">
             </button>
             <div class="recruiter-form-links">${linksHTML}</div>
           </div>
@@ -1359,10 +1359,10 @@
   function goBack() {
     const role = readCachedRole();
     if (isRecruiterLikeRole(role)) {
-      window.location.href = "job-posting.html";
+      window.location.href = "../recruiter/recruiter-dashb.html";
       return;
     }
-    window.location.href = "dashb.html";
+    window.location.href = "../seeker/dashb.html";
   }
 
   if (backBtn) {
