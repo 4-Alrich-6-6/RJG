@@ -565,19 +565,21 @@ body {
         gap: 22px;
     }
 
-    .logo {
-        width: 68px;
-        height: 68px;
-    }
-
     .title h1 {
-        font-size: clamp(1.45rem, 7.6vw, 1.9rem);
-        line-height: 1.15;
+        font-size: clamp(1.3rem, 6vw, 2rem);
+        white-space: normal;
+        text-wrap: balance;
+        text-align: center;
     }
 
     .title p {
-        font-size: clamp(0.8rem, 3.8vw, 0.95rem);
-        line-height: 1.32;
+        font-size: clamp(0.65rem, 3vw, 0.9rem);
+        text-align: center;
+    }
+
+    .logo {
+        width: 52px;
+        height: 52px;
     }
 
     .tab-toggle {
