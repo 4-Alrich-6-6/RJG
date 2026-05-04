@@ -436,3 +436,45 @@
         display: none !important;
     }
 }
+
+@media (max-width: 400px) {
+    .job-detail-panel .job-detail-title {
+        font-size: 15px !important;
+    }
+
+    .job-detail-panel .job-detail-by,
+    .job-detail-panel .job-detail-posted-line,
+    .job-detail-panel .job-detail-kv,
+    .job-detail-panel .job-detail-line,
+    .job-detail-panel .job-detail-desc-text {
+        font-size: 12px !important;
+    }
+
+    .job-detail-panel .job-detail-skills-label,
+    .job-detail-panel .job-detail-desc-label {
+        font-size: 12px !important;
+    }
+
+    .job-detail-panel .job-detail-tag {
+        font-size: 11px !important;
+        padding: 3px 8px !important;
+    }
+
+    .job-detail-panel .job-detail-btn {
+        font-size: 12px !important;
+        padding: 8px 10px !important;
+    }
+
+    .job-detail-panel .job-detail-hero {
+        height: 130px !important;
+    }
+
+    .job-detail-panel .job-detail-open-toggle {
+        transform: scale(0.8) !important;
+    }
+
+    .job-detail-remove {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+    }
+}
