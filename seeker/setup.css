@@ -1209,7 +1209,7 @@ input[type="number"] {
         font-size: clamp(1.3rem, 6vw, 2rem);
         white-space: normal;
         text-wrap: balance;
-        text-align: left;
+        text-align: center;
     }
 
     .banner-title p {
