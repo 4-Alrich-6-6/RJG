@@ -116,6 +116,7 @@ body {
 /* SETUP CARD */
 .setup-card {
     width: 742px;
+    max-width: 100%;
     background: #FFFFFF;
     border-radius: 15px;
     border: 1px solid #E5E5E5;
@@ -140,7 +141,7 @@ body {
 }
 
 .header-content h2 {
-    font-size: 48px;
+    font-size: clamp(1.6rem, 6vw, 48px);
     font-weight: 700;
     color: #000;
     margin: 0;
@@ -148,7 +149,7 @@ body {
 }
 
 .header-content h3 {
-    font-size: 32px;
+    font-size: clamp(1.1rem, 4vw, 32px);
     font-weight: 700;
     color: #000;
     margin: 0;
@@ -164,7 +165,7 @@ body {
 }
 
 .toggle-section p {
-    font-size: 24px;
+    font-size: clamp(1rem, 4vw, 24px);
     font-weight: 700;
     color: #000;
     margin: 0;
@@ -187,7 +188,7 @@ body {
     border-radius: 15px;
     background: #3775F0;
     color: #Fff;
-    font-size: 20px;
+    font-size: clamp(0.85rem, 3.5vw, 20px);
     font-weight: 700;
     font-family: Montserrat, sans-serif;
     cursor: pointer;
@@ -617,7 +618,6 @@ body {
     cursor: not-allowed;
     box-shadow: none;
 }
-
 
 .save-btn:hover {
     opacity: 0.9;
@@ -1172,9 +1172,103 @@ input[type="number"] {
     opacity: 0.9;
 }
 
+/* =============================================
+   MOBILE RESPONSIVE — 768px and below
+   ============================================= */
 @media (max-width: 768px) {
+    body {
+        padding: 20px 14px;
+    }
+
+    .container {
+        gap: 20px;
+    }
+
+    /* Banner */
+    .banner {
+        margin-inline: auto;
+        column-gap: clamp(8px, 2vw, 14px);
+    }
+
+    .logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .banner-title h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+        white-space: normal;
+        text-wrap: balance;
+        text-align: left;
+    }
+
+    .banner-title p {
+        font-size: clamp(0.65rem, 3vw, 0.9rem);
+        text-align: center;
+    }
+
+    /* Setup card */
+    .setup-card {
+        width: 100%;
+        padding: 16px 16px 20px;
+        gap: 14px;
+    }
+
+    /* Header */
+    .header-content h2 {
+        font-size: clamp(1.4rem, 7vw, 2rem);
+    }
+
+    .header-content h3 {
+        font-size: clamp(1rem, 5vw, 1.4rem);
+    }
+
+    /* Toggle */
+    .toggle-section p {
+        font-size: clamp(0.9rem, 4vw, 1.1rem);
+    }
+
+    .toggle-btn {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+        height: 36px;
+        padding: 6px 10px;
+        border-radius: 10px;
+    }
+
+    /* Form section */
+    .form-section {
+        width: 100%;
+    }
+
+    .form-section.active {
+        gap: 14px;
+    }
+
+    /* All multi-column rows collapse to single column */
+    .form-row.row-3-cols,
+    .form-row.row-3-cols-alt,
+    .form-row.row-2-cols {
+        grid-template-columns: 1fr;
+    }
+
+    /* Labels */
+    .form-group label {
+        font-size: 13px;
+        white-space: normal;
+    }
+
+    /* Save button */
+    .save-btn {
+        width: 100%;
+        max-width: 280px;
+        height: 54px;
+        font-size: clamp(1.1rem, 5vw, 1.5rem);
+        margin-top: 20px;
+    }
+
+    /* Modals — slide up from bottom on mobile */
     .modal-overlay {
-        padding: 12px;
+        padding: 0;
         align-items: flex-end;
     }
 
@@ -1182,15 +1276,21 @@ input[type="number"] {
         width: 100%;
         max-width: 100%;
         max-height: 88vh;
-        border-radius: 14px 14px 0 0;
+        border-radius: 16px 16px 0 0;
     }
 
     .modal-header {
-        padding: 18px 16px;
+        padding: 16px 16px 14px;
     }
 
     .modal-header h2 {
-        font-size: 22px;
+        font-size: 18px;
+    }
+
+    .modal-close {
+        font-size: 26px;
+        width: 34px;
+        height: 34px;
     }
 
     .modal-body {
@@ -1198,13 +1298,17 @@ input[type="number"] {
     }
 
     .modal-footer {
-        padding: 14px 16px;
+        padding: 12px 16px;
     }
 
-    .modal-form .row-2-cols {
+    /* 2-col modal form rows collapse */
+    .modal-form .row-2-cols,
+    .modal-form-row {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
+    /* Language / link rows */
     .language-row {
         grid-template-columns: 1fr;
         gap: 10px;
@@ -1220,6 +1324,7 @@ input[type="number"] {
         width: 100%;
     }
 
+    /* Action buttons full-width on mobile */
     .btn-cancel,
     .btn-add,
     .btn-save,
@@ -1231,53 +1336,68 @@ input[type="number"] {
         flex-direction: column;
         gap: 10px;
     }
-}
 
-@media (max-width: 800px) {
-    .banner {
-        margin-inline: auto;
-        column-gap: clamp(6px, 2vw, 12px);
+    /* Date input groups */
+    .date-input-group {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
-    .banner-title h1 {
-        font-size: clamp(1.65rem, 6.5vw, 3rem);
-        text-align: center;
-        white-space: normal;
-        text-wrap: balance;
+    /* Profile pic */
+    .profile-pic-preview {
+        width: 64px;
+        height: 64px;
     }
 
-    .banner-title p {
-        font-size: clamp(0.8rem, 3.1vw, 1.15rem);
-        text-align: center;
+    .profile-pic-placeholder {
+        font-size: 26px;
     }
 
-    .logo {
-        width: 68px;
-        height: 68px;
+    .profile-pic-btn {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 
-    .setup-card {
-        width: 100%;
+    /* Prompt section */
+    .prompt-section {
+        padding: 18px 14px;
     }
 
-    .toggle-btn {
-        width: 132px;
-        height: 36px;
-        padding: 6px 16px;
+    .prompt-section p {
         font-size: 16px;
     }
 
-    .form-row.row-3-cols,
-    .form-row.row-3-cols-alt,
-    .form-row.row-2-cols {
-        grid-template-columns: 1fr;
+    .prompt-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-skip,
+    .btn-fillup {
+        width: 100%;
+    }
+
+    .or-text {
+        display: none;
+    }
+
+    /* Doc preview height */
+    .doc-preview {
+        min-height: 140px;
     }
 }
 
+/* =============================================
+   SMALL PHONES — 420px and below
+   ============================================= */
 @media (max-width: 420px) {
+    body {
+        padding: 14px 10px;
+    }
+
     .logo {
-        width: 68px;
-        height: 68px;
+        width: 44px;
+        height: 44px;
     }
 
     .banner {
@@ -1285,12 +1405,51 @@ input[type="number"] {
     }
 
     .banner-title h1 {
-        font-size: clamp(1.45rem, 7.6vw, 1.9rem);
+        font-size: clamp(1.1rem, 7.5vw, 1.5rem);
         line-height: 1.15;
     }
 
     .banner-title p {
-        font-size: clamp(0.8rem, 3.8vw, 0.95rem);
-        line-height: 1.32;
+        font-size: clamp(0.6rem, 3.5vw, 0.8rem);
+        line-height: 1.3;
+    }
+
+    .setup-card {
+        padding: 14px 12px 18px;
+    }
+
+    .toggle-btn {
+        font-size: 0.78rem;
+        padding: 6px 8px;
+        border-radius: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    .icon-btn.icon-btn-full {
+        font-size: 22px;
+    }
+
+    .save-btn {
+        height: 48px;
+        font-size: 1rem;
+    }
+
+    .modal-header h2 {
+        font-size: 16px;
+    }
+
+    .modal-section-title {
+        font-size: 14px;
+    }
+
+    .skills-checkboxes label,
+    .modal-form label {
+        font-size: 13px;
     }
 }
