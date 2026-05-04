@@ -822,6 +822,13 @@ body {
   padding: 0 16px;
 }
 
+/* Verification panel — Email column header (2nd span) */
+[data-admin-panel-content="verification"] .admin-dashboard-list-head span:nth-child(2) {
+  text-align: left !important;
+  padding: 0 !important;
+  margin-left: -100px;
+}
+
 /* Verification panel overrides — 5 columns: Name, Email, ID Status, Cert Status, Action */
 /* Must override .admin-dashboard-user-list-head AND .admin-dashboard-user-row since verif rows carry both classes */
 [data-admin-panel-content="verification"] .admin-dashboard-list-head,
@@ -1612,6 +1619,10 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .admin-dashboard-nav-item {
+    font-size: 10px;
+  }
+
   .admin-dashboard-jobs-head {
     flex-direction: column;
     align-items: flex-start;
@@ -1678,7 +1689,7 @@ body {
   [data-admin-panel-content="verification"] .admin-dashboard-list-head.admin-dashboard-user-list-head,
   [data-admin-panel-content="verification"] .admin-dashboard-job-row,
   [data-admin-panel-content="verification"] .admin-dashboard-job-row.admin-dashboard-user-row {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr) 90px 90px 110px !important;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.1fr) !important;
     gap: 6px;
     padding: 8px;
   }
@@ -2220,6 +2231,14 @@ body {
     white-space: normal;
     overflow: visible;
     font-size: 13px;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+  }
+
+  /* Email cell (2nd cell) in verification mobile card */
+  [data-admin-panel-content="verification"] .admin-dashboard-job-row .admin-dashboard-job-cell:nth-child(2) {
+    text-align: center;
+    margin-left: 0px;
   }
 
   [data-admin-panel-content="verification"] .admin-dashboard-job-row .admin-dashboard-row-actions {
