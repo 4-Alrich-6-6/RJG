@@ -344,8 +344,12 @@
 
   function collectEdits(section) {
     if (section === "name") {
-      const val = (document.getElementById("rpEditName") || {}).value || "";
-      return { name: val.trim() };
+      const val = (document.getElementById("rpEditName")?.value || "").trim();
+      return {
+        name: val,
+        firstName: val,
+        lastName: null
+      };
     }
     if (section === "phone") {
       const val = (document.getElementById("rpEditPhone") || {}).value || "";

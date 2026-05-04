@@ -84,6 +84,40 @@
         margin-top: 0;
         z-index: 390;
         box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+    }
+
+    #view-posting .jp-title {
+        font-size: clamp(0.85rem, 4vw, 1.2rem) !important;
+        flex: 1 1 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #view-posting .jp-header-pagination {
+        flex: 1 1 auto;
+        gap: 4px;
+    }
+
+    #view-posting .jp-pagination-btn {
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+
+    #view-posting .jp-pagination-text {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    #view-posting .jp-post-btn {
+        flex-shrink: 0;
+    }
+
+    #view-posting .jp-post-label {
+        display: none !important;
     }
     /* Recruiter dashboard doesn't have search bar - reduce top padding */
     .recruiter-dashb-page .main,
@@ -859,14 +893,32 @@
 @media (max-width: 768px) {
     .jp-form-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .jp-modal {
-        width: min(420px, 100%);
+        width: 100%;
     }
 
     .jp-modal-header h2 {
         font-size: 20px;
+    }
+
+    .jp-modal-body {
+        padding: 16px;
+    }
+
+    .jp-form-group input,
+    .jp-form-group select,
+    .jp-form-group textarea,
+    .jp-picker-btn {
+        padding: 12px 14px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    .jp-form-group label {
+        font-size: 13px;
     }
 }
 
@@ -886,14 +938,38 @@
     .jp-modal-overlay,
     .jp-submodal-overlay {
         align-items: flex-end;
-        padding: 10px;
+        padding: 0;
     }
 
     .jp-modal,
     .jp-submodal {
         width: 100%;
-        max-height: 90vh;
+        max-height: 92vh;
         border-radius: 14px 14px 0 0;
+    }
+
+    .jp-modal-body {
+        padding: 14px 16px;
+    }
+
+    .jp-modal-header {
+        padding: 14px 16px;
+    }
+
+    .jp-modal-footer {
+        padding: 14px 16px;
+    }
+
+    .jp-form-grid {
+        gap: 14px;
+    }
+
+    .jp-form-group input,
+    .jp-form-group select,
+    .jp-form-group textarea,
+    .jp-picker-btn {
+        padding: 11px 12px;
+        font-size: 14px;
     }
 
     .jp-modal-footer,
