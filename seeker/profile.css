@@ -557,6 +557,173 @@
 @media (max-width: 560px) {
   .profile-page .main.profile-main {
     padding-top: calc(var(--mobile-header-top) + 10px);
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .profile-hero {
+    padding: 16px 12px;
+  }
+
+  .profile-avatar-row {
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .profile-avatar-wrap {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-avatar-edit-btn {
+    width: 28px;
+    height: 28px;
+    bottom: -2px;
+    right: -2px;
+  }
+
+  .profile-avatar-edit-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .profile-name {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .profile-contact {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .profile-contact-info {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .profile-contact-info > span {
+    flex: none;
+  }
+
+  .profile-section {
+    padding: 16px 12px;
+    margin-bottom: 16px;
+  }
+
+  .profile-section-header {
+    margin-bottom: 12px;
+  }
+
+  .profile-section-title {
+    font-size: 1.1rem;
+  }
+
+  .profile-dl {
+    gap: 12px;
+  }
+
+  .profile-dt {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .profile-dd {
+    font-size: 0.9rem;
+  }
+
+  .profile-edit-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .profile-edit-btn--inline {
+    margin-left: 8px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+
+  .profile-block {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .profile-block-head {
+    margin-bottom: 8px;
+  }
+
+  .profile-block-title {
+    font-size: 0.9rem;
+  }
+
+  .profile-block-content {
+    font-size: 0.85rem;
+  }
+
+  .skills-tags {
+    gap: 6px;
+  }
+
+  .skill-tag {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+
+  .profile-edit-modal {
+    margin: 16px;
+    max-height: calc(100vh - 32px);
+  }
+
+  .profile-edit-modal-header {
+    padding: 12px;
+  }
+
+  .profile-edit-modal-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .profile-edit-modal-body {
+    padding: 12px;
+    max-height: calc(90vh - 120px);
+  }
+
+  .profile-edit-modal-footer {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .profile-edit-modal-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .profile-edit-field {
+    margin-bottom: 12px;
+  }
+
+  .profile-edit-field label {
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+  }
+
+  .profile-edit-field input,
+  .profile-edit-field textarea,
+  .profile-edit-field select {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .profile-edit-field textarea {
+    min-height: 80px;
   }
 }
 

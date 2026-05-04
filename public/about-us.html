@@ -38,12 +38,7 @@
     <script>
         document.getElementById("backBtn").addEventListener("click", function(e) {
             e.preventDefault();
-            const ref = document.referrer ? String(document.referrer).trim() : "";
-            if (ref && ref.includes(window.location.hostname)) {
-                window.history.back();
-            } else {
-                window.location.href = "/public/landing.html";
-            }
+            window.history.back();
         });
     </script>
     <script src="../lib/register-sw.js"></script>

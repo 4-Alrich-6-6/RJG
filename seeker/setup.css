@@ -263,6 +263,10 @@ body {
     text-overflow: ellipsis;
 }
 
+.form-group--profile-pic label {
+    text-align: center;
+}
+
 .form-group.date-group {
     flex-direction: row;
     align-items: center;
@@ -348,6 +352,7 @@ body {
 .form-group--profile-pic .profile-pic-wrap {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 16px;
 }
 
@@ -444,18 +449,22 @@ body {
 }
 
 .icon-btn.icon-btn-full {
-    width: auto !important;
-    height: 38px;
+    width: 100% !important;
+    height: 38px !important;
     font-size: 28px;
-    flex-shrink: 1;
-    padding: 0 15px;
+    flex-shrink: 1 !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px;
+    border-radius: 15px !important;
+    border: 1px solid rgba(0, 0, 0, 0.48) !important;
+    background: #FFFFFF !important;
+    color: #000 !important;
+    cursor: pointer !important;
 }
 
-.form-group .icon-btn.icon-btn-full {
-    width: 38px !important;
-    padding: 0;
-    font-size: 24px;
-}
 
 .icon-btn img {
     width: 20px;
@@ -1261,10 +1270,7 @@ input[type="number"] {
         grid-template-columns: 1fr;
     }
 
-    .form-group .icon-btn.icon-btn-full {
-        width: 100% !important;
-    }
-
+    
     /* Labels */
     .form-group label {
         font-size: 13px;

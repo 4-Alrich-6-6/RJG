@@ -300,16 +300,16 @@ body {
         width: fit-content;
         max-width: 100%;
         margin-inline: auto;
-        column-gap: clamp(6px, 2vw, 12px);
+        column-gap: clamp(8px, 2vw, 14px);
     }
 
     .logo {
-        width: 68px;
-        height: 68px;
+        width: 52px;
+        height: 52px;
     }
 
     .title h1 {
-        font-size: clamp(1.65rem, 6.5vw, 3rem);
+        font-size: clamp(1.3rem, 6vw, 2rem);
         line-height: 1.12;
         white-space: normal;
         text-wrap: balance;
@@ -317,7 +317,7 @@ body {
     }
 
     .title p {
-        font-size: clamp(0.8rem, 3.1vw, 1.15rem);
+        font-size: clamp(0.65rem, 3vw, 0.9rem);
         line-height: 1.3;
         text-align: center;
         text-wrap: pretty;
@@ -334,6 +334,10 @@ body {
         height: 72px;
         font-size: 24px;
     }
+
+    .welcome {
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+    }
 }
 
 @media (max-width: 480px) {
@@ -348,8 +352,8 @@ body {
     }
 
     .logo {
-        width: 68px;
-        height: 68px;
+        width: 52px;
+        height: 52px;
     }
 
     .banner {
@@ -357,13 +361,35 @@ body {
     }
 
     .title h1 {
-        font-size: clamp(1.45rem, 7.6vw, 1.9rem);
+        font-size: clamp(1.3rem, 6vw, 2rem);
         line-height: 1.15;
     }
 
     .title p {
-        font-size: clamp(0.8rem, 3.8vw, 0.95rem);
+        font-size: clamp(0.65rem, 3vw, 0.9rem);
         line-height: 1.32;
+    }
+
+    .welcome {
+        white-space: normal;
+        text-wrap: balance;
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+
+    .instruction,
+    .label,
+    .resend-link {
+        font-size: 16px;
+    }
+
+    .otp-input {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        max-width: none;
+        border-radius: 12px;
     }
 }
 

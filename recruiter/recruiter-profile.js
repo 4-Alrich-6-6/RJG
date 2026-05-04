@@ -119,7 +119,6 @@
     rpEditModal.hidden = false;
     rpModalCancel.onclick = closeModal;
     rpModalClose.onclick = closeModal;
-    rpModalSave.onclick = function () { saveChanges(section); };
     
     // If address section, populate location dropdowns and add event listeners
     if (section === "address") {
@@ -325,7 +324,10 @@
       }
       const updates = collectEdits(currentEditSection);
       if (!updates) return;
+      console.log("Current profile:", currentProfile);
+      console.log("Updates:", updates);
       const merged = Object.assign({}, currentProfile, updates);
+      console.log("Merged profile to save:", merged);
       rpModalSave.disabled = true;
       try {
         await window.RJGDb.saveCurrentUserProfile(merged);
@@ -345,7 +347,10 @@
   function collectEdits(section) {
     if (section === "name") {
       const val = (document.getElementById("rpEditName") || {}).value || "";
-      return { name: val.trim() };
+      console.log("Name edit - val:", val);
+      const result = { name: val.trim(), lastName: val.trim() };
+      console.log("Name edit - result:", result);
+      return result;
     }
     if (section === "phone") {
       const val = (document.getElementById("rpEditPhone") || {}).value || "";

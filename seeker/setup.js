@@ -1294,12 +1294,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let profileName = "";
         if (isSeeking) {
+            // Only include lastName and firstName in profileName to avoid parsing issues
             const nameParts = [setupNameData.lastName, setupNameData.firstName];
-            if (setupNameData.middleName) nameParts.push(setupNameData.middleName);
-            if (setupNameData.suffix)     nameParts.push(setupNameData.suffix);
             profileName = setupNameData.lastName
-                ? `${setupNameData.lastName}, ${nameParts.slice(1).join(" ")}`
-                : nameParts.join(" ");
+                ? `${setupNameData.lastName}, ${setupNameData.firstName}`
+                : setupNameData.firstName;
         } else {
             profileName = nameInput ? nameInput.value.trim() : "";
         }
@@ -1358,7 +1357,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const profileData = {
             name: profileName,
             lastName:   isSeeking ? (setupNameData.lastName   || null) : null,
-            firstName:  isSeeking ? (setupNameData.firstName  || null) : null,
+            firstName:  isSeeking ? (setupNameData.firstName  || null) : profileName,
             middleName: isSeeking ? (setupNameData.middleName || null) : null,
             suffix:     isSeeking ? (setupNameData.suffix     || null) : null,
             email: accountData.email || "",
@@ -1411,11 +1410,14 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (_) {}
 
         notify("Profile setup saved.");
-        if (profileData.role === "admin") {
-            window.location.href = "../admin/admin-dashboard.html";
-        } else {
-            window.location.href = profileData.role === "employer" ? "../recruiter/recruiter-dashb.html" : "../seeker/dashb.html";
-        }
+        // Add delay to ensure database save completes
+        setTimeout(() => {
+            if (profileData.role === "admin") {
+                window.location.href = "../admin/admin-dashboard.html";
+            } else {
+                window.location.href = profileData.role === "employer" ? "../recruiter/recruiter-dashb.html" : "../seeker/dashb.html";
+            }
+        }, 1000);
     });
 
 }); // end DOMContentLoaded

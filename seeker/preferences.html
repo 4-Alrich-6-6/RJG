@@ -18,6 +18,48 @@
         .preferences-form {
             width: 100%;
         }
+
+        /* Mobile styles for rate range inputs */
+        @media (max-width: 768px) {
+            .rate-range {
+                display: grid !important;
+                grid-template-columns: auto auto auto auto auto auto !important;
+                grid-auto-flow: column !important;
+                align-items: center !important;
+                gap: 2px !important;
+                width: 100% !important;
+                font-size: 12px !important;
+                box-sizing: border-box !important;
+            }
+            
+            .rate-range > * {
+                width: auto !important;
+                min-width: 0 !important;
+                max-width: none !important;
+                padding: 4px 2px !important;
+                font-size: 12px !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+            }
+            
+            #prefCurrency,
+            #prefMinRate,
+            #prefMaxRate,
+            #prefRateUnit {
+                min-width: 55px !important;
+                max-width: 65px !important;
+            }
+            
+            /* Make other preference inputs stretch to fill space */
+            .preference-field select:not(.rate-range select),
+            .preference-field input[type="number"]:not(.rate-range input),
+            .preference-field textarea {
+                width: 100% !important;
+                padding: 6px 8px !important;
+                font-size: 12px !important;
+                border-radius: 6px !important;
+            }
+        }
         .preference-field {
             margin-bottom: 20px;
         }
@@ -106,7 +148,7 @@
         </div>
         <nav class="nav" aria-label="Profile sections">
             <a class="nav-item" href="../seeker/profile.html">Manage Profile</a>
-            <a class="nav-item active" href="../seeker/preferences.html" id="preferencesNavItem">Job Preferences</a>
+            <a class="nav-item active" href="../seeker/preferences.html" id="preferencesNavItem">Preferences</a>
             <a class="nav-item" href="../seeker/account.html">Your Account</a>
         </nav>
         <div class="logout">Log out</div>
