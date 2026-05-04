@@ -1226,11 +1226,11 @@ input[type="number"] {
 
     /* Header */
     .header-content h2 {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
     }
 
     .header-content h3 {
-        font-size: 1.6rem;
+        font-size: 1.1rem;
     }
 
     /* Toggle */
@@ -1269,7 +1269,7 @@ input[type="number"] {
 
     /* Save button */
     .save-btn {
-        width: 160px;
+        width: 100px;
         height: 44px;
         font-size: 1.1rem;
         margin-top: 16px;
