@@ -1186,6 +1186,10 @@ input[type="number"] {
         padding: 20px 14px;
     }
 
+    .form-group:has(.icon-btn-full) {
+    align-items: flex-start;
+}
+
     .container {
         gap: 20px;
     }
