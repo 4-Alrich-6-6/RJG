@@ -7,11 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="job-listing.css">
+    <link rel="stylesheet" href="../seeker/job-listing.css">
     <link rel="stylesheet" href="recruiter-dashb.css">
 </head>
 <body class="recruiter-page">
-<script src="app-loader.js"></script>
+<script src="../lib/app-loader.js"></script>
     <aside class="sidebar">
         <div class="sidebar-top">
             <a href="about-us.html" class="logo-link" aria-label="Go to About Us page">
@@ -246,14 +246,14 @@
                     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="database.js"></script>
-    <script src="auth-guard.js"></script>
-    <script src="app-feedback.js"></script>
-    <script src="error-handler.js"></script>
-    <script src="logout-modal.js"></script>
-    <script src="app-confirm.js"></script>
-    <script src="ban-notification.js"></script>
-    <script src="ban-check.js"></script>
+    <script src="../lib/database.js"></script>
+    <script src="../lib/auth-guard.js"></script>
+    <script src="../lib/app-feedback.js"></script>
+    <script src="../lib/error-handler.js"></script>
+    <script src="../lib/logout-modal.js"></script>
+    <script src="../lib/app-confirm.js"></script>
+    <script src="../lib/ban-notification.js"></script>
+    <script src="../lib/ban-check.js"></script>
     <script src="recruiter-dashb.js"></script>
     <script>
         // Update notification bell with unread count
@@ -278,7 +278,7 @@
             setInterval(refreshBadge, 30000);
         })();
     </script>
-<script src="image-modal.js"></script>
+<script src="../lib/image-modal.js"></script>
 <!-- Image Modal -->
         <div class="image-modal-overlay" id="imageModalOverlay">
             <div class="image-modal">
@@ -296,6 +296,6 @@
   <div class="rjg-loading-spinner"></div>
   <p class="rjg-loading-text" id="rjgLoadingText">Please wait...</p>
 </div>
-<script src="app-loading.js"></script>
+<script src="../lib/app-loading.js"></script>
 </body>
 </html>

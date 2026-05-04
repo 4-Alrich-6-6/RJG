@@ -618,31 +618,33 @@
   if (jpSubmitPostBtn) {
     jpSubmitPostBtn.addEventListener("click", async function () {
       if (window.RJGLoading) window.RJGLoading.show("Posting job...");
-      if (!window.RJGDb) { notify("Database not ready.", "error"); return; }
+      if (!window.RJGDb) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Database not ready.", "error"); return; }
       const title = jpJobName.value.trim();
       const description = jpDescription ? jpDescription.value.trim() : "";
 
       // Validate character limits before saving
       if (title.length > MAX_JOB_TITLE_LENGTH) {
+        if (window.RJGLoading) window.RJGLoading.hide();
         notify(`Job title must be ${MAX_JOB_TITLE_LENGTH} characters or less.`, "warn");
         jpJobName.focus();
         return;
       }
       if (description.length > MAX_JOB_DESCRIPTION_LENGTH) {
+        if (window.RJGLoading) window.RJGLoading.hide();
         notify(`Job description must be ${MAX_JOB_DESCRIPTION_LENGTH} characters or less.`, "warn");
         jpDescription.focus();
         return;
       }
 
       // Validate required fields
-      if (!title) { notify("Job title is required.", "warn"); jpJobName.focus(); return; }
-      if (!jpCategory.value) { notify("Category is required.", "warn"); jpCategory.focus(); return; }
-      if (!jpSchedule.value) { notify("Schedule is required.", "warn"); jpSchedule.focus(); return; }
-      if (!jpType.value) { notify("Job type is required.", "warn"); jpType.focus(); return; }
-      if (!description) { notify("Description is required.", "warn"); jpDescription.focus(); return; }
-      if (!pendingLocation || !pendingLocation.trim()) { notify("Location is required. Click 'Set Location'.", "warn"); return; }
-      if (!pendingRate || !pendingRate.amount) { notify("Rate is required. Click 'Set Rate'.", "warn"); return; }
-      if (!pendingSkills || pendingSkills.length === 0) { notify("At least one skill is required. Click 'Set Skills'.", "warn"); return; }
+      if (!title) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Job title is required.", "warn"); jpJobName.focus(); return; }
+      if (!jpCategory.value) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Category is required.", "warn"); jpCategory.focus(); return; }
+      if (!jpSchedule.value) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Schedule is required.", "warn"); jpSchedule.focus(); return; }
+      if (!jpType.value) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Job type is required.", "warn"); jpType.focus(); return; }
+      if (!description) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Description is required.", "warn"); jpDescription.focus(); return; }
+      if (!pendingLocation || !pendingLocation.trim()) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Location is required. Click 'Set Location'.", "warn"); return; }
+      if (!pendingRate || !pendingRate.amount) { if (window.RJGLoading) window.RJGLoading.hide(); notify("Rate is required. Click 'Set Rate'.", "warn"); return; }
+      if (!pendingSkills || pendingSkills.length === 0) { if (window.RJGLoading) window.RJGLoading.hide(); notify("At least one skill is required. Click 'Set Skills'.", "warn"); return; }
 
       const jobData = {
         title,
@@ -718,11 +720,13 @@
         async function doSaveJob(nextJobsPayload) {
           await window.RJGDb.savePostedJobs(nextJobsPayload);
           postedJobs = nextJobsPayload;
+          if (window.RJGLoading) window.RJGLoading.hide();
           notify(currentEditJobId ? "Job updated successfully." : "Job posted successfully.", "success");
           closePostJobModalFn();
           await loadPostedJobs();
         }
       } catch (e) {
+        if (window.RJGLoading) window.RJGLoading.hide();
         const saveMsg = (window.RJGErrorHandler && window.RJGErrorHandler.getUserFriendlyMessage(e, "Unable to save this job. Please try again.")) || "Unable to save this job. Please try again.";
         notify(saveMsg, "error");
         jpSubmitPostBtn.disabled = false;
@@ -1198,8 +1202,10 @@
                 targetUserId: currentResumeApplicantId,
                 reason: selected.value
               });
+              if (window.RJGLoading) window.RJGLoading.hide();
               notify(`Resume reported: ${selected.value}.`, 'info');
             } catch (err) {
+              if (window.RJGLoading) window.RJGLoading.hide();
               console.warn('Failed to submit resume report to DB:', err);
               notify('Report submitted locally but database save failed.', 'warn');
             }

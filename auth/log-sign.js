@@ -229,6 +229,7 @@ function validateLoginForm() {
             }
             notify(msg, "warn");
             if (focusField) focusField.focus();
+            if (window.RJGLoading) window.RJGLoading.hide();
             loginSubmit.disabled = false;
             checkLogin();
         }
@@ -295,6 +296,7 @@ function validateSignupForm() {
                     signupEmail.classList.add("input-error");
                     signupEmail.focus();
                     notify("This email is already registered. Please enter a different email instead.", "warn");
+                    if (window.RJGLoading) window.RJGLoading.hide();
                     return;
                 }
             }
@@ -349,6 +351,7 @@ function validateSignupForm() {
             notify(msg, "warn");
             if (focusField) focusField.focus();
         } finally {
+            if (window.RJGLoading) window.RJGLoading.hide();
             checkSignup();
         }
     });

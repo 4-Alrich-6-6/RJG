@@ -165,11 +165,11 @@
     const nameModal = document.getElementById('nameEditModal');
     const nameModalTitle = document.getElementById('nameEditModalTitle');
     const nameModalBody = document.getElementById('nameEditModalBody');
-    
+
     if (!nameModal || !nameModalBody) return;
-    
+
     const isRecruiter = isRecruiterLikeRole(currentViewerRole);
-    
+
     if (isRecruiter) {
         // Recruiter: Single Company Name field
         nameModalTitle.textContent = "Edit Company Name";
@@ -201,7 +201,7 @@
             </div>
         `;
     }
-    
+
     nameModal.hidden = false;
     nameModal.classList.add('open');
     nameModal.setAttribute('aria-hidden', 'false');
@@ -689,7 +689,7 @@
     if (currentEditSection === "address") {
       const fields = ["unitNo", "street", "country", "zip"];
       const dropdowns = ["region", "province", "city", "barangay"];
-      isValid = fields.every(f => getFieldValue(f).length > 0) && 
+      isValid = fields.every(f => getFieldValue(f).length > 0) &&
                  dropdowns.every(d => {
                    const select = document.getElementById(`editAddress${d.charAt(0).toUpperCase() + d.slice(1)}`);
                    return select && select.value && select.value !== "";
@@ -763,10 +763,10 @@
     } else if (section === "address") {
       const address = data.address || {};
       editModalBody.innerHTML = [
-        field("Unit / No.", "unitNo", address.unitNo, "text", { 
-          inputmode: "numeric", 
-          pattern: "[0-9]*", 
-          placeholder: "Unit number (numbers only)" 
+        field("Unit / No.", "unitNo", address.unitNo, "text", {
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          placeholder: "Unit number (numbers only)"
         }),
         field("Street", "street", address.street),
         `<div class="profile-edit-field">
@@ -796,16 +796,16 @@
         field("Country", "country", address.country),
         field("ZIP", "zip", address.zip, "number", { inputmode: "numeric", min: "0", max: "9999", maxlength: "4", placeholder: "e.g., 1000" })
       ].join("");
-      
+
       // Load regions and set up cascading dropdowns
       initAddressCascadingDropdowns(address);
-      
+
       // Set country to Philippines by default
       const countryInput = editModalBody.querySelector('[data-name="country"]');
       if (countryInput && !address.country) {
         countryInput.value = "Philippines";
       }
-      
+
       // Add validation for unit number (numbers only)
       const unitInput = editModalBody.querySelector('[data-name="unitNo"]');
       if (unitInput) {
@@ -814,7 +814,7 @@
           let value = e.target.value.replace(/\D/g, '');
           e.target.value = value;
         });
-        
+
         unitInput.addEventListener('keypress', function(e) {
           // Only allow numbers (0-9)
           const char = String.fromCharCode(e.which);
@@ -823,7 +823,7 @@
           }
         });
       }
-      
+
       // Add validation for zip code (4 digits max)
       const zipInput = editModalBody.querySelector('[data-name="zip"]');
       if (zipInput) {
@@ -835,7 +835,7 @@
           }
           e.target.value = value;
         });
-        
+
         zipInput.addEventListener('keypress', function(e) {
           // Only allow numbers (0-9)
           const char = String.fromCharCode(e.which);
@@ -845,13 +845,13 @@
         });
       }
     } else if (section === "phone") {
-      editModalBody.innerHTML = field("Phone Number", "phone", data.phone, "tel", { 
-        inputmode: "numeric", 
-        pattern: "[0-9]{11}", 
-        maxlength: "11", 
-        placeholder: "Enter 11-digit number" 
+      editModalBody.innerHTML = field("Phone Number", "phone", data.phone, "tel", {
+        inputmode: "numeric",
+        pattern: "[0-9]{11}",
+        maxlength: "11",
+        placeholder: "Enter 11-digit number"
       });
-      
+
       // Add phone number validation
       const phoneInput = editModalBody.querySelector('[data-name="phone"]');
       if (phoneInput) {
@@ -864,7 +864,7 @@
           }
           e.target.value = value;
         });
-        
+
         phoneInput.addEventListener('keypress', function(e) {
           // Only allow numbers (0-9)
           const char = String.fromCharCode(e.which);
@@ -915,7 +915,7 @@
         "Postgraduate Graduate"
       ];
       const sexOptions = ["Male", "Female"];
-      
+
       const fifteenYearsAgo = new Date();
       fifteenYearsAgo.setFullYear(fifteenYearsAgo.getFullYear() - 15);
       const maxDate = fifteenYearsAgo.toISOString().split("T")[0];
@@ -1048,12 +1048,12 @@
       const provinceSelect = document.getElementById("editAddressProvince");
       const citySelect = document.getElementById("editAddressCity");
       const barangaySelect = document.getElementById("editAddressBarangay");
-      
+
       const region = regionSelect?.options[regionSelect.selectedIndex]?.text || "";
       const province = provinceSelect?.options[provinceSelect.selectedIndex]?.text || "";
       const city = citySelect?.options[citySelect.selectedIndex]?.text || "";
       const barangay = barangaySelect?.options[barangaySelect.selectedIndex]?.text || "";
-      
+
       data.address = {
         unitNo: getFieldValue("unitNo"),
         street: getFieldValue("street"),
@@ -1271,24 +1271,24 @@
 
   async function saveNameChanges() {
     const isRecruiter = isRecruiterLikeRole(currentViewerRole);
-    
+
     if (isRecruiter) {
       // Recruiter: Handle company name
       const companyNameInput = document.getElementById('companyNameInput');
       const companyName = companyNameInput ? companyNameInput.value.trim() : '';
-      
+
       if (!companyName) {
         notify('Company Name is required.', 'warn');
         return;
       }
-      
+
       const data = getStoredProfileData();
       data.name = companyName;
       data.firstName = companyName;
       data.lastName = null;
       data.middleName = null;
       data.suffix = null;
-      
+
       try {
         if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === 'function') {
           if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
@@ -1306,7 +1306,7 @@
       }
       return;
     }
-    
+
     // Seeker: Handle multiple name fields
     const lastNameInput = document.getElementById('lastNameInput');
     const firstNameInput = document.getElementById('firstNameInput');
@@ -1386,7 +1386,7 @@
   const uploadPicBtn = document.getElementById("uploadPicBtn");
   const capturePicBtn = document.getElementById("capturePicBtn");
   const profilePicInput = document.getElementById("profilePicInput");
-  
+
   // Camera modal elements
   const cameraModal = document.getElementById("cameraModal");
   const cameraModalClose = document.getElementById("cameraModalClose");
@@ -1394,7 +1394,7 @@
   const capturePhotoBtn = document.getElementById("capturePhotoBtn");
   const cameraVideo = document.getElementById("cameraVideo");
   const cameraCanvas = document.getElementById("cameraCanvas");
-  
+
   let cameraStream = null;
 
   // Open profile picture modal
@@ -1435,13 +1435,13 @@
     profilePicInput.addEventListener("change", async (e) => {
       const file = e.target.files && e.target.files[0];
       if (!file) return;
-      
+
       if (file.size > 3 * 1024 * 1024) {
         notify("Image must be under 3MB.", "warn");
         profilePicInput.value = "";
         return;
       }
-      
+
       try {
         // Upload to Supabase
         if (window.RJGDb && typeof window.RJGDb.uploadProfileImage === 'function') {
@@ -1456,6 +1456,8 @@
               if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
               await window.RJGDb.saveCurrentUserProfile(data);
               if (window.RJGLoading) window.RJGLoading.hide();
+            } else {
+              if (window.RJGLoading) window.RJGLoading.hide();
             }
             localStorage.setItem('profileData', JSON.stringify(data));
             
@@ -1465,13 +1467,16 @@
             
             notify('Profile picture updated successfully.');
             closeProfilePicModal();
+          } else {
+            if (window.RJGLoading) window.RJGLoading.hide();
           }
         }
       } catch (err) {
+        if (window.RJGLoading) window.RJGLoading.hide();
         console.error('Failed to upload profile picture:', err);
         notify('Failed to upload profile picture.', 'error');
       }
-      
+
       profilePicInput.value = "";
     });
   }
@@ -1487,20 +1492,20 @@
   // Camera modal functions
   async function openCameraModal() {
     if (!cameraModal) return;
-    
+
     cameraModal.hidden = false;
     cameraModal.classList.add('open');
     cameraModal.setAttribute('aria-hidden', 'false');
-    
+
     try {
-      cameraStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: {
           facingMode: 'user',
           width: { ideal: 640 },
           height: { ideal: 480 }
-        } 
+        }
       });
-      
+
       if (cameraVideo) {
         cameraVideo.srcObject = cameraStream;
       }
@@ -1517,13 +1522,13 @@
       cameraModal.classList.remove('open');
       cameraModal.setAttribute('aria-hidden', 'true');
     }
-    
+
     // Stop camera stream
     if (cameraStream) {
       cameraStream.getTracks().forEach(track => track.stop());
       cameraStream = null;
     }
-    
+
     if (cameraVideo) {
       cameraVideo.srcObject = null;
     }
@@ -1541,16 +1546,16 @@
   if (capturePhotoBtn) {
     capturePhotoBtn.addEventListener("click", async () => {
       if (!cameraVideo || !cameraCanvas) return;
-      
+
       const context = cameraCanvas.getContext('2d');
       cameraCanvas.width = cameraVideo.videoWidth;
       cameraCanvas.height = cameraVideo.videoHeight;
       context.drawImage(cameraVideo, 0, 0);
-      
+
       // Convert canvas to blob
       cameraCanvas.toBlob(async (blob) => {
         if (!blob) return;
-        
+
         try {
           // Upload to Supabase
           if (window.RJGDb && typeof window.RJGDb.uploadProfileImage === 'function') {
@@ -1559,18 +1564,18 @@
               // Update profile data
               const data = getStoredProfileData();
               data.avatarUrl = uploadedUrl;
-              
+
               if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === 'function') {
                 if (window.RJGLoading) window.RJGLoading.show("Saving profile...");
               await window.RJGDb.saveCurrentUserProfile(data);
               if (window.RJGLoading) window.RJGLoading.hide();
               }
               localStorage.setItem('profileData', JSON.stringify(data));
-              
+
               // Update display
               renderProfileFromStoredData();
               bindEditButtons();
-              
+
               notify('Profile picture updated successfully.');
               closeCameraModal();
             }
@@ -1622,7 +1627,7 @@
     applyRoleScopedProfile(liveRole);
     renderProfileFromStoredData();
     bindEditButtons();
-    
+
     // Step 6: Update valid documents display after profile is loaded
     updateValidDocumentsDisplay();
     if (profileMainEl) {
@@ -1647,10 +1652,10 @@
     const regions = await fetchPSGC("https://psgc.cloud/api/regions");
     const regionSelect = document.getElementById("editAddressRegion");
     if (!regionSelect) return;
-    
+
     // Sort regions by name
     regions.sort((a, b) => a.name.localeCompare(b.name));
-    
+
     regionSelect.innerHTML = '<option value="">Select Region</option>';
     regions.forEach(r => {
       const opt = document.createElement("option");
@@ -1662,7 +1667,7 @@
 
   function initAddressCascadingDropdowns(address) {
     loadAddressRegions();
-    
+
     const regionSelect = document.getElementById("editAddressRegion");
     const provinceSelect = document.getElementById("editAddressProvince");
     const citySelect = document.getElementById("editAddressCity");
@@ -1679,7 +1684,7 @@
       provinceSelect.innerHTML = '<option value="">Select Province</option>';
       citySelect.innerHTML = '<option value="">Select City</option>';
       barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-      
+
       provinceSelect.disabled = !regionCode;
       citySelect.disabled = true;
       barangaySelect.disabled = true;
@@ -1693,7 +1698,7 @@
           opt.textContent = p.name;
           provinceSelect.appendChild(opt);
         });
-        
+
         // Set existing province value if matches
         if (address && address.province) {
           const matchingProvince = provinces.find(p => p.name === address.province);
@@ -1709,7 +1714,7 @@
       const provinceCode = provinceSelect.value;
       citySelect.innerHTML = '<option value="">Select City</option>';
       barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-      
+
       citySelect.disabled = !provinceCode;
       barangaySelect.disabled = true;
 
@@ -1722,7 +1727,7 @@
           opt.textContent = c.name;
           citySelect.appendChild(opt);
         });
-        
+
         // Set existing city value if matches
         if (address && address.city) {
           const matchingCity = cities.find(c => c.name === address.city);
@@ -1737,7 +1742,7 @@
     citySelect?.addEventListener("change", async () => {
       const cityCode = citySelect.value;
       barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
-      
+
       barangaySelect.disabled = !cityCode;
 
       if (cityCode) {
@@ -1749,7 +1754,7 @@
           opt.textContent = b.name;
           barangaySelect.appendChild(opt);
         });
-        
+
         // Set existing barangay value if matches
         if (address && address.barangay) {
           const matchingBarangay = barangays.find(b => b.name === address.barangay);
@@ -1785,7 +1790,7 @@
     validIdInput.addEventListener("change", async (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      
+
       if (file.size > 5 * 1024 * 1024) {
         if (window.showAppToast) window.showAppToast("Image must be under 5MB", "error");
         validIdInput.value = "";
@@ -1805,7 +1810,7 @@
             profile.id_status = "pending";
             profile._resetIdStatus = true;
             profile.validId = { type: "ID", file: file, imageUrl: url };
-            
+
             console.log("Saving profile with ID URL:", url);
             if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
               try {
@@ -1820,7 +1825,7 @@
                 }
               }
             }
-            
+
             localStorage.setItem("profileData", JSON.stringify(profile));
             updateValidDocumentsDisplay();
             if (window.showAppToast) window.showAppToast("Valid ID uploaded successfully", "success");
@@ -1853,7 +1858,7 @@
     validCertInput.addEventListener("change", async (e) => {
       const file = e.target.files[0];
       if (!file) return;
-      
+
       if (file.size > 5 * 1024 * 1024) {
         if (window.showAppToast) window.showAppToast("Image must be under 5MB", "error");
         validCertInput.value = "";
@@ -1873,7 +1878,7 @@
             profile.cert_status = "pending";
             profile._resetCertStatus = true;
             profile.validCertificate = { type: "Certificate", file: file, imageUrl: url };
-            
+
             console.log("Saving profile with certificate URL:", url);
             if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
               try {
@@ -1885,7 +1890,7 @@
                 if (window.showAppToast) window.showAppToast(saveMsg, "error");
               }
             }
-            
+
             localStorage.setItem("profileData", JSON.stringify(profile));
             updateValidDocumentsDisplay();
             if (window.showAppToast) window.showAppToast("Valid Certificate uploaded successfully", "success");
@@ -2002,9 +2007,9 @@
       canvas.getContext("2d").drawImage(video, 0, 0);
       canvas.toBlob(async (blob) => {
         if (!blob) return;
-        
+
         const file = new File([blob], "id-capture.jpg", { type: "image/jpeg" });
-        
+
         try {
           console.log("Starting ID capture upload...");
           if (window.RJGDb && typeof window.RJGDb.uploadFile === "function") {
@@ -2016,7 +2021,7 @@
               profile.id_status = "pending";
               profile._resetIdStatus = true;
               profile.validId = { type: "ID", file: file, imageUrl: url };
-              
+
               console.log("Saving profile with captured ID URL:", url);
               if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
                 try {
@@ -2028,7 +2033,7 @@
                   if (window.showAppToast) window.showAppToast(saveMsg, "error");
                 }
               }
-              
+
               localStorage.setItem("profileData", JSON.stringify(profile));
               updateValidDocumentsDisplay();
               if (window.showAppToast) window.showAppToast("Valid ID captured successfully", "success");
@@ -2042,7 +2047,7 @@
             window.showAppToast("Failed to capture ID. Please try again.", "error");
           }
         }
-        
+
         if (stream) {
           stream.getTracks().forEach(track => track.stop());
         }
@@ -2139,9 +2144,9 @@
       canvas.getContext("2d").drawImage(video, 0, 0);
       canvas.toBlob(async (blob) => {
         if (!blob) return;
-        
+
         const file = new File([blob], "cert-capture.jpg", { type: "image/jpeg" });
-        
+
         try {
           console.log("Starting certificate capture upload...");
           if (window.RJGDb && typeof window.RJGDb.uploadFile === "function") {
@@ -2153,7 +2158,7 @@
               profile.cert_status = "pending";
               profile._resetCertStatus = true;
               profile.validCertificate = { type: "Certificate", file: file, imageUrl: url };
-              
+
               console.log("Saving profile with captured certificate URL:", url);
               if (window.RJGDb && typeof window.RJGDb.saveCurrentUserProfile === "function") {
                 try {
@@ -2165,7 +2170,7 @@
                   if (window.showAppToast) window.showAppToast(saveMsg, "error");
                 }
               }
-              
+
               localStorage.setItem("profileData", JSON.stringify(profile));
               updateValidDocumentsDisplay();
               if (window.showAppToast) window.showAppToast("Valid Certificate captured successfully", "success");
@@ -2179,7 +2184,7 @@
             window.showAppToast("Failed to capture certificate. Please try again.", "error");
           }
         }
-        
+
         if (stream) {
           stream.getTracks().forEach(track => track.stop());
         }
@@ -2199,7 +2204,7 @@
 
   function updateValidDocumentsDisplay() {
     const profile = JSON.parse(localStorage.getItem("profileData") || "{}");
-    
+
     const validIdBadge = document.getElementById("validIdVerificationBadge");
     const validCertBadge = document.getElementById("validCertVerificationBadge");
 
@@ -2234,7 +2239,7 @@
       validIdTypeDisplay.textContent = "Not uploaded";
       applyBadge(validIdBadge, null, false);
     }
-    
+
     // Update Valid Certificate display
     if (profile.cert_url) {
       validCertImage.src = profile.cert_url;
