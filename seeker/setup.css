@@ -1226,11 +1226,11 @@ input[type="number"] {
 
     /* Header */
     .header-content h2 {
-        font-size: clamp(1.4rem, 7vw, 2rem);
+        font-size: 1.6rem;
     }
 
     .header-content h3 {
-        font-size: clamp(1rem, 5vw, 1.4rem);
+        font-size: 1.6rem;
     }
 
     /* Toggle */
@@ -1269,11 +1269,10 @@ input[type="number"] {
 
     /* Save button */
     .save-btn {
-        width: 100%;
-        max-width: 280px;
-        height: 54px;
-        font-size: clamp(1.1rem, 5vw, 1.5rem);
-        margin-top: 20px;
+        width: 160px;
+        height: 44px;
+        font-size: 1.1rem;
+        margin-top: 16px;
     }
 
     /* Modals — slide up from bottom on mobile */
