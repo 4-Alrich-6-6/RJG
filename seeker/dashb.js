@@ -2582,14 +2582,20 @@
         const d = normalizeJobDetailPayload(j);
         if (d.isOwnerView) return;
         if (!window.RJGDb || typeof window.RJGDb.toggleBookmark !== 'function') return;
+        const origText = bookmarkBtn.textContent;
+        bookmarkBtn.disabled = true;
+        bookmarkBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;"><span style="display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,0.4);border-top-color:currentColor;border-radius:50%;animation:app-confirm-spin 0.7s linear infinite;flex-shrink:0"></span>Please Wait</span>';
         let nowMarked = false;
         try {
           nowMarked = await window.RJGDb.toggleBookmark(String(j.id));
           await hydrateMyBookmarksFromDb();
         } catch (e) {
+          bookmarkBtn.disabled = false;
+          bookmarkBtn.textContent = origText;
           notify('Unable to update bookmark.', 'warn');
           return;
         }
+        bookmarkBtn.disabled = false;
         syncBookmarkButtonState(j);
         notify(nowMarked ? 'Saved to bookmarks.' : 'Removed from bookmarks.', nowMarked ? 'success' : 'info');
       });

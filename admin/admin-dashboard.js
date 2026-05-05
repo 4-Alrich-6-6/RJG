@@ -3919,6 +3919,14 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
       if (!job) return;
       const action = e.target.closest('[data-action]')?.dataset.action;
       if (action === 'review') {
+        const reviewBtn = e.target.closest('[data-action="review"]');
+        if (reviewBtn) {
+          reviewBtn.classList.add('loading');
+          const spinner = document.createElement('span');
+          spinner.className = 'admin-review-btn-spinner';
+          reviewBtn.insertBefore(spinner, reviewBtn.firstChild);
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Please Wait'; });
+        }
         if (reviewTitle) reviewTitle.textContent = 'Loading...';
         if (reviewBy) reviewBy.textContent = 'Loading...';
         if (reviewAgo) reviewAgo.textContent = 'Loading...';
@@ -3936,6 +3944,12 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
 
         const freshJob = await getFreshJobForReview(id, job);
         openReview(freshJob || job);
+        if (reviewBtn) {
+          reviewBtn.classList.remove('loading');
+          const sp = reviewBtn.querySelector('.admin-review-btn-spinner');
+          if (sp) sp.remove();
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Review Job'; });
+        }
         return;
       }
       if (action === 'restore') {
@@ -4033,7 +4047,21 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
       if (!user) return;
       const action = e.target.closest('[data-user-action]')?.dataset.userAction;
       if (action === 'review') {
-        openUserReview(user);
+        const reviewBtn = e.target.closest('[data-user-action="review"]');
+        if (reviewBtn) {
+          reviewBtn.classList.add('loading');
+          const spinner = document.createElement('span');
+          spinner.className = 'admin-review-btn-spinner';
+          reviewBtn.insertBefore(spinner, reviewBtn.firstChild);
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Please Wait'; });
+        }
+        await openUserReview(user);
+        if (reviewBtn) {
+          reviewBtn.classList.remove('loading');
+          const sp = reviewBtn.querySelector('.admin-review-btn-spinner');
+          if (sp) sp.remove();
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Review Info'; });
+        }
         return;
       }
       if (action === 'restore') {
@@ -4142,7 +4170,21 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
       if (!report) return;
       const action = e.target.closest('[data-report-action]')?.dataset.reportAction;
       if (action === 'review') {
+        const reviewBtn = e.target.closest('[data-report-action="review"]');
+        if (reviewBtn) {
+          reviewBtn.classList.add('loading');
+          const spinner = document.createElement('span');
+          spinner.className = 'admin-review-btn-spinner';
+          reviewBtn.insertBefore(spinner, reviewBtn.firstChild);
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Please Wait'; });
+        }
         openReportReview(report);
+        if (reviewBtn) {
+          reviewBtn.classList.remove('loading');
+          const sp = reviewBtn.querySelector('.admin-review-btn-spinner');
+          if (sp) sp.remove();
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Review Info'; });
+        }
         return;
       }
     });
@@ -4424,8 +4466,22 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
       if (!row) return;
       const action = e.target.closest('[data-verif-action]')?.dataset.verifAction;
       if (action === 'review') {
+        const reviewBtn = e.target.closest('[data-verif-action="review"]');
+        if (reviewBtn) {
+          reviewBtn.classList.add('loading');
+          const spinner = document.createElement('span');
+          spinner.className = 'admin-review-btn-spinner';
+          reviewBtn.insertBefore(spinner, reviewBtn.firstChild);
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Please Wait'; });
+        }
         const entry = verifDataset.find(v => v.userId === row.dataset.verifUserId);
         if (entry) openVerifReview(entry);
+        if (reviewBtn) {
+          reviewBtn.classList.remove('loading');
+          const sp = reviewBtn.querySelector('.admin-review-btn-spinner');
+          if (sp) sp.remove();
+          Array.from(reviewBtn.childNodes).filter(n => n.nodeType === 3).forEach(n => { n.textContent = 'Review Info'; });
+        }
       }
     });
   }

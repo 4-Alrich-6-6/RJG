@@ -307,39 +307,55 @@
 
   const listEl = document.getElementById('bookmarkList');
   if (listEl) {
-    listEl.addEventListener('click', function (e) {
-      const card = e.target.closest('.bookmark-card[data-bookmark-index]');
-      if (!card) return;
+    if (!document.getElementById('bmCardSpinStyle')) {
+      const st = document.createElement('style');
+      st.id = 'bmCardSpinStyle';
+      st.textContent = '@keyframes bm-card-spin{to{transform:rotate(360deg)}}';
+      document.head.appendChild(st);
+    }
+
+    function handleBookmarkCardActivate(card) {
       const idx = Number(card.dataset.bookmarkIndex);
+      card.style.position = 'relative';
+      const spinOverlay = document.createElement('div');
+      spinOverlay.className = 'bookmark-card-spin-overlay';
+      spinOverlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:7px;background:rgba(255,255,255,0.82);border-radius:inherit;z-index:10;font-family:Inter,sans-serif;font-size:14px;font-weight:600;color:#444;pointer-events:none';
+      const spinEl = document.createElement('span');
+      spinEl.style.cssText = 'display:inline-block;width:16px;height:16px;border:2px solid #ddd;border-top-color:#5b8c51;border-radius:50%;animation:bm-card-spin 0.7s linear infinite;flex-shrink:0';
+      const labelEl = document.createElement('span');
+      labelEl.textContent = 'Please Wait';
+      spinOverlay.appendChild(spinEl);
+      spinOverlay.appendChild(labelEl);
+      card.appendChild(spinOverlay);
+
       renderList().then(function () {
         const cards = Array.from(listEl.querySelectorAll('.bookmark-card[data-bookmark-index]'));
         const card2 = cards.find(function (c) { return Number(c.dataset.bookmarkIndex) === idx; });
         if (!card2) return;
-        // Re-load source list for correct entry mapping
         Promise.resolve()
           .then(function () {
             return window.RJGDb && typeof window.RJGDb.listBookmarks === 'function' ? window.RJGDb.listBookmarks() : [];
           })
           .then(async function (items2) {
             const entry = Array.isArray(items2) ? items2[idx] : null;
+            const ov = card2.querySelector('.bookmark-card-spin-overlay');
+            if (ov) ov.remove();
             if (entry) await openBookmarkModal(entry);
           });
       });
+    }
+
+    listEl.addEventListener('click', function (e) {
+      const card = e.target.closest('.bookmark-card[data-bookmark-index]');
+      if (!card) return;
+      handleBookmarkCardActivate(card);
     });
     listEl.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter' && e.key !== ' ') return;
       const card = e.target.closest('.bookmark-card[data-bookmark-index]');
       if (!card) return;
       e.preventDefault();
-      const idx = Number(card.dataset.bookmarkIndex);
-      Promise.resolve()
-        .then(function () {
-          return window.RJGDb && typeof window.RJGDb.listBookmarks === 'function' ? window.RJGDb.listBookmarks() : [];
-        })
-        .then(async function (items2) {
-          const entry = Array.isArray(items2) ? items2[idx] : null;
-          if (entry) await openBookmarkModal(entry);
-        });
+      handleBookmarkCardActivate(card);
     });
   }
 
