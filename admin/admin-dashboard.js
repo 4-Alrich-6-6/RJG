@@ -1991,7 +1991,10 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
       if (isRecruiter) {
         console.log('DEBUG: Entering recruiter validation logic');
         // Recruiter validation: Company name, contact, address, profile links
-        const companyField = userEditFirstName;
+        const recruiterCompanySection = document.getElementById('adminUserEditCompanySection');
+        const companyField = recruiterCompanySection ?
+          recruiterCompanySection.querySelector('#adminUserEditFirstName') :
+          userEditFirstName;
         console.log('DEBUG: Company name field element:', companyField);
         console.log('DEBUG: Company name field value (raw):', companyField?.value);
         const companyName = companyField?.value.trim();
