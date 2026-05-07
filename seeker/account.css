@@ -40,9 +40,9 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 28px 32px 32px;
-  border: 1px solid rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
-  background: #fff;
+  background: #E2E6FF;
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.06),
     0 12px 28px -6px rgba(0, 0, 0, 0.1);
@@ -95,6 +95,11 @@
 
 .account-label::after {
   content: ":";
+}
+
+.profile-edit-btn {
+  background: #3775F0;
+  color: #fff;
 }
 
 .account-row .profile-edit-btn--inline {

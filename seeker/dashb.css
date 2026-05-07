@@ -202,7 +202,8 @@ body {
 }
 
 .nav-item.active {
-    background: #fff;
+    background: #3775F0;
+    color: #fff;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 

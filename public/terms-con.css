@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 36px 18px;
     min-height: 100vh;
-    background: #E2E6FF;
+    background: #fff;
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: #111;
 }
@@ -41,8 +41,8 @@ body {
 .container {
     width: min(920px, 100%);
     margin: 0 auto;
-    background: #FFFFFF;
-    border: 1px solid #E5E5E5;
+    background: #E2E6FF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     padding: 28px 30px 32px;

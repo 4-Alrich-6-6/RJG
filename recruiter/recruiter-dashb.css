@@ -348,7 +348,7 @@
 
 .jp-pagination-buttons .pagination-btn {
   padding: 6px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #e0e0e0;
   border-radius: 6px;
   background: #fff;
   color: #333;
@@ -371,13 +371,21 @@
   color: #999;
 }
 
+.jp-post-btn {
+  background: #E2E6FF;
+}
+
+.jp-post-icon {
+  background: #E2E6FF;
+}
+
 @media (max-width: 768px) {
     #view-posting .jp-post-btn {
         position: fixed;
         bottom: 80px;
         right: 24px;
         z-index: 999;
-        background: #3775F0;
+        background: #E2E6FF;
         border-radius: 50%;
         width: 56px;
         height: 56px;

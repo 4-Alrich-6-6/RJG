@@ -6,7 +6,7 @@ body {
     margin: 0;
     min-height: 100vh;
     min-height: 100dvh;
-    background-color: #E2E6FF;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,8 +114,8 @@ body {
     gap: 8px;
     padding: 22px 18px 20px;
     border-radius: 15px;
-    background: var(--Main3, #FFFFFF);
-    border: 1px solid var(--Border, #3775F0);
+    background: var(--Main3, #E2E6FF);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     width: 100%;
     height: auto;
     min-height: 430px;

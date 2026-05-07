@@ -55,7 +55,7 @@
       } catch (error) {
         const errorMessage = error && error.message ? error.message.toLowerCase() : "";
         if (errorMessage.includes("rate limit") || errorMessage.includes("over_email_send_rate_limit") || errorMessage.includes("too many requests")) {
-          notify("The rate limit for email sending is currently reached. Please wait for an hour and try again.", "info");
+          notify("The rate limit for email sending is currently reached. Please wait for a moment and try again.", "info");
         } else {
           const msg = (window.RJGErrorHandler && window.RJGErrorHandler.getUserFriendlyMessage(error, "Failed to resend code. Please try again.")) || "Failed to resend code. Please try again.";
           notify(msg, "error");

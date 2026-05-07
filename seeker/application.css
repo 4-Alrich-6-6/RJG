@@ -59,7 +59,7 @@
     justify-content: space-between;
     gap: 16px;
     padding: 16px 18px;
-    background: #fff;
+    background: #e2e6ff;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 14px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
@@ -237,7 +237,7 @@
     width: min(720px, 100%);
     max-width: 100%;
     margin: 0 auto;
-    background: #fff;
+    background: #e2e6ff;
     color: #1a1a1a;
     border-radius: 16px;
     border: 1px solid rgba(0, 0, 0, 0.1);

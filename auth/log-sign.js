@@ -209,7 +209,7 @@ function validateLoginForm() {
                 loginPassword.classList.add("input-error");
                 focusField = loginEmail;
             } else if (errStr.includes("email not confirmed") || errStr.includes("email_not_confirmed")) {
-                msg = "Your email is not yet verified. Please check your inbox for the verification link.";
+                msg = "This email hasn't completed the OTP verification process. Please try signing up again.";
                 loginEmail.classList.add("input-error");
                 focusField = loginEmail;
             } else if (errStr.includes("too many requests") || errStr.includes("rate_limit")) {

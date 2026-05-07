@@ -65,7 +65,7 @@
   height: 32px;
   border-radius: 50%;
   border: 2px solid #fff;
-  background: #fff;
+  background: #E2E6FF;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -126,7 +126,7 @@
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: #fff;
+  background: #E2E6FF;
   color: #fff;
   cursor: pointer;
   display: inline-flex;
@@ -137,6 +137,9 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+.profile-edit-btn:hover {
+  background: #3775F0;
+}
 .profile-edit-icon {
   width: 16px;
   height: 16px;

@@ -3,8 +3,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
---sidebar-bg: #5B9DEE;
---main-bg: #E2E6FF;
+--sidebar-bg: #E2E6FF;
+--main-bg: #fff;
 --card-bg: #E0DDD8;
 --text-dark: #1a1a1a;
 --text-muted: #555;
@@ -26,6 +26,7 @@ overflow-x: hidden;
 width: var(--sidebar-w);
 min-height: 100vh;
 background: var(--sidebar-bg);
+border-right: 1px solid rgba(0, 0, 0, 0.08);
 display: flex;
 flex-direction: column;
 padding: 28px 20px;
@@ -206,7 +207,6 @@ flex: 1;
 }
 
 .nav-item {
-color: #fff;
 
 /* Side Nav */
 font-family: Inter, sans-serif;
@@ -216,7 +216,7 @@ font-weight: 800;
 line-height: normal;
 text-align: center;
 text-transform: uppercase;
-color: #fff;
+color: #000;
 padding: 10px 14px;
 border-radius: 10px;
 cursor: pointer;
@@ -226,12 +226,12 @@ display: block;
 }
 .nav-item:hover { background: rgba(0,0,0,0.08); }
 .nav-item.active {
-background: #fff;
-color: var(--text-dark);
+background: #3775F0;
+color: #fff;
 }
 
 .logout {
-color: #fff;
+color: #000;
 
 /* Logout */
 font-family: Inter, sans-serif;
@@ -722,8 +722,8 @@ grid-template-columns: minmax(0, 1fr) auto;
 grid-template-areas:
 "top logout";
 row-gap: 0;
+border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 z-index: 400;
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .sidebar-top {
@@ -935,7 +935,7 @@ body.job-detail-open .logout {
   bottom: 0;
   left: var(--sidebar-w);
   z-index: 350;
-  background: #E2E6FF;
+  background: #fff;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
