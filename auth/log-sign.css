@@ -115,7 +115,7 @@ body {
     padding: 22px 18px 20px;
     border-radius: 15px;
     background: var(--Main3, #FFFFFF);
-    border: 1px solid var(--Border, #E5e5e5);
+    border: 1px solid var(--Border, #3775F0);
     width: 100%;
     height: auto;
     min-height: 430px;

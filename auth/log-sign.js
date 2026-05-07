@@ -47,7 +47,7 @@ function switchTab(tab) {
     loginForm.style.display = isLogin ? "flex" : "none";
     signupForm.style.display = isLogin ? "none" : "flex";
     if (loginTab) loginTab.textContent = isLogin ? "LOGIN" : "Already have an Account?";
-    if (signupTab) signupTab.textContent = isLogin ? "Create an Account" : "SIGNUP";
+    if (signupTab) signupTab.textContent = isLogin ? "Create an Account" : "SIGN-UP";
     if (isLogin) validateLoginForm();
     else validateSignupForm();
 }

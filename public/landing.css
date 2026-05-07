@@ -399,11 +399,20 @@ nav {
 }
 
 .nav-brand-name {
-    font-size: 11px;
+    font-size: 13px;
+    text-align: center;
 }
 
 .nav-brand-sub {
-    font-size: 7px;
+    font-size:5px;
+}
+
+.nav-links {
+    gap: 10px;
+}
+
+.nav-links a {
+    font-size: 9px;
 }
 
 .hero-content {
