@@ -165,9 +165,9 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 3px 10px rgba(91, 140, 81, 0.45);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
 }
-
 #view-posting .jp-post-icon-img {
     width: 30px;
     height: 30px;

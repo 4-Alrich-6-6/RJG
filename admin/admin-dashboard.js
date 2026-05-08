@@ -2542,7 +2542,7 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
   if (adminUserResendOtpBtn) {
     adminUserResendOtpBtn.addEventListener('click', async () => {
       try {
-        if (window.showAppToast) window.showAppToast('Verification code sent', 'info');
+        if (window.showAppToast) window.showAppToast('Verification code sent. Please check all folders including spam.', 'info');
         adminUserResendOtpBtn.disabled = true;
         setTimeout(() => {
           adminUserResendOtpBtn.disabled = false;

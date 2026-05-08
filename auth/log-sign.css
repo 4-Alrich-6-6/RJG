@@ -119,6 +119,7 @@ body {
     width: 100%;
     height: auto;
     min-height: 430px;
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .form-content {
@@ -356,12 +357,16 @@ body {
     font-weight: 700;
     line-height: normal;
     cursor: pointer;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
 }
 
 .submit:hover {
-    opacity: 0.9;
+    background: var(--blue-dark);
+    transform: translateY(5px);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+    border: solid 2px #fff;
+    color: #000;
 }
 
 .submit:active {

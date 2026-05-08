@@ -310,7 +310,7 @@ function validateSignupForm() {
             };
             sessionStorage.setItem("pendingSignupEmail", emailValue);
             sessionStorage.setItem("pendingSignupAccountData", JSON.stringify(pendingSignupAccountData));
-            notify("Verification code sent to your email.", "success");
+            notify("Verification code sent to your email. Please check all folders including spam.", "success");
             window.location.href = "../auth/signverf.html";
         } catch (error) {
             console.error("[RJG signup error]", error);

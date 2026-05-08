@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 30px 20px;
     min-height: 100vh;
-    background-color: #E2E6FF;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;    
@@ -117,10 +117,11 @@ body {
 .setup-card {
     width: 742px;
     max-width: 100%;
-    background: #FFFFFF;
+    background: #E2E6FF;
     border-radius: 15px;
     border: 1px solid #E5E5E5;
-    padding: 9px 51px;
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
+    padding: 22px 51px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -622,7 +623,7 @@ body {
     font-size: 32px;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
     gap: 10px;
     padding: 0;
@@ -636,6 +637,12 @@ body {
 
 .save-btn:hover {
     opacity: 0.9;
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.12);
+    border: solid 2px #fff;
+    color: #000;
+    background: #E2E6FF;
+
 }
 
 /* MODAL STYLES */

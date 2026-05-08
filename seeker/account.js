@@ -178,7 +178,7 @@
         if (window.securityFeedback) {
           await window.securityFeedback.showFeedback('send_otp', 'success');
         } else {
-          notify(`OTP sent successfully to ${email}. Please check your inbox.`, "success");
+          notify(`OTP sent successfully to ${email}. Please check all folders including spam.`, "success");
         }
         return true;
       }

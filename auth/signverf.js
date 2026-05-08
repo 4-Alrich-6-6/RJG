@@ -185,7 +185,7 @@ resendLink.addEventListener('click', (e) => {
       .then(function () {
         console.log('[RJG resend signup OTP] OTP resent successfully to:', pendingEmail);
         if (window.showAppToast) {
-            window.showAppToast('Verification code sent! Please check your email.', 'success');
+            window.showAppToast('Verification code sent! Please check all folders including spam.', 'success');
         } else {
             console.log('OTP resent successfully to:', pendingEmail);
         }

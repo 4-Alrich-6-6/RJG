@@ -208,7 +208,7 @@
         if (ok) {
           if (raOtpText) raOtpText.textContent = `A code was sent to ${email}. Enter it below.`;
           raSendOtpBtn.textContent = "OTP Sent";
-          notify(`OTP sent to ${email}.`, "success");
+          notify(`OTP sent to ${email}. Please check all folders including spam.`, "success");
         } else {
           raSendOtpBtn.disabled = false; raSendOtpBtn.textContent = "Send OTP";
         }

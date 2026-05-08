@@ -46,7 +46,7 @@
 }
 
 body {
-background: #E2E6FF;
+background: #fff;
 min-height: 100vh;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -157,7 +157,9 @@ overflow: hidden;
 position: relative;
 z-index: 2;
 max-width: 5000px;
-padding: 100px 0px 100px 100px;
+padding: 100px 300px 100px 100px;
+background: #E2E6FFBF;
+border-bottom: solid rgba(0, 0, 0, 0.08);
 }
 
 .hero-content h1 {
@@ -210,18 +212,26 @@ line-height: normal;
 text-decoration: none;
 white-space: nowrap;
 transition: all 0.2s ease;
-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .cta-btn:hover {
 background: var(--blue-dark);
-transform: translateY(-1px);
-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+transform: translateY(5px);
+box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.12);
+border: solid 2px #fff;
 }
 
 .cta-btn:focus {
 outline: 2px solid var(--blue-primary);
 outline-offset: 2px;
+animation: wave 1.5s linear infinite;
+}
+
+@keyframes wave {
+  0% { box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.12); }
+  50% { box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.12); }
+  100% { box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.12); }
 }
 
 .cta-btn:hover {
@@ -241,6 +251,11 @@ width: 350px;
 display: flex;
 flex-direction: column;
 gap: 12px;
+padding: 20px 20px 20px 20px;
+border-radius: 12px;
+background: #E2E6FF;
+border: solid rgba(0, 0, 0, 0.08);
+box-shadow: 0 12px 0px rgba(0, 0, 0, 0.12);
 }
 
 .feature-header {
@@ -324,22 +339,22 @@ nav {
 .hero-content {
     padding: 36px 24px 24px;
     max-width: 100%;
-    text-align: center;
 }
 
 .hero-content h1 {
     font-size: 32px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .hero-content h2 {
     font-size: 18px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .hero-text-button-container {
     flex-direction: column;
-    align-items: center;
     gap: 24px;
     margin-bottom: 1.5rem;
 }
@@ -348,7 +363,7 @@ nav {
     font-size: 14px;
     line-height: 22px;
     max-width: 100%;
-    text-align: center;
+    text-align: justify;
 }
 
 .cta-btn {

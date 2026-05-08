@@ -19,17 +19,20 @@ body {
     height: 48px;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
-    background: #fff;
+    background: #E2E6FF;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
     z-index: 1000;
 }
 
 .terms-back-btn:hover {
     background: #f8f8f8;
+    transform: translateY(5px);
+    border: solid 2px #1f5fbf;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
 }
 
 .terms-back-icon {
@@ -44,7 +47,7 @@ body {
     background: #E2E6FF;
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
     padding: 28px 30px 32px;
 }
 
@@ -68,7 +71,7 @@ body {
 .banner-title h3 {
     margin: 0;
     font-family: Montserrat, sans-serif;
-    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
 }
@@ -79,6 +82,10 @@ body {
     font-size: clamp(0.7rem, 1.5vw, 0.86rem);
     font-weight: 700;
     line-height: 1.2;
+}
+
+.content {
+    text-align: justify
 }
 
 h1 {

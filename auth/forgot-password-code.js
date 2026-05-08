@@ -50,7 +50,7 @@
         if (window.RJGDb && typeof window.RJGDb.sendPasswordResetOtp === "function") {
           await window.RJGDb.sendPasswordResetOtp(resetEmail);
         }
-        notify("Verification code resent. Check your email.", "success");
+        notify("Verification code resent. Check your email. Please check all folders including spam.", "success");
         startCountdown(60);
       } catch (error) {
         const errorMessage = error && error.message ? error.message.toLowerCase() : "";

@@ -688,7 +688,8 @@ body {
 }
 
 .admin-dashboard-nav-item.is-active {
-  background: #fff;
+  background: #3775F0;
+  color: #fff;
 }
 
 .admin-dashboard-main {
@@ -768,10 +769,10 @@ body {
 }
 
 .admin-dashboard-job-row {
-  background: #fff;
+  background: #E2E6FF;
   border: 1px solid #d9d9d9;
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 5px 0px rgba(0, 0, 0, 0.12);
   display: grid;
   grid-template-columns: 1.5fr 1.2fr 0.8fr 1fr;
   gap: 8px;

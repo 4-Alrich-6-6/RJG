@@ -142,6 +142,7 @@ body {
     background: #E2E6FF;
     border-radius: 15px;
     border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
     padding: 22px 18px 20px;
     box-sizing: border-box;
     display: flex;
@@ -164,6 +165,7 @@ body {
     font-family: Montserrat, sans-serif;
     font-size: 20px;
     font-weight: 700;
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 10px;
@@ -171,7 +173,11 @@ body {
 
 .return-btn:hover {
     opacity: 0.9;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+    transform: translateY(5px);
+    border: solid 2px #fff;
+    color: #000;
+    background: #E2E6FF;
 }
 
 .return-btn:active {
@@ -242,7 +248,7 @@ body {
     height: 91px;
     background: #3775F0;
     border-radius: 15px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
     border: none;
     cursor: pointer;
     font-family: Montserrat, sans-serif;
@@ -255,6 +261,11 @@ body {
 
 .submit-btn:hover {
     opacity: 0.9;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+    transform: translateY(5px);
+    border: solid 2px #fff;
+    color: #000;
+    background: #E2E6FF;
 }
 
 .submit-btn:active {

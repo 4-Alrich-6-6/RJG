@@ -39,13 +39,21 @@
       enterBtn.disabled = true;
       
       try {
+        // Check if email belongs to an admin user
+        if (window.RJGDb && typeof window.RJGDb.checkIfEmailIsAdmin === "function") {
+          const isAdmin = await window.RJGDb.checkIfEmailIsAdmin(email);
+          if (isAdmin) {
+            throw new Error("invalid email");
+          }
+        }
+        
         // Send the reset code directly - if email doesn't exist, the sendPasswordResetOtp function will handle it
         console.log('DEBUG: Sending password reset OTP to:', email);
         if (window.RJGDb && typeof window.RJGDb.sendPasswordResetOtp === "function") {
           await window.RJGDb.sendPasswordResetOtp(email);
         }
         sessionStorage.setItem("passwordResetEmail", email);
-        notify("Verification code sent.", "success");
+        notify("Verification code sent. Please check all folders including spam.", "success");
         window.location.href = "../auth/forgot-password-code.html";
       } catch (error) {
         // Check if the error indicates that the email doesn't exist

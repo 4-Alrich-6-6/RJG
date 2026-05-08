@@ -377,6 +377,14 @@
 
 .jp-post-icon {
   background: #E2E6FF;
+  box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.jp-post-icon:hover {
+  background: #3b82f6;
+  transform: translateY(5px);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
+  border: solid 2px #fff;
 }
 
 @media (max-width: 768px) {
