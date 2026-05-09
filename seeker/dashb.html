@@ -44,6 +44,8 @@
                         <a href="../seeker/application.html" class="header-menu-item" role="menuitem">My Applications</a>
                         <a href="../seeker/bookmark.html" class="header-menu-item" role="menuitem">Bookmarks</a>
                         <a href="../public/notifications.html" class="header-menu-item" role="menuitem">Notifications</a>
+                        <a href="../public/about-us.html" class="header-menu-item" role="menuitem">About Us</a>
+                        <button type="button" class="header-menu-item" role="menuitem" id="headerMenuLogoutBtn">Log out</button>
                     </div>
                 </div>
             </div>
@@ -81,6 +83,7 @@
                         <span class="see-more">See more</span>
                     </div>
                 <div class="cards-grid" id="grid-now"></div>
+                <p class="section-empty" id="empty-now" hidden>No jobs available right now.</p>
             </section>
 
             <!-- Section: Newly Posted -->
@@ -90,6 +93,7 @@
                         <span class="see-more">See more</span>
                     </div>
                 <div class="cards-grid" id="grid-new"></div>
+                <p class="section-empty" id="empty-new" hidden>No recently posted jobs.</p>
             </section>
 
             <!-- Section: Urgent Jobs -->
@@ -99,6 +103,7 @@
                     <span class="see-more">See more</span>
                 </div>
                 <div class="cards-grid" id="grid-urgent"></div>
+                <p class="section-empty" id="empty-urgent" hidden>No urgent jobs available.</p>
             </section>
 
             </main>

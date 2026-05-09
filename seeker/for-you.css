@@ -113,7 +113,6 @@
     background: #fff;
     cursor: pointer;
     min-width: 0;
-    box-shadow: 4px 5px 0 #000, 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 #view-for-you .fy-select-wrap::after {

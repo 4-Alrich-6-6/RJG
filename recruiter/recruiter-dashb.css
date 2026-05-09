@@ -85,6 +85,45 @@
     font-size: 13px !important;
     padding: 12px 16px !important;
   }
+
+  /* Mobile header fixes - same as seeker side */
+  body.recruiter-page .sidebar {
+    min-height: 60px !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  body.recruiter-page .logo-link {
+    display: none !important;
+  }
+
+  body.recruiter-page .header-menu {
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  body.recruiter-page .sidebar-back-btn {
+    display: none !important;
+  }
+
+  body.recruiter-page.job-detail-open .sidebar-back-btn {
+    display: flex !important;
+  }
+
+  body.recruiter-page .logout {
+    display: none !important;
+  }
+
+  /* Update recruiter mobile spacing to match seeker */
+  :root {
+    --mobile-header-top: 60px;
+    --mobile-search-header: 50px;
+    --mobile-bottom-nav: 72px;
+  }
 }
 
 /* Animation variants for different feedback types */
@@ -372,19 +411,26 @@
 }
 
 .jp-post-btn {
-  background: #E2E6FF;
-}
-
-.jp-post-icon {
-  background: #E2E6FF;
-  box-shadow: 0 10px 0px rgba(0, 0, 0, 0.12);
+  background: #3775F0;
 }
 
 .jp-post-icon:hover {
   background: #3b82f6;
-  transform: translateY(5px);
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.12);
-  border: solid 2px #fff;
+}
+
+/* Loading state for job open/close toggle */
+.job-detail-open-toggle.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.job-detail-open-toggle.loading .job-detail-open-toggle-knob {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(2px); }
 }
 
 @media (max-width: 768px) {
@@ -393,7 +439,7 @@
         bottom: 80px;
         right: 24px;
         z-index: 999;
-        background: #E2E6FF;
+        background: #3775F0;
         border-radius: 50%;
         width: 56px;
         height: 56px;
@@ -401,6 +447,10 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    #view-posting .jp-post-btn:hover {
+        background: #e2e6ff;
     }
 
     #view-posting .jp-post-icon {

@@ -481,6 +481,11 @@
       if (!currentEditJobId || !window.RJGDb) return;
       const current = jobDetailOpenToggle.getAttribute("aria-checked") === "true";
       const next = !current;
+      
+      // Add loading state
+      jobDetailOpenToggle.classList.add("loading");
+      jobDetailOpenToggle.disabled = true;
+      
       try {
         const job = postedJobs.find(function (j) { return String(j.id) === String(currentEditJobId); });
         if (job) job.listingOpen = next;
@@ -490,7 +495,10 @@
       } catch (e) {
         const availMsg = (window.RJGErrorHandler && window.RJGErrorHandler.getUserFriendlyMessage(e, "Unable to update job availability. Please try again.")) || "Unable to update job availability. Please try again.";
         notify(availMsg, "error");
-        await loadPostedJobs();
+      } finally {
+        // Remove loading state
+        jobDetailOpenToggle.classList.remove("loading");
+        jobDetailOpenToggle.disabled = false;
       }
     });
   }

@@ -170,7 +170,20 @@
   function renderGrid(id, data) {
     const grid = document.getElementById(id);
     if (!grid) return;
-    grid.innerHTML = data.map(makeCard).join('');
+    
+    // Get the corresponding empty state element
+    const emptyId = id.replace('grid-', 'empty-');
+    const emptyEl = document.getElementById(emptyId);
+    
+    if (!Array.isArray(data) || data.length === 0) {
+      // Show empty state
+      grid.innerHTML = '';
+      if (emptyEl) emptyEl.hidden = false;
+    } else {
+      // Hide empty state and render cards
+      grid.innerHTML = data.map(makeCard).join('');
+      if (emptyEl) emptyEl.hidden = true;
+    }
   }
 
   function applyListingFilters(data, query) {

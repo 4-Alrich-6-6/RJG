@@ -83,6 +83,41 @@ body {
     font-size: 13px !important;
     padding: 12px 16px !important;
   }
+
+  /* Mobile header fixes - same as seeker/recruiter side */
+  .admin-dashboard-sidebar {
+    min-height: 60px !important;
+    padding: 12px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  .admin-dashboard-sidebar .logo-link {
+    display: none !important;
+  }
+
+  .admin-dashboard-sidebar .header-menu {
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .admin-dashboard-sidebar .sidebar-back-btn {
+    display: none !important;
+  }
+
+  .admin-dashboard-sidebar .logout {
+    display: none !important;
+  }
+
+  /* Update admin mobile spacing to match seeker */
+  :root {
+    --mobile-header-top: 60px;
+    --mobile-search-header: 50px;
+    --mobile-bottom-nav: 72px;
+  }
 }
 
 /* Animation variants for different feedback types */
