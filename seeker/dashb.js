@@ -381,21 +381,6 @@
   window.applyFilters = applyFilters;
   window.resetFilters = resetFilters;
 
-  const forYouJobs = [
-    { title: 'UX Researcher', company: 'DesignLab', location: 'Makati', schedule: 'Contract', skillTags: ['UI/UX Design', 'Communication and Teamwork'], workTags: ['designer', 'ux'] },
-    { title: 'Content Writer', company: 'MediaHouse', location: 'Remote', schedule: 'Part-time', skillTags: ['Writing', 'Content Creation'], workTags: ['writer', 'content'] },
-    { title: 'HR Specialist', company: 'PeopleFirst', location: 'BGC', schedule: 'Full-time', skillTags: ['Communication and Teamwork', 'Documentation'], workTags: ['hr', 'recruiter'] },
-    { title: 'QA Engineer', company: 'ShipRight', location: 'Cebu', schedule: 'Full-time', skillTags: ['Critical Thinking', 'Basic Programming'], workTags: ['qa', 'engineer'] },
-    { title: 'Graphic Designer', company: 'StudioNorth', location: 'QC', schedule: 'Contract', skillTags: ['Graphic Design', 'Illustration / Drawing'], workTags: ['designer'] },
-    { title: 'Sales Associate', company: 'RetailCo', location: 'Manila', schedule: 'Full-time', skillTags: ['Sales', 'Communication and Teamwork'], workTags: ['sales'] },
-    { title: 'IT Support', company: 'HelpStack', location: 'Ortigas', schedule: 'Full-time', skillTags: ['Customer Support', 'Troubleshooting'], workTags: ['it support', 'technician'] },
-    { title: 'Social Media Manager', company: 'BuzzAgency', location: 'Remote', schedule: 'Contract', skillTags: ['Social Media Management', 'Content Creation'], workTags: ['social', 'marketing'] },
-    { title: 'Warehouse Lead', company: 'LogiFlow', location: 'Laguna', schedule: 'Full-time', skillTags: ['Delivery / Logistics', 'Heavy Lifting and Carrying'], workTags: ['warehouse', 'logistics'] },
-    { title: 'Barista', company: 'BrewDaily', location: 'Taguig', schedule: 'Part-time', skillTags: ['Customer Support', 'Physical Stamina/Endurance'], workTags: ['barista', 'service'] },
-    { title: 'Bookkeeper', company: 'LedgerPH', location: 'Remote', schedule: 'Part-time', skillTags: ['Documentation', 'Data Entry'], workTags: ['bookkeeper', 'accountant'] },
-    { title: 'Field Technician', company: 'NetFix', location: 'Cavite', schedule: 'Contract', skillTags: ['Driving', 'Physical Stamina/Endurance'], workTags: ['technician', 'field'] }
-  ];
-
   function getStoredJSON(key, fallback) {
     try {
       const raw = localStorage.getItem(key);
@@ -1034,16 +1019,13 @@
   const cancelSkillsBtn = document.getElementById('jpCancelSkillsBtn');
 
   const setupSkillOptions = [
-    'Communication and Teamwork', 'Problem Solving', 'Time Management', 'Adaptability',
-    'Leadership', 'Critical Thinking', 'Microsoft Office (Word, Excel, PowerPoint)',
-    'Data Entry', 'Basic Programming', 'Web Development', 'Graphic Design',
-    'Video Editing', 'UI/UX Design', 'Email Management', 'Scheduling',
-    'Documentation', 'Customer Support', 'File Organization', 'Writing',
-    'Photography', 'Illustration / Drawing', 'Content Creation', 'Social Media Management',
-    'Cleaning', 'Cooking / Food Preparation', 'Driving', 'Delivery / Logistics',
-    'Construction / Manual Labor', 'Heavy Lifting and Carrying', 'Physical Stamina/Endurance',
-    'Tutoring / Teaching', 'Baby / Pet Sitting',
-    'Sales', 'Marketing', 'Translation', 'Event Planning'
+    "Communication and Teamwork","Problem Solving","Time Management","Adaptability","Leadership",
+    "Critical Thinking","Microsoft Office (Word, Excel, PowerPoint)","Data Entry","Basic Programming","Web Development",
+    "Graphic Design","Video Editing","UI/UX Design","Email Management","Scheduling",
+    "Documentation","Customer Support","File Management","Writing","Photography",
+    "Illustration / Drawing","Content Creation","Social Media Management","Cleaning","Cooking / Food Preparation",
+    "Driving","Delivery / Logistics","Construction / Manual Labor","Heavy Lifting and Carrying", "Physical Stamina/Endurance",
+    "Tutoring / Teaching","Baby / Pet Sitting","Sales","Marketing","Translation","Event Planning"
   ];
 
   const postFormState = {

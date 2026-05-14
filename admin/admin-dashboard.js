@@ -3257,16 +3257,13 @@ const reportRefreshBtn = document.getElementById('adminReportRefreshBtn');
   // Skills Modal Functions
   // Same skills used by recruiters (dashb.js setupSkillOptions)
   const SKILL_OPTIONS = [
-    'Communication and Teamwork', 'Problem Solving', 'Time Management', 'Adaptability',
-    'Leadership', 'Critical Thinking', 'Microsoft Office (Word, Excel, PowerPoint)',
-    'Data Entry', 'Basic Programming', 'Web Development', 'Graphic Design',
-    'Video Editing', 'UI/UX Design', 'Email Management', 'Scheduling',
-    'Documentation', 'Customer Support', 'File Organization', 'Writing',
-    'Photography', 'Illustration / Drawing', 'Content Creation', 'Social Media Management',
-    'Cleaning', 'Cooking / Food Preparation', 'Driving', 'Delivery / Logistics',
-    'Construction / Manual Labor', 'Heavy Lifting and Carrying', 'Physical Stamina/Endurance',
-    'Tutoring / Teaching', 'Baby / Pet Sitting',
-    'Sales', 'Marketing', 'Translation', 'Event Planning'
+    "Communication and Teamwork","Problem Solving","Time Management","Adaptability","Leadership",
+    "Critical Thinking","Microsoft Office (Word, Excel, PowerPoint)","Data Entry","Basic Programming","Web Development",
+    "Graphic Design","Video Editing","UI/UX Design","Email Management","Scheduling",
+    "Documentation","Customer Support","File Management","Writing","Photography",
+    "Illustration / Drawing","Content Creation","Social Media Management","Cleaning","Cooking / Food Preparation",
+    "Driving","Delivery / Logistics","Construction / Manual Labor","Heavy Lifting and Carrying", "Physical Stamina/Endurance",
+    "Tutoring / Teaching","Baby / Pet Sitting","Sales","Marketing","Translation","Event Planning"
   ];
 
   function openJobSkillsModal() {

@@ -832,10 +832,12 @@
   const jpSkillsList = document.getElementById("jpSkillsList");
   const SKILLS = [
     "Communication and Teamwork","Problem Solving","Time Management","Adaptability","Leadership",
-    "Critical Thinking","Microsoft Office","Data Entry","Basic Programming","Web Development",
-    "Graphic Design","Video Editing","UI/UX Design","Customer Support","Writing",
-    "Photography","Content Creation","Social Media Management","Cleaning","Cooking / Food Preparation",
-    "Driving","Delivery / Logistics","Construction / Manual Labor","Tutoring / Teaching","Sales","Marketing"
+    "Critical Thinking","Microsoft Office (Word, Excel, PowerPoint)","Data Entry","Basic Programming","Web Development",
+    "Graphic Design","Video Editing","UI/UX Design","Email Management","Scheduling",
+    "Documentation","Customer Support","File Management","Writing","Photography",
+    "Illustration / Drawing","Content Creation","Social Media Management","Cleaning","Cooking / Food Preparation",
+    "Driving","Delivery / Logistics","Construction / Manual Labor","Heavy Lifting and Carrying", "Physical Stamina/Endurance",
+    "Tutoring / Teaching","Baby / Pet Sitting","Sales","Marketing","Translation","Event Planning"
   ];
 
   function buildSkillsList() {
