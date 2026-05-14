@@ -60,6 +60,7 @@ body {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .logo {
@@ -68,15 +69,15 @@ body {
     object-fit: contain;
 }
 
-.banner-title h3 {
+.title h1 {
     margin: 0;
     font-family: Montserrat, sans-serif;
-    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-size: 28px;
     font-weight: 700;
     line-height: 1.2;
 }
 
-.banner-title p {
+.title p {
     margin: 2px 0 0;
     font-family: Montserrat, sans-serif;
     font-size: clamp(0.7rem, 1.5vw, 0.86rem);
