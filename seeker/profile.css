@@ -23,11 +23,14 @@
   display: none !important;
 }
 
+
+
 /* Back control uses shared .menu-btn; icon size */
 .profile-page .profile-back-btn .profile-back-icon {
   width: 35px;
   height: 35px;
   color: var(--text-dark);
+  
 }
 
 /* ── Main content ── */
@@ -573,6 +576,13 @@
 
   .profile-hero {
     padding: 16px 12px;
+    text-align: center;
+  }
+
+  .profile-page .profile-back-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
   }
 
   .profile-avatar-row {

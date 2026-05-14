@@ -148,13 +148,23 @@
     };
   }
 
-  function makeCard(job) {
+  async function makeCard(job) {
     const payload = encodeURIComponent(
       JSON.stringify({ ...job, _moreSource: 'listing' })
     );
-    const imageSrc = escapeHtml(String(job.image || job.imageUrl || job.jobImage || '').trim());
+    // Get fresh signed URL from path to handle expired tokens
+    let imageSrc = '';
+    if (job.image || job.imageUrl || job.jobImage) {
+      try {
+        imageSrc = await window.RJGDb.getJobImageUrl(job.image || job.imageUrl || job.jobImage);
+      } catch (e) {
+        console.warn('Failed to get fresh image URL:', e);
+        imageSrc = escapeHtml(String(job.image || job.imageUrl || job.jobImage || '').trim());
+      }
+    }
     const thumbMarkup = imageSrc
-      ? `<img src="${imageSrc}" alt="" class="job-thumb-img" loading="lazy">`
+      ? `<img src="${imageSrc}" alt="" class="job-thumb-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+         <span class="job-thumb-no-image" style="display:none;">No Image</span>`
       : `<span class="job-thumb-no-image">No Image</span>`;
     const isArchived = job.accountStatus === 'archived';
     const archivedClass = isArchived ? ' job-archived' : '';
@@ -167,7 +177,7 @@
       </div>`;
   }
 
-  function renderGrid(id, data) {
+  async function renderGrid(id, data) {
     const grid = document.getElementById(id);
     if (!grid) return;
     
@@ -180,8 +190,9 @@
       grid.innerHTML = '';
       if (emptyEl) emptyEl.hidden = false;
     } else {
-      // Hide empty state and render cards
-      grid.innerHTML = data.map(makeCard).join('');
+      // Hide empty state and render cards (async)
+      const cards = await Promise.all(data.map(job => makeCard(job)));
+      grid.innerHTML = cards.join('');
       if (emptyEl) emptyEl.hidden = true;
     }
   }
@@ -206,14 +217,14 @@
     });
   }
 
-  function renderListings() {
+  async function renderListings() {
     const q = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
     const visibleNow = applyListingFilters(getSectionJobs('now'), q).filter(job => !isJobReportedForCurrentUser(job));
     const visibleNew = applyListingFilters(getSectionJobs('new'), q).filter(job => !isJobReportedForCurrentUser(job));
     const visibleUrgent = applyListingFilters(getSectionJobs('urgent'), q).filter(job => !isJobReportedForCurrentUser(job));
-    renderGrid('grid-now', visibleNow.slice(0, 4));
-    renderGrid('grid-new', visibleNew.slice(0, 4));
-    renderGrid('grid-urgent', visibleUrgent.slice(0, 4));
+    await renderGrid('grid-now', visibleNow.slice(0, 4));
+    await renderGrid('grid-new', visibleNew.slice(0, 4));
+    await renderGrid('grid-urgent', visibleUrgent.slice(0, 4));
   }
 
   function postedAgoToDays(value) {
@@ -259,9 +270,10 @@
   let dbListingJobs = [];
 
   function getDashboardListingPool() {
-    return dbListingJobs
+    const pool = dbListingJobs
       .map(job => ({ ...job, _source: 'listing' }))
       .filter(job => !job.isOwnerPost && job.listingOpen !== false);
+    return pool;
   }
 
   function sectionMetaFromKey(sectionKey) {
@@ -272,13 +284,15 @@
 
   function getSectionJobs(sectionKey) {
     const pool = getDashboardListingPool();
+    let result;
     if (sectionKey === 'new') {
-      return pool.filter(job => postedAgoToDays(job.postedAgo) <= 7);
+      result = pool.filter(job => postedAgoToDays(job.postedAgo) <= 7);
+    } else if (sectionKey === 'urgent') {
+      result = pool.filter(job => !!job.urgent);
+    } else {
+      result = pool;
     }
-    if (sectionKey === 'urgent') {
-      return pool.filter(job => !!job.urgent);
-    }
-    return pool;
+    return result;
   }
 
   function openSectionPage(sectionKey) {
@@ -306,8 +320,8 @@
   });
 
   // ── SEARCH ──
-  function doSearch() {
-    renderListings();
+  async function doSearch() {
+    await renderListings();
   }
 
   const searchInput = document.getElementById('searchInput');
@@ -345,13 +359,13 @@
     });
   }
 
-  function applyFilters() {
-    renderListings();
+  async function applyFilters() {
+    await renderListings();
     closeFilter();
     notify('Filters applied.');
   }
 
-  function resetFilters() {
+  async function resetFilters() {
     Object.keys(listingFilters).forEach(key => {
       listingFilters[key] = null;
     });
@@ -359,7 +373,7 @@
     if (filterRateMinInput) filterRateMinInput.value = '';
     if (filterRateMaxInput) filterRateMaxInput.value = '';
     if (filterRateCurrencySelect) filterRateCurrencySelect.value = '';
-    renderListings();
+    await renderListings();
     closeFilter();
     notify('Filters reset.', 'info');
   }
@@ -527,7 +541,7 @@
     try {
       const remoteJobs = await window.RJGDb.loadPostedJobs();
       postedJobPlaceholders.splice(0, postedJobPlaceholders.length, ...(Array.isArray(remoteJobs) ? remoteJobs : []));
-      renderListings();
+      await renderListings();
       buildForYouGrid();
       if (typeof buildPostingGrid === 'function') buildPostingGrid();
       console.log('Loaded posted jobs from database:', postedJobPlaceholders.length);
@@ -545,13 +559,13 @@
     try {
       const allJobs = await window.RJGDb.loadAllJobs();
       dbListingJobs = Array.isArray(allJobs) ? allJobs : [];
-      renderListings();
+      await renderListings();
       buildForYouGrid();
       console.log('Loaded all jobs from database:', dbListingJobs.length);
     } catch (e) {
       console.error('Failed to load all jobs from database:', e);
       dbListingJobs = [];
-      renderListings();
+      await renderListings();
       buildForYouGrid();
     }
   }
@@ -563,7 +577,7 @@
     await hydrateMyApplicationsFromDb();
     await hydrateMyBookmarksFromDb();
     buildForYouGrid();
-    renderListings();
+    await renderListings();
   }
 
   initializeDashboard();
@@ -1431,9 +1445,11 @@
     openOverlay(postJobModal);
   };
 
-  buildPostingGrid();
-  initializePostingModal();
-  renderListings();
+  (async () => {
+    buildPostingGrid();
+    initializePostingModal();
+    await renderListings();
+  })();
 
   // ── HEADER MENU (⋯) ──
   const headerMenuBtn = document.getElementById('headerMenuBtn');
@@ -2489,7 +2505,7 @@
           }
           closeJobReportReasonModal();
           closeJobDetail();
-          renderListings();
+          await renderListings();
           buildForYouGrid();
           const returnToSectionUrl = sessionStorage.getItem('dashboardSectionReturnAfterReport');
           if (currentDetailJob && currentDetailJob._moreSource === 'listing' && returnToSectionUrl) {

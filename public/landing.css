@@ -146,11 +146,12 @@ transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
 
 /* HERO */
 .hero {
-position: relative;
+position: static;
 min-height: 420px;
 display: flex;
 align-items: center;
 overflow: hidden;
+background-color: #E2E6FF;
 }
 
 .hero-content {
@@ -192,8 +193,17 @@ text-align: justify;
 .hero-text-button-container {
 display: flex;
 align-items: center;
-gap: 300px;
+gap: 10px;
 margin-bottom: 2rem;
+flex-direction: column;
+}
+
+.hero-qr {
+    height: 300px;
+    width: 300px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 15px;
 }
 
 .cta-btn {
@@ -265,8 +275,8 @@ gap: 14px;
 }
 
 .icon-placeholder {
-width: 55px;
-height: 55px;
+width: 100px;
+height: 100px;
 min-width: 55px;
 border-radius: 10px;
 background: #5B9DEE;
@@ -277,11 +287,13 @@ justify-content: center;
 
 .icon-placeholder svg {
 opacity: 0.85;
+width: 50px;
+height: 50px;
 }
 
 .feature-title {
 font-family: 'Montserrat', sans-serif;
-font-size: 20px;
+font-size: 30px;
 font-weight: 700px;
 color: #000;
 line-height: normal;
@@ -295,6 +307,9 @@ font-size: 20px;
 font-style: normal;
 font-weight: 200;
 line-height: normal;
+border-top: solid rgba(0, 0, 0, 0.08);
+margin-top: 20px;
+padding-top: 20px;
 }
 
 /* Responsive Design */

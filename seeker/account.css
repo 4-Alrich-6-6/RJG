@@ -1,8 +1,8 @@
 /* Your Account — card layout; sidebar + tokens from job-listing.css; edit buttons from profile.css */
 
 .account-page .profile-back-btn .profile-back-icon {
-  width: 22px;
-  height: 22px;
+  width: 35px;
+  height: 35px;
   color: var(--text-dark);
 }
 
@@ -249,6 +249,12 @@
     padding-right: 10px;
   }
 
+  .account-page .profile-back-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+  }
+
   .account-card {
     padding: 18px 14px 22px;
   }
@@ -256,6 +262,15 @@
   .account-card-title {
     margin-bottom: 18px;
     line-height: 1.25;
+  }
+}
+
+/* Admin account page specific mobile fix */
+@media (max-width: 768px) {
+  body.account-page .profile-back-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
   }
 }
 

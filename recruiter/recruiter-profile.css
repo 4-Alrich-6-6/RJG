@@ -321,6 +321,12 @@
   .recruiter-profile-page .rp-main {
     padding: 80px 14px 40px;
   }
+
+  .recruiter-profile-page .profile-back-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+  }
   .rp-card {
     padding: 22px 16px 28px;
     max-width: none;

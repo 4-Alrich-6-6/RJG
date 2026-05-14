@@ -252,6 +252,11 @@
   .recruiter-account-page .ra-main {
     padding: 80px 12px 40px;
   }
+  .recruiter-account-page .profile-back-btn {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+  }
   .ra-card { padding: 20px 16px 26px; max-width: none; }
   .ra-rows { gap: 16px; }
   .ra-row { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }

@@ -2397,6 +2397,11 @@ body {
 
   [data-admin-panel-content="jobs"] .admin-dashboard-job-row:not(.admin-dashboard-user-row) .admin-dashboard-row-actions button {
     flex: 1;
-    min-width: 100px;
+  }
+
+@media (min-width: 769px) {
+  .header-menu-item[href*="about-us"],
+  .header-menu-item#headerMenuLogoutBtn {
+    display: none !important;
   }
 }

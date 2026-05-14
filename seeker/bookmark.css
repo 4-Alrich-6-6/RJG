@@ -75,8 +75,12 @@ body.bookmark-job-modal-open {
     body.bookmark-page .bookmark-card.application-card {
         flex-direction: row;
         align-items: flex-start;
-        justify-content: space-between;
-        gap: 12px;
+    }
+
+    body.bookmark-page .application-back-btn {
+        position: absolute;
+        left: 12px;
+        top: 12px;
     }
 
     body.bookmark-page .bookmark-card-badge {

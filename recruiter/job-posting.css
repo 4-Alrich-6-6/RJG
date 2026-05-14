@@ -505,6 +505,8 @@
     padding: 10px 12px;
     font-family: Inter, sans-serif;
     font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .jp-submodal-grid select:disabled {
@@ -924,7 +926,7 @@
     }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 510px) {
     .jp-modal-overlay,
     .jp-submodal-overlay {
         align-items: flex-end;
@@ -936,13 +938,18 @@
         width: 100%;
         max-height: 92vh;
         border-radius: 14px 14px 0 0;
+        padding: 16px 20px;
     }
 
-    .jp-modal-body {
-        padding: 14px 16px;
+    .jp-submodal-grid {
+        padding: 0;
     }
 
     .jp-modal-header {
+        padding: 14px 16px;
+    }
+
+    .jp-modal-body {
         padding: 14px 16px;
     }
 

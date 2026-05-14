@@ -1665,6 +1665,13 @@ section.job-detail-more[hidden] {
   display: none !important;
 }
 
+@media (min-width: 769px) {
+  .header-menu-item[href*="about-us"],
+  .header-menu-item#headerMenuLogoutBtn {
+    display: none !important;
+  }
+}
+
 /* Image Modal Styles */
 .image-modal-overlay {
   position: fixed;

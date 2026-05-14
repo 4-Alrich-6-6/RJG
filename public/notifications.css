@@ -115,3 +115,10 @@
     stroke-width: 2;
 }
 
+@media (max-width: 768px) {
+    body.notifications-page .application-back-btn {
+        position: absolute;
+        left: 12px;
+        top: 12px;
+    }
+}
