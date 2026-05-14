@@ -457,6 +457,12 @@ nav {
     font-size: 15px;
 }
 
+.hero-qr {
+    width: 120px;
+    height: 120px;
+    margin-top: 12px;
+}
+
 .cta-btn {
     font-size: 16px;
     padding: 13px 36px;

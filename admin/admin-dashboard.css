@@ -804,7 +804,7 @@ body {
 }
 
 .admin-dashboard-job-row {
-  background: #E2E6FF;
+  background: #5B9DEE;
   border: 1px solid #d9d9d9;
   border-radius: 12px;
   box-shadow: 0 5px 0px rgba(0, 0, 0, 0.12);
@@ -879,6 +879,7 @@ body {
 
 .admin-dashboard-user-row {
   grid-template-columns: minmax(0, 1fr) 140px 200px;
+  background: #E2E6FF !important;
 }
 
 .admin-dashboard-user-row.user-archived {
@@ -2398,6 +2399,7 @@ body {
   [data-admin-panel-content="jobs"] .admin-dashboard-job-row:not(.admin-dashboard-user-row) .admin-dashboard-row-actions button {
     flex: 1;
   }
+}
 
 @media (min-width: 769px) {
   .header-menu-item[href*="about-us"],
